@@ -11,18 +11,20 @@ categories: Java - Spring
 토이 프로젝트에서 여러명이서 각기 다른 컨트롤러를 개발하다보니 컨트롤러 단에서 중복되는 불필요한 코드가 많아졌다.
 또한, 컨트롤러에서 핵심로직에 대한 가독성이 떨어지는 결과가 나타났다.
 
-![image][]
+![image](https://github.com/msKim92/msKim92.github.io/blob/db6767442c9b036b9e7d163ca9dffe913429b0c3/images/aop/1%20aop%20%EB%A6%AC%ED%8C%A9%ED%86%A0%EB%A7%81.png?raw=true)
 
 위와 같이 서로 다른 컨트롤들에 공통적으로 필요한 기능들을 `횡단관심사`로 묶어서 AOP기술을 사용했다. 토큰으로부터 얻고자하는 관심사를 묶고 컨트롤러 앞단에서 해당 로직을 처리하여 컨트롤러에서 보내주도록 리팩토링했고 그 결과 컨트롤러에 불필요한 코드가 줄어들고 파라미터 또한 줄어들어, 작업속도 좋은 영향을 주었다.
 
 ---
 ## <span style="color: red"> <AOP의 탄생 배경> </span>
-![image][]
+![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/aop/2%20%EA%B4%80%EC%8B%AC%EC%82%AC.png?raw=true)
+
 로직들을 구현하다 보면 여러 메서드에서 동일한 부가기능을 필요로 하게된다.
-그렇다면 무식하게 `복붙` 스킬을 써서 적용하면 된다고 생각할 수 있다. 하지만 이게 100개 이상이라면? 번거롭고 다른사람이 코드작업을 할때 굉장히 부담스러워진다.
+그렇다면 무식하게 `복붙` 스킬을 써서 적용하면 된다고 생각할 수 있다. 
+하지만 이게 100개 이상이라면? 번거롭고 다른사람이 해당 작업을 할때 굉장히 부담스러워진다.
 
 결국 위와같은 문제를 해결하기 위해 나온 것이 AOP이다. 핵심 로직과 부가 기능을 분리하고 한곳에 로직을 관리하는 기능을 만들었다. 이것이 `@aspect` 이다.
-oop와 같은 하나의 패러다임이고 많은 언어들이 지원하고 있고, Java에서는 AspectJ라는 방식으로 사용되고 있다. 하지만 필자는 스프링을 사용하고 스프링에서는 AOP 프록시를 사용하기에 스프링 aop가 제공하는 기능을 말할 예정이다.
+aop는 oop와 같은 하나의 패러다임이고 많은 언어들이 지원하고 있고, Java에서는 AspectJ라는 방식으로 사용되고 있다. 하지만 필자는 스프링을 사용하고 스프링에서는 AOP 프록시를 사용하기에 스프링 aop가 제공하는 기능을 말할 예정이다.
 
 ||Spring AOP| Aspect J|
 |---|---|---|
@@ -32,10 +34,13 @@ oop와 같은 하나의 패러다임이고 많은 언어들이 지원하고 있�
 * 위빙: 옷감을 짜다 애스펙트와 실제 코드를 연결해서 붙이는 것
 ---
 ## <span style="color: red"> <그래서 AOP 넌 뭔데?> </span>
-![image][]
+AOP를 알기 위해서는 우선 용어를 알아야한다.
+### `Target` : 어떤 대상에 부가기능을 부여할것인가
+### `Advice` : before, afterReturning 등등 언제 사용할지? 아래 그림 참조
+### `Join point` : 어디에 적용할 것인지? `메서드` (필드, 객체, 생성자)
+### `Point cut` : 실제 advice가 적용될 지점, 즉 적용될 메서드 위치
+![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/aop/3%20filter,interceptor,aop%ED%9D%90%EB%A6%84.jpg?raw=true)
 
-원리
-private 메서드 위에 @Transactional 선언시 안되는 이유 로직의 시작점에 열어주고 닫을때
+![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/aop/aop%20ex.png?raw=true)
 
-
-용어 설명
+AOP는 다양한 방면에서 우리가 알게 모르게 쓰고있다. filter, 인터셉터, @Transactional도 aop의 한 종류이다.
