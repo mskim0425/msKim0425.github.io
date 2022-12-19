@@ -33,7 +33,7 @@ github:
   username: ms92Kim         # change to your github username
 
 twitter:
-  username: not_Using            # change to your twitter username
+  username:             # change to your twitter username
 
 social:
   # Change to your full name.
@@ -80,7 +80,7 @@ theme_mode:   # [light|dark]
 img_cdn: 'https://raw.githubusercontent.com/cotes2020/chirpy-images/main'
 
 # the avatar on sidebar, support local or CORS resources
-avatar: '/assets/img/profile.png'
+avatar: 'https://mblogthumb-phinf.pstatic.net/MjAxNzA1MjlfMTM2/MDAxNDk2MDQzMTg3MzQz.iKxA1abHlx85F1EA8to51w79ueTBUvExSmKLl26tcDog.9WRCoHgCajaGr8PA3-Cgg8MjboFd7DK0rwYy0oaLkOsg.JPEG.dbtkdals345/Greatest-Superhero-Films-Iron-Man.jpg?type=w800'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
