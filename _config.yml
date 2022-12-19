@@ -10,7 +10,7 @@ baseurl: ''
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: ko-KR
+lang: en
 
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
@@ -21,7 +21,7 @@ timezone: Asia/Seoul
 
 title: SoThoughtful;                          # the main title
 
-tagline: reminding   # it will display as the sub-title
+tagline: 백엔드 개발자   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Escape from Tstory
@@ -80,7 +80,7 @@ theme_mode:   # [light|dark]
 img_cdn: 'https://raw.githubusercontent.com/cotes2020/chirpy-images/main'
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 'https://mblogthumb-phinf.pstatic.net/MjAxNzA1MjlfMTM2/MDAxNDk2MDQzMTg3MzQz.iKxA1abHlx85F1EA8to51w79ueTBUvExSmKLl26tcDog.9WRCoHgCajaGr8PA3-Cgg8MjboFd7DK0rwYy0oaLkOsg.JPEG.dbtkdals345/Greatest-Superhero-Films-Iron-Man.jpg?type=w800'
+avatar: 'https://avatars.githubusercontent.com/u/107451298?s=400&u=e5165c561ac67ec7819798bbd37382f3630f4a99&v=4'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
