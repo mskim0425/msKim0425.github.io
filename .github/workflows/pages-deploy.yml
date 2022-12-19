@@ -1,4 +1,4 @@
-name: 'Automatic build'
+name: "Build and Deploy"
 on:
   push:
     branches:
@@ -52,7 +52,6 @@ jobs:
       - name: Test site
         run: |
           bundle exec htmlproofer _site --disable-external --check-html --allow_hash_href
-
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v1
         with:
