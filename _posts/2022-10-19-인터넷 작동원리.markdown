@@ -2,7 +2,8 @@
 layout: post
 title:  "인터넷 사용법?"
 date:   2022-10-19 13:41:57 +0900
-categories: Java - Internet
+categories: [CS , internet]
+tags: [cs, internet]
 ---
 # `"Internet" 너는 대체 이건 무엇인고?`
 

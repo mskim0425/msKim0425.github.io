@@ -14,7 +14,8 @@ tabs:
   categories: 카테고리
   tags: 태그
   archives: 아카이브
-  about: 정보
+  about: 나의 정보
+  
 
 # the text displayed in the search bar & search results
 search:
