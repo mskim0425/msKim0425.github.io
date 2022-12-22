@@ -38,11 +38,11 @@ What I learn
 "개발기간" 2022.11.8 - 2022.12.7 (30일)
 "개발인원" 6인 프론트 3명, 백엔드 3명
 "포지션" 팀장, 백엔드
-"주요성과"  Spring, AWS(EC2+ELB, CloudWatch etc), CICD
+"주요성과"  Spring, AWS(EC2+ELB, CloudWatch etc), CI/CD
 - 깃 전략, 팀 매니징 및 DB 구조 API명세서 등 문서 작성
-- Spring Security를 이용하여 Oauth2, JWT Token 구현
+- Spring Security를 이용하여 Oauth2, JWT 구현
 - 카카오 페이를 이용한 결제시스템 연동
-- AWS 환경 구축 (L7 로드 벨런싱, Cloudfront, CICD 구축 등)
+- AWS 환경 구축 (L7 로드 벨런싱, Cloudfront, CI/CD 구축 등)
 - 로그 관리(Logger, CloudWatch, Discord Webhook)
 ```
 
@@ -57,7 +57,7 @@ What I learn
 "개발인원" 5인 프론트 3명, 백엔드 2명
 "포지션" 백엔드
 "주요성과" 
-- Spring Security를 이용하여 JWT Token 로그인
+- Spring Security를 이용하여 JWT 로그인
 - JPA 및 QueryDSL 사용
 - AWS(EC2,RDS,S3)
 ```
