@@ -3,7 +3,7 @@ layout: post
 title:  "구조패턴 - 플라이웨이트 패턴"
 date:   2022-12-05 15:11:04 +0900
 categories: [CS ,  Design Pattern]
-tags: [CS, Design Pattern]
+tags: [cs, design pattern]
 ---
 # flyweight Pattern
 
@@ -65,5 +65,5 @@ tags: [CS, Design Pattern]
   
 ---
 ## <span style="color: gold"> 참고자료 </span>  
-https://refactoring.guru/ko/design-patterns/flyweight
+[Source Ⅰ](https://refactoring.guru/ko/design-patterns/flyweight)
 ---

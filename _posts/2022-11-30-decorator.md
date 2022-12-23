@@ -3,7 +3,7 @@ layout: post
 title:  "구조패턴 - 데코레이터 패턴"
 date:   2022-11-30 15:11:04 +0900
 categories: [CS ,  Design Pattern]
-tags: [CS, Design Pattern]
+tags: [cs, design pattern]
 ---
 # Decorator Pattern
 
@@ -58,5 +58,5 @@ tags: [CS, Design Pattern]
   
 ---
 ## <span style="color: gold"> 참고자료 </span>  
-https://www.baeldung.com/java-decorator-pattern
+[Source Ⅰ](https://www.baeldung.com/java-decorator-pattern)
 ---
