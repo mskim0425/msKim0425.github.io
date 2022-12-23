@@ -3,7 +3,7 @@ layout: post
 title:  "구조패턴 - 컴포지트 패턴"
 date:   2022-12-12 15:11:04 +0900
 categories: [CS ,  Design Pattern]
-tags: [CS, Design Pattern]
+tags: [cs, design pattern]
 ---
 # Composite Pattern
 
@@ -133,5 +133,5 @@ HR은 복합, 재정,판매는 단일객체의 형태를 띄고있다. 즉, 단�
   
 ---
 ## <span style="color: gold"> 참고자료 </span>  
-https://www.baeldung.com/java-composite-pattern
+[Source Ⅰ](https://www.baeldung.com/java-composite-pattern)
 ---
