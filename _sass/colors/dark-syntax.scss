@@ -70,18 +70,18 @@
 
   /* -----  custom styles ------ */
 
-  --highlight-bg-color: #252525;
-  --highlighter-rouge-color: #de6b18;
-  --highlight-lineno-color: #6c6c6d;
+  --highlight-bg-color: #000000; //java back
+  --highlighter-rouge-color: rgb(255, 215, 54); 
+  --highlight-lineno-color: #f8a7a7; //java 번호
   --inline-code-bg: #272822;
-  --code-header-text-color: #6a6a6a;
+  --code-header-text-color: rgb(255, 215, 54); //java 헤더
   --code-header-muted-color: rgb(60 60 60);
   --code-header-icon-color: rgb(86 86 86);
   --clipboard-checked-color: #2bcc2b;
   --filepath-text-color: #bdbdbd;
 
   .highlight {
-    .gp { color: #818c96; }
+    .gp { color: #161616; }
   }
 
   pre { color: #bfbfbf; } /* override Bootstrap */
