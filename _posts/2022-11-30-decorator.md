@@ -49,7 +49,35 @@ tags: [cs, design pattern]
 
 위의 그림구조는 런타임에 원하는 만큼 데코레이터를 추가할 수 있는 유연성을 제공한다.
 기존의 장신구들이 있다면 굳이 트리를 살때, 똑같은 장신구를 살 필요없듯이 인터페이스로 받아서 사용하는 패턴이다.
+```java
+public class TimeAudit {
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
+    @LastModifiedDate
+    private LocalDateTime updated_at;
+}
+```
+```java
+public class WriterAudit extends TimeAudit{
+
+    @Column(updatable = false)
+    private String create_by_member;
+
+    @Column
+    private String updated_by_member;
+}
+```
+```java
+public class Follow extends TimeAudit {
+    ...
+}
+public class Challenge extends WriterAudit {
+    ...
+}
+
+```
 ---
 ## <span style="color: gold"> 결론 </span>  
 
