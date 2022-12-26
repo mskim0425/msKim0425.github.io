@@ -49,34 +49,82 @@ tags: [cs, design pattern]
 
 위의 그림구조는 런타임에 원하는 만큼 데코레이터를 추가할 수 있는 유연성을 제공한다.
 기존의 장신구들이 있다면 굳이 트리를 살때, 똑같은 장신구를 살 필요없듯이 인터페이스로 받아서 사용하는 패턴이다.
+`기본 윈도우`
 ```java
-public class TimeAudit {
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
+interface Window {
+    public void draw(); // draws the Window
+    public String getDescription(); // returns a description of the Window
+}
 
-    @LastModifiedDate
-    private LocalDateTime updated_at;
+class SimpleWindow implements Window {
+    public void draw() {
+    }
+
+    public String getDescription() {
+        return "simple window";
+    }
 }
 ```
+`데코레이터 클래스`
 ```java
-public class WriterAudit extends TimeAudit{
+// abstract decorator class - note that it implements Window
+abstract class WindowDecorator implements Window {
+    protected Window decoratedWindow; // the Window being decorated
 
-    @Column(updatable = false)
-    private String create_by_member;
+    public WindowDecorator (Window decoratedWindow) {
+        this.decoratedWindow = decoratedWindow;
+    }
+}
 
-    @Column
-    private String updated_by_member;
+// 첫번째 데코레이터 패턴 수직스크롤기능 추가
+class VerticalScrollBarDecorator extends WindowDecorator {
+    public VerticalScrollBarDecorator (Window decoratedWindow) {
+        super(decoratedWindow);
+    }
+
+    public void draw() {
+        drawVerticalScrollBar();
+        decoratedWindow.draw();
+    }
+
+    private void drawVerticalScrollBar() {
+        // draw the vertical scrollbar
+    }
+
+    public String getDescription() {
+        return decoratedWindow.getDescription() + ", including vertical scrollbars";
+    }
+}
+
+// 두번째 데코레이터 패턴 수평스크롤 기능 추가
+class HorizontalScrollBarDecorator extends WindowDecorator {
+    public HorizontalScrollBarDecorator (Window decoratedWindow) {
+        super(decoratedWindow);
+    }
+
+    public void draw() {
+        drawHorizontalScrollBar();
+        decoratedWindow.draw();
+    }
+
+    private void drawHorizontalScrollBar() {
+        // draw the horizontal scrollbar
+    }
+
+    public String getDescription() {
+        return decoratedWindow.getDescription() + ", including horizontal scrollbars";
+    }
 }
 ```
+`데코레이터 패턴이 적용된 객체 호출`
 ```java
-public class Follow extends TimeAudit {
-    ...
+public class DecoratedWindowTest {
+    public static void main(String[] args) {
+        // create a decorated Window with horizontal and vertical scrollbars
+        Window decoratedWindow = new HorizontalScrollBarDecorator (
+                new VerticalScrollBarDecorator(new SimpleWindow()));
+    }
 }
-public class Challenge extends WriterAudit {
-    ...
-}
-
 ```
 ---
 ## <span style="color: gold"> 결론 </span>  
@@ -87,4 +135,6 @@ public class Challenge extends WriterAudit {
 ---
 ## <span style="color: gold"> 참고자료 </span>  
 [Source Ⅰ](https://www.baeldung.com/java-decorator-pattern)
+[Source Ⅱ](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0_%ED%8C%A8%ED%84%B4)
+
 ---
