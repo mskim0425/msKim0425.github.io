@@ -3,32 +3,31 @@
 icon: fas fa-info-circle
 order: 4
 ---
-# 기획하는 백엔드 개발자 김민섭
-> 코드스테이츠 (Code States)
->
-> Advanced software engineering, Immersive program (40기 수료)
-{: .prompt-info }
-기간: 2022.06 - 2022. 12
+>순서는 아무 의미 없습니다.
+{: .prompt-info}
 
-What I learn
-- 프론트와 백엔드와의 팀프로젝트 참여
-- 동료와의 협업 스킬
-- Spring Framework 기술 학습
-- Git workflow
+>기술 블로그 즐겨찾기  
+>[어썸데브블로그](https://github.com/awesome-devblog/awesome-devblog)  
+>[우아한 형제들](https://techblog.woowahan.com/)  
+>[Naver D2](https://d2.naver.com/home)  
+>[카카오](https://tech.kakao.com/blog/)  
+>[LINE](https://engineering.linecorp.com/ko/blog/)  
+>[티몬](https://blog.naver.com/tmondev)  
+>[스포카](https://spoqa.github.io/)  
+>[쿠팡](https://medium.com/coupang-engineering/kr/home)  
+>[NHN](https://meetup.toast.com/)  
+>[마켓컬리](https://helloworld.kurly.com/)  
+>[쿠팡](https://medium.com/coupang-engineering)  
+>[레진](https://tech.lezhin.com/)  
+>[데일리호텔](https://dailyhotel.io/)  
+>[스타일쉐어](https://medium.com/styleshare)  
+>[야놀자](https://yanolja.github.io/)  
+>[지그재그](https://devblog.kakaostyle.com/ko/)  
+>[구글](https://developers.googleblog.com/)  
+{: .prompt-tip}
 
-<!-- > 부산외국어대학교
->
-> 컴퓨터공학과 졸업
-{: .prompt-info }
-기간: 2012.03 - 2018. 02
 
-What I learn
-- cs지식 및 자바, c언어
-- 장학금 수료 및 교내 캡스톤 대회 장려상 수상
-- 자료구조와 알고리즘 성적 우수 -->
-
-
-> 슬기로운 생활: 목표달성을 위한 페이스메이커 서비스 
+<!-- > 슬기로운 생활: 목표달성을 위한 페이스메이커 서비스 
 > 
 > [HomePage](https://wiselife.click/) |  [Git Hub](https://github.com/codestates-seb/seb40_main_009) |  [기획소개](https://codestates.notion.site/40-Team009-f7a07fc2c5ae4d5a9e5ba4766dd42e8c) | [기술 소개 영상](https://youtu.be/I0s1v3WJ95g?t=1007) <sub>16:47부터 시작</sub>
 {: .prompt-tip }
@@ -60,4 +59,4 @@ What I learn
 - Spring Security를 이용하여 JWT 로그인
 - JPA 및 QueryDSL 사용
 - AWS(EC2,RDS,S3)
-```
+``` -->
