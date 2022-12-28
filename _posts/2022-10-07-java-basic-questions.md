@@ -1,0 +1,407 @@
+---
+layout: post
+title:  "자바 CS지식 정리"
+date:   2022-10-07 19:41:57 +0900
+categories: [Java , Basic]
+tags: [java, basic]
+---
+
+# Java Basic Confusing Questions
+---
+> 클릭하면 정답이 나옵니당~  
+> 자바의 정석(남궁성 지음)에서 인용한 코드와 내용을 담고 있습니다.
+{: .prompt-tip}
+
+
+<details>
+<summary><span style="color: gold"><font size ="+1"> 데이터 타입중 기본형과 참조형의 차이 </font></span></summary>
+<div markdown="1">
+`기본형` 변수의 실제 데이터를 저장  
+`참조형` 주소값의 데이터를 저장한다.  
+>자바는 C와 다르게 참조형 변수끼리 연산이 안된다.
+{: .prompt-warning}
+
+</div>
+</details>
+
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> 클래스와 객체에 대해 설명 </font> </span></summary>
+<div markdown="1">  
+
+`객체` : 속성과 동작을 가지고 있고 다른것과 식별가능하냐...  `(붕어빵)`  
+`클래스`: 필드, 메서드, 생성자로 구성되어있는 객체의 설계도 `(붕어빵 틀)`  
+
+</div>
+</details>
+
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> 메서드 오버라이딩과 메서드 오버로딩의 차이 </font></span></summary>
+<div markdown="1"> 
+
+||오버로딩|오버라이딩|
+|:---:|:---:|:---:|
+|메서드 이름|same|same|
+|메게변수, 타입|different|same|
+|리턴 타입|doesn`t matter| smame|
+
+`오버라이딩` : 상위 메서드에서 사용된 메서드를 자식 클래스에서 다시 호출해서 새로운 형태로 사용하는 행위, 리턴 타입이 동일해야함
+
+```java
+부모에게서 상속받은 메소드의 내용과 자식클래스와 맞지않을 경우 자식클래스에서 동일한 메소드를 재정의
+/*-----------------------------------부모 클래스--------------------------------------*/
+class Man{ 
+    public String name;
+    public int age;
+    
+        public void info(){
+        System.out.println("이 남자의 이름은 "+name+", 나이는 "+age+"살");
+    }   
+}
+/*----------------------------------자식 클래스---------------------------------------*/
+class Job extends Man{
+    String job;
+    
+    public void info() {//부모클래스에 있는 info()메서드를 재정의
+        super.info(); // 오버라이딩을 위한 super선언 필수
+        System.out.println("이 자의 직업은 "+job);
+    }
+}
+/*-------------------------------------메인 클래스-----------------------------------*/
+public class OverRidding {
+     public static void main(String[] args) {      
+        Job job = new Job(); //Job 객체 생성
+        
+        //변수 설정
+        job.name = "민섭";
+        job.age = 30;
+        job.job = "백엔드";
+        
+        job.info();
+    } 
+}
+```
+
+`오버로딩`: 같은 이름으로 된 메서드를 매개변수, 타입만 다르게 해서 사용하는 행위 리턴타입 상관없음
+
+```java
+하나의 클래스 안의 같은 이름의 메서드를 여러번 정의
+class Shape {
+    public void area() { // 메서드 오버로딩. 같은 이름의 메서드 4개.
+        System.out.println("넓이");
+    }
+    public void area(int r) {
+        System.out.println("원 넓이 = " + 3.14 * r * r);
+    }
+
+    public void area(int w, int l) {
+        System.out.println("직사각형 넓이 = " + w * l);
+    }
+
+    public void area(double b, double h) {
+        System.out.println("삼각형 넓이 = " + 0.5 * b * h);
+    }
+```
+</div>
+</details>
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> jvm 동작 방식 </font></span></summary>
+<div markdown="1">
+![img](https://blog.kakaocdn.net/dn/cO11RQ/btrHILNutOu/8d0jdpVJKh5IEHsa6KNE61/img.png)
+
+**`[1] .Java → compiler → .class(바이트 코드) → JVM`**
+
+코드를 입력하면 JVM머신으로 보내주기전에 Java Compiler에게 소스코드를 검사를 받고 컴파일을 진행한다.  
+.java 확장자를 가졌던 코드 → .class 확장자를 가진 java byte code로 변한다.
+
+**`[2] JVM 코드 실행을 위한 메모리 할당을 OS로 부터 받음 (메모리 할당)`**
+
+**`[3] Class Loader가  바이트코드 파일 → RuntimeData Area로 적재시킴 (자바소스코드 메모리 로드)`**
+
+**`[4] 로드 완료 후, Execution가 런타임 데이터 영역에 적재된  바이트 코드 실행 (2가지 방식으로 바이트 코드 실행)`**
+
+4-1. 인터프리터 → 코드를 한줄씩 기계어로 번역하고 실행
+
+4-2. Jit 컴파일러 → just in time complier로 바이트 코드 전부를 기계어로 번역하고 실행
+
+※ 차이 - 인터프리터를 기본으로 하다가 '반복되는 문장이 자주 실행된다'로 판단되면 jit 컴파일러 실행
+
+</div>
+</details>
+
+
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> 자바의메모리 영역에 대해 설명 </font></span></summary>
+<div markdown="1">
+![img](https://blog.kakaocdn.net/dn/JXffi/btrHIG6Fm1W/s5BdDuw2SqAGWtQuxBt441/img.png)
+<center>JVM에서 Runtime Data Area를 더 디테일하게 표현한 부분이다.</center>  
+
+
+**`메서드 영역 (Method Area)`**  
+클래스 멤버 변수의 이름, 데이터 타입, 접근 제어자 정보와 같은 각종 필드 정보들과 메서드 정보, 데이터 Type 정보, Constant Pool, static변수, final class 등이 생성되는 영역이다.
+
+**`힙 영역(Heap Area)`**  
+JVM에는 하나의 heap영역만 존재함. 객체, 인스턴스 변수, 배열이되는 영역이다
+가비지컬랙션이 주기적으로 활동하는 영역이다
+
+**`스택 영역 (Stack Area)`**  
+지역변수, 파라미터, 리턴 값, 연산에 사용되는 임시 값 등이 생성되는 영역이다
+
+
+**`PC 레지스터 (PC Register)`**  
+Thread가 생성될 때마다 생성되는 영역으로 프로그램 카운터, 즉 현재 스레드가 실행되는 부분의 주소와 명령을 저장하고 있는 영역이다
+
+  
+
+**`네이티브 메서드 스택 (Native Method Stack)`**  
+JVM에서 C와 같은 Java 언어 이외의 네이티브 메서드를 지원하기 위해 사용하는 스택 구조의 메모리 영역이다
+
+※ 자바 이외의 언어(C++, 어셈블리 등)로 작성된 네이티브 코드를 실행할 때 사용되는 메모리 영역으로 일반적인 C 스택을 사용한다고 함.
+</div>
+</details>
+
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> static, final 키워드에 대해 설명하고 언제 사용해야하는지  </font></span></summary>
+<div markdown="1">
+
+`static` = `공통적인` 의 의미를 지니고 있다. 인스턴스에 상관없이 하나의 변수를 모든 인스턴스가 공유하기 떄문이다. 
+`final` = `변경될수 없는`의 의미를 지니고있다. 변수에 이용되면 상수가 되고, 메서드에 사용되면 오버라이딩이 불가능하며, 클래스에서 사용된다면 자손클래스를 정의할 수 없다.
+
+static 초기화 블럭은 클래스가 메모리에 로드될 때, 단 한번만 수행됨.
+```java
+//static 변수
+static int width = 200;
+> 모든 인스턴스에 공통적으로 사용되는 클래스 변수가 됨
+> 클래스변수는 인스턴스를 생성하지않아도 사용가능
+> 클래스 메모리에 로드될때 생성
+
+//static 메서드
+public static Method(){
+    ...
+}
+> 인스턴스를 생성하지 않고도 호출이 가능한 static 메서드가 된다.
+> static 메서드 내에 인스턴스맴버들을 직접 사용 할 수 없다.
+```
+```java
+final class Final{              //조상이 될 수 없는 클래스
+    final int MAX_SIZE = 10;    //값을 변경할 수 없는 상수
+    final void getSize(){       //오버라이딩 불가능한 메서드
+        final int LV = MAX_SIZE;//값 변경이 안되는 지역변수
+        return MAX_SIZE;
+    }
+}
+```
+
+</div>
+</details>
+
+<details>
+<summary>
+<span style="color: gold"> <font size ="+1">OOP 장단점과 설명 </font></span></summary>
+<div markdown="1">
+
+**`절차 지향 대신 왜 우린 객체지향 프로그래밍을 하는 것인가?`**
+
+절차 지향은 말처럼 순차적인 처리가 중요시하는 프로그램이다. 대표적으로는 C언어가 있다.  
+컴퓨터의 일처리 방식과 유사해 실행 속도가 빠르다.  
+하지만 리팩터링, 디버깅의 어려움, 순서가 바뀌면 결과가 바뀌는 등 단점이 많아서 나온 이론이 객체지향이다.
+
+`객체지향은...`
+
+실제 존재하는것과 객체들 간 상호작용을 컴퓨터 프로그래밍을 통해 구현하고자 함  
+또한 이렇게 프로그램을 작성한다면 `재사용성, 유지보수 용이, 중복 코드 감소 효과`가 나타남.  
+
+단점으로는 설계에 많은 시간과 절차지향언어에 비해 상대적으로 실행속도가 느리다.
+
+ ---
+
+>캡.상.추.다!
+{: .prompt-tip}
+
+**`상속 (inherutance)`** = 확장과 분류용이, 중복코드 제거, 재사용성↑
+
+- 기존의 클래스를 기반으로 새로운 클래스를 작성 (a.k.a 자식 클래스가 부모 클래스의 특징과 기능을 따라 받는 것)
+
+- 다중 상속 안됨
+
+- extends 키워드 사용
+
+ 
+
+**`캡슐화 (encaspulation)`** = 데이터 보호와 은닉
+
+- 속성(변수)과 기능(메서드)을 하나로 묶어서, public, private 같은 접근 지정자를 통해 제어하는 방법.
+
+- getter/setter 사용
+
+- 높은 응집도(Cohension) 낮은 결합도(Coupling)를 유지할 수 있도록 해주는 설계 방식
+
+ 
+
+**`다형성 (polymorphism)`** = 오버 라이딩... 상위 클래스가  같은 메서드로 하위 클래스들을 서로 다르게 동작시킬 수 있다.
+
+- 부모 클래스가 자식 클래스의 동작 방식을 알 수 없어도 오버 라이딩을 통해 자식 클래스를 접근할 수 있습니다.
+
+- 상위 클래스 타입의 참조 변수로 하위 클래스 객체를 참조 (반대로 참조하는 경우는 안됨)
+
+- 유지보수가 쉽고 재사용성이 좋고 결합이 느슨하도록 유지하는 방식
+
+ex) SportCar() -> Car() 일 경우
+```java
+Car car = new car();
+SportCar Scar = new SportCar();
+
+Car Scar = new SportCar(); //가능
+SportCar Scar = new Car(); //불가능
+```
+
+
+**`추상화(Abstraction)`** = 공통된 특징을 하나의 개념화
+
+- abstract 키워드를 사용
+
+- 공통된 특징인 만큼 반드시 사용되어야 하는 메서드를 선언해서 추상 클래스를 상속받는 모든 클래스들은 추상 메소드를 재정의 해야 함
+
+- 다중 상속 불가능. 객체 생성 불가능
+
+</div>
+</details>
+
+ 
+<details>
+<summary>
+<span style="color: gold"> <font size ="+1">접근제어자의 특징과 종류에 대해서 설명 </font></span></summary>
+<div markdown="1">
+
+`public`: 접근 제한이 없다.  
+`default`: 같은 패키지 내에서 접근 가능하다.  
+`protected`: 같은 패키지와 다른 패키지의 자손클래스에서 접근이 된다.  
+`private`: 같은 클래스 내에서만 접근이 가능하다. 
+
+</div>
+</details>
+
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> 추상 클래스와 인터페이스의 차이 </font></span></summary>
+<div markdown="1">
+
+>추상클래스는 IS - A "~이다". (다중상속 X)  
+>인터페이스는 HAS - A "~을 할 수 있는 (다중상속 O)
+{: .prompt-tip}
+
+`추상화(Abstraction)` = 공통된 특징을 하나의 개념화
+
+- abstract 키워드를 사용
+
+- 공통된 특징인 만큼 반드시 사용되어야 하는 메서드를 선언해서 추상 클래스를 상속받는 모든 클래스들은 추상 메소드를 재정의 해야 함
+
+- 다중 상속 불가능. 객체 생성 불가능
+
+
+`인터페이스 (interface) `= 역할과 구현의 구분
+
+- implements 키워드 사용 *상속보단 구현
+
+- 모든 기능을 추상화로 정의만 하고 클래스 내에서 구현은 하지 않은 것. (미리 정해진 규칙에 맞게 구현하도록 표준을 제시)  
+
+**`인터페이스와 추상화의 차이점 - 기본 설계도와 미완성 설계도`**
+
+`추상클래스`는 인스턴스 생성보다는 상속을 목적으로 하는 반면 `인터페이스는` 주로 제공할 기능을 정의하는 데 사용.  
+`추상클래스`는 생성자 필드 일반, 추상 메서드를 포함할수있는 반면 `인터페이스`는 상수와 추상 메소드만 포함 할수 있다.
+
+ 
+
+추상 클래스는 자신의 기능들을 하위 클래스로 확장
+
+-> 메서드를 자신 특징에 맞게 확장해서 사용, 변숫값 지정 없이 상황에 맞게끔 사용하면 된다.
+
+ 
+
+인터페이스에 정의된 메소드를 각 클래스의 목적에 맞게 기능을 구현
+
+->  클래스를 감싸서 직접적인 클래스 간의 종속관계를 벗어나게 해 줌 (독립성 확보) 이것은 유지보수에 있어서 유리함
+
+또한 변숫값을 사용하려면 고정값을 줘야 함
+
+</div>
+</details>
+
+
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> 이너클래스와 익명클래스, 장단점  </font></span></summary>
+<div markdown="1">
+
+`내부 클래스`는 클래스 내에 선언된 클래스이다.  
+하나의 클래스를 다른 클래스의 내부 클래스로 선언하면 두 클래스의 맴버들간에 서로 `쉽게 접근 할 수 있다는 점`과  
+외부의 불필요한 클래스를 감춤으로써 `코드의 복잡성을 줄일수있다 -> 캡슐화`.
+```java
+class A{
+
+}
+class B{
+
+}
+----
+class A{ 
+    class B{ //내부 클래스 B
+
+    }
+}
+```
+`익명클래스`: 이름이 없고, 클래스 선언과 동시에 객체를 생하기에 한번만 사용가능하며,  
+오직 하나의 객체만을생성 할 수있는 `일회용 클래스`
+다시사용하지않는다고 하면 클래스를 만드는것보단 좋다. 득보다 실이 커보인다.
+
+</div>
+</details>
+
+
+<details>
+<summary><span style="color: gold"><font size ="+1"> 컬랙션과 스트림의 차이 설명 </font></span></summary>
+<div markdown="1">
+
+
+</div></details>
+
+
+
+<details>
+<summary><span style="color: gold"><font size ="+1"> list ,set, map 차이점 </font></span></summary>
+</details>
+
+
+
+<details>
+<summary>
+<span style="color: gold"><font size ="+1"> 제네릭에 대해서 설명하고 컬렉션 클래스에서 왜 제네릭을 사용하는지?	 </font></span></summary>
+<div markdown="1">
+
+
+</div>
+</details>
+
+
+
+
+
+<!-- <details>
+<summary>
+<span style="color: gold"><font size ="+1"> 제네릭에 대해서 설명하고 컬렉션 클래스에서 왜 제네릭을 사용하는지?	 </font></span></summary>
+<div markdown="1">
+
+
+</div>
+</details> -->
