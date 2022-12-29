@@ -3,6 +3,7 @@ permalink: /robots.txt
 # The robots rules
 ---
 
-Allow: /_includes/_posts
+user-agent: *
+Disallow:
 
 Sitemap: {{ '/sitemap.xml' | absolute_url }}
