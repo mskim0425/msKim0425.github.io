@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "자바 CS지식 정리"
+title:  "Java Basic Confusing Questions Ⅰ"
 date:   2022-10-07 19:41:57 +0900
 categories: [Java , Basic]
 tags: [java, basic]
@@ -411,7 +411,7 @@ class A{
 
 `Set`은 순서가 보장되지 않고 데이터들의 중복을 허용하지 않는다.
 
-![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbea8Dr%2FbtqwKdIBQHH%2FS6fWcJsR5pM2o3JZKDryK0%2Fimg.png)
+![img](https://github.com/msKim92/msKim92.github.io/blob/main/images/java/collectionArch.png?raw=true)
 
 
 </div>
