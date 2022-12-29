@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Java Basic Confusing Questions Ⅰ"
+title:  "Java Basic Confusing Questions Ⅰ (13개)"
 date:   2022-10-07 19:41:57 +0900
 categories: [Java , Basic]
 tags: [java, basic]
