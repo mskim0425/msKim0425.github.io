@@ -6,13 +6,13 @@
   /* Framework color */
   --body-bg: var(--main-bg);
   --mask-bg: rgb(68, 69, 70);
-  --main-bg: rgb(27, 27, 30);
+  --main-bg: #0f0f11;
   --main-border-color: rgb(44, 45, 45);
 
   /* Common color */
-  --text-color: rgb(175, 176, 177);
-  --text-muted-color: hwb(208 42% 51%);
-  --heading-color: #cccccc;
+  --text-color: rgb(234, 236, 238); //텍스트 색상
+  --text-muted-color: hwb(87 78% 0%); //날짜
+  --heading-color: #9382ca;
   --blockquote-border-color: rgb(66, 66, 66);
   --blockquote-text-color: rgb(117, 117, 117);
   --link-color: rgb(138, 180, 248);
@@ -59,17 +59,17 @@
   --tb-even-bg: rgb(31, 31, 34); /* even rows of the posts' table */
   --tb-border-color: var(--tb-odd-bg);
   --footnote-target-bg: rgb(63, 81, 181);
-  --btn-share-color: #6c757d;
+  --btn-share-color: rgb(108, 117, 125);
   --btn-share-hover-color: #bfc1ca;
   --relate-post-date: var(--text-muted-color);
   --card-bg: rgb(39, 40, 43);
   --card-border-color: rgb(53, 53, 60);
   --card-box-shadow: var(--main-bg);
   --preview-img-bg: radial-gradient(circle, rgb(22 22 24) 0%, rgb(32 32 32) 100%);
-  --kbd-wrap-color: #6a6a6a;
+  --kbd-wrap-color: rgb(106, 106, 106);
   --kbd-text-color: #d3d3d3;
   --kbd-bg-color: #242424;
-  --prompt-text-color: rgb(216 212 212 / 75%);
+  --prompt-text-color: rgb(255, 255, 255);
   --prompt-tip-bg: rgba(77, 187, 95, 0.2);
   --prompt-tip-icon-color: rgb(5 223 5 / 68%);
   --prompt-info-bg: rgb(7 59 104 / 80%);
@@ -87,7 +87,7 @@
 
   /* categories */
   --categories-border: rgb(64, 66, 69);
-  --categories-hover-bg: rgb(73, 75, 76);
+  --categories-hover-bg: rgb(75, 76, 73);
   --categories-icon-hover-color: white;
 
   /* archives */
