@@ -3,7 +3,7 @@ permalink: /robots.txt
 # The robots rules
 ---
 
-user-agent: *
-Disallow:
+User-agent: *
+Allow: /
 
 Sitemap: {{ '/sitemap.xml' | absolute_url }}

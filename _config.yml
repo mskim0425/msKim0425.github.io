@@ -24,7 +24,7 @@ title: SoThoughtful;                          # the main title
 tagline: 백엔드 개발자   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  Escape from Tstory
+  백엔드 개발자의 정리글, backend java, spring stuff
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: https://msKim92.github.io
