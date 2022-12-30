@@ -29,7 +29,7 @@ tags: [cs, design pattern]
 </div>
 </details>
 
->중복되는 메서드를 통해 오버라이딩 하는 것
+> 생성할 객체의 클래스를 국한하지 않고 생성한다.
 {: .prompt-tip }
 
 
@@ -41,7 +41,7 @@ tags: [cs, design pattern]
 `상위클래스`에서는 인스턴스를 만드는 방법을 결정하고,  
 `하위 클래스`에서는 데이터의 생성을 책임지고 조작하는 함수들을 오버라이딩하여 인터페이스와 실제 객체를 생성하는 클래스를 분리할 수 있는 특징을 갖는 디자인 패턴.
 
-![img](https://velog.velcdn.com/images%2Fjamieshin%2Fpost%2F715a6f1b-2622-46fa-b945-531f0e5e874d%2Fimage.png)
+![img](https://velog.velcdn.com/images%2Fjamieshin%2Fpost%2F715a6f1b-2622-46fa-b945-531f0e5e874d%2Fimage.png){: .shadow }
 
 <center><small> 팩토리 메소드 패턴 헤드 퍼스트 </small></center>
 

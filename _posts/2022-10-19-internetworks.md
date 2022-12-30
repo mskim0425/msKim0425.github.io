@@ -6,7 +6,7 @@ categories: [CS , Internet]
 tags: [cs, internet]
 ---
 
-# Internet 너는 대체 무엇인고?
+# Internet 너는 대체 무엇인고? 🤷‍♂️
 ---
 
 
@@ -22,7 +22,7 @@ www.google.com을 찾아가는 데 있어서 바로 가는 것처럼 보이지�
  
  아래의 방식의 규칙을 통해 우린 인터넷을 사용하고 있다.
 
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/1TCPIP%EC%99%80%20OSI%207%EA%B3%84%EC%B8%B5%EC%9D%B4%20%ED%95%98%EB%8A%94%20%EC%97%AD%ED%95%A0%EC%9D%84%20%EA%B0%84%EB%9E%B5%ED%95%98%EA%B2%8C%20%EB%82%98%ED%83%80%EB%83%84.jpg?raw=true)
+![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/1TCPIP%EC%99%80%20OSI%207%EA%B3%84%EC%B8%B5%EC%9D%B4%20%ED%95%98%EB%8A%94%20%EC%97%AD%ED%95%A0%EC%9D%84%20%EA%B0%84%EB%9E%B5%ED%95%98%EA%B2%8C%20%EB%82%98%ED%83%80%EB%83%84.jpg?raw=true){: .shadow }
 
 ---
 
