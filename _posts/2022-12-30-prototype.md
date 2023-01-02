@@ -29,6 +29,8 @@ tags: [cs, design pattern]
 </div>
 </details>
   
+　　 
+  
 > 기존 객체를 복제함으로써 객체를 생성하여 **DB,네트워크 접근 비용을 절감**하는 패턴
 {: .prompt-tip }
 
