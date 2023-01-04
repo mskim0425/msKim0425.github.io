@@ -119,5 +119,6 @@ psvm(){
 객체를 직접 생성해서 사용하는 것을 방지하고 서브 클래스에 위임해서 효과적인 코드제어와 의존성을 제거함이다.
 
 ## <span style="color: gold"> 참고자료 </span>
-[참고 자료](https://refactoring.guru/ko/design-patterns/factory-method)  
-[Head First Design Patterns / 에릭 프리먼]()
+[참고 자료](https://refactoring.guru/ko/design-patterns/factory-method)   
+Head First 디자인패턴  
+면접을 위한 CS 전공지식노트

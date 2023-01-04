@@ -65,5 +65,7 @@ tags: [cs, design pattern]
   
 ---
 ## <span style="color: gold"> 참고자료 </span>  
-[Source Ⅰ](https://refactoring.guru/ko/design-patterns/flyweight)
+[Source Ⅰ](https://refactoring.guru/ko/design-patterns/flyweight)  
+Head First 디자인패턴  
+면접을 위한 CS 전공지식노트
 ---
