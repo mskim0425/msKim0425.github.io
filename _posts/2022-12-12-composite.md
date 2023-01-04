@@ -134,4 +134,6 @@ HR은 복합, 재정,판매는 단일객체의 형태를 띄고있다. 즉, 단�
 ---
 ## <span style="color: gold"> 참고자료 </span>  
 [Source Ⅰ](https://www.baeldung.com/java-composite-pattern)
+Head First 디자인패턴  
+면접을 위한 CS 전공지식노트
 ---

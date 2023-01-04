@@ -135,6 +135,7 @@ public class DecoratedWindowTest {
 ---
 ## <span style="color: gold"> 참고자료 </span>  
 [Source Ⅰ](https://www.baeldung.com/java-decorator-pattern)
-[Source Ⅱ](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0_%ED%8C%A8%ED%84%B4)
-
+[Source Ⅱ](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0_%ED%8C%A8%ED%84%B4)  
+Head First 디자인패턴  
+면접을 위한 CS 전공지식노트
 ---
