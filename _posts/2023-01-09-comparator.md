@@ -1,0 +1,196 @@
+---
+layout: post
+title:  "Comparator & Comparable"
+date:   2023-01-09 11:11:07 +0900
+categories: [Java , Syntax]
+tags: [java, comparator]
+---
+# Comparator & Comparable 🧙‍♂️  
+
+> `Comparable` "자기 자신과 매개변수 객체를 비교 + compareTo 반드시 구현" `선수 vs 선수`  
+> `Comparator` "두 매개변수 객체를 비교"  `선수 vs 선수 사이의 심판`  
+> 공통적으로는 비교하는 메서드이지만 실질적으로는 비교대상이 다름.
+{: .prompt-tip}
+
+
+[Comparable](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html#method.summary) 을 사용하고자 한다면 compareTo 메서드를 재정의(Override/구현)을 해야함.  
+[Comparator](docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#method.summary)에서 구현해야하는 것은 compare(T o1,T o2) 메서드이다.  
+
+
+## <span style="color: gold"> Comparable</span>  
+자바에 기본으로 적용된 Comparable을 뜯어보면 아래와 같다.
+```java
+public final class Integer extends Number implements Comparable<Integer> {
+  public int compareTo(Integer anotherInteger) {
+        return compare(this.value, anotherInteger.value);
+    }
+    //같으면 0 작으면 1 크면 -1
+    public static int compare(int x, int y) {
+        return (x < y) ? -1 : ((x == y) ? 0 : 1);
+    }
+}
+```
+주석에도 설명이 있듯이 같으면 0 작으면 1 크면 -1을 반환하는것을 볼수 있다.  
+그렇다면 객체를 비교할 떄는 어떨까?  
+```java
+Student class에 age와 classNumber가 있다고 가정.
+
+class Student implements Comparable<Student> {
+ 
+	int age;			// 나이
+	int classNumber;	// 반 번호
+	
+	Student(int age, int classNumber) {
+		this.age = age;
+		this.classNumber = classNumber;
+	}
+    //정석
+    @Override
+	public int compareTo(Student o) {
+    
+		// 자기자신의 age가 o의 age보다 크다면 양수
+		if(this.age > o.age) {
+			return 1;
+		}
+		// 자기 자신의 age와 o의 age가 같다면 0
+		else if(this.age == o.age) {
+			return 0;
+		}
+		// 자기 자신의 age가 o의 age보다 작다면 음수
+		else {
+			return -1;
+		}
+	}
+    //야매? 
+    @Override
+	public int compareTo(Student o) {
+		return this.age - o.age; 
+	}
+}
+```
+정석의 방법과 야매스러운 방법으로 compareTo를 구현했다. 숫자를 비교할떄 큰수는 빼면 음수가되고 작은수는 양수가 되는 점을 이용해서 짠 코드이다. 다만 저 야매에는 함정이있다. int 자료형처럼 표현범위가 21억47~까지 되어있어 그 이상, 그 이하의 숫자가 들어오게 되면 오버플로우나 언더플로우로 인해 값이 잘못 반환 될 수 있다. 그리하여 이런 점은 미연에 방지하기 위해서 정석처럼 코드를 짜면 사전에 보완할 수 있다.
+
+## <span style="color: gold"> Comparator</span>  
+
+Comparable의 compareTo()와  다르게 Comparator의 compare은 두 객체를 비교한다. 이번에는 아까 사용한 student 객체에서 classNumber을 비교하고자 한다.
+
+```java
+Student class에 age와 classNumber가 있다고 가정.
+
+class Student implements Comparator<Student> {
+ 
+	int age;			// 나이
+	int classNumber;	// 반 번호
+	
+	Student(int age, int classNumber) {
+		this.age = age;
+		this.classNumber = classNumber;
+	}
+    @Override
+	public int compare(Student o1, Student o2) {
+    
+		if(o1.classNumber > o2.classNumber) {
+			return 1;
+		}
+		else if(o1.classNumber == o2.classNumber) {
+			return 0;
+		}
+		else {
+			return -1;
+		}
+	}
+    //야매?
+    @Override
+	public int compare(Student o1, Student o2) {
+		return o1.classNumber - o2.classNumber;
+	}
+}
+```
+맨 위에서 심판이라는 표현처럼 o1과 o2와 비교를 할 뿐, Student를 호출한 객체에는 영향을 받지 않는다.  
+comparable에서처럼 int 범위내를 넘지않는다면 야매방법을 써도 무방하다.  
+사실 별차이없어보이는데 Comparator의 장점은 무엇일까? 바로 `익명클래스를 이용해 커스텀마이징한 비교를 할수 있다`는 점이다.  
+
+```java
+    public static void main(String[] args)  {
+ 
+		Student a = new Student(17, 2);	// 17살 2반
+		Student b = new Student(18, 1);	// 18살 1반
+		Student c = new Student(15, 3); // 15살 3반
+
+        int i = classNumberCompare.compare(a,b);
+        if(i >0){...}
+        else if(i <0){...}
+        else {...}
+
+        int j = ageCompare.compare(a,b);
+        if(j >0){...}
+        else if(j <0){...}
+        else {...}
+    }
+
+    //학생을 반별, 나이별로 비교해야하는 상황이 발생했다. 이럴땐 익명클래스를 이용해 커스텀마이징한 비교를 할수 있다.
+
+    public static Comparator<Student> classNumberCompare= new Comparator<Student>() {
+		@Override
+		public int compare(Student o1, Student o2) {
+			return o1.classNumber - o2.classNumber;
+		}
+	};
+	
+	public static Comparator<Student> ageCompare = new Comparator<Student>() {
+		@Override
+		public int compare(Student o1, Student o2) {
+			return o1.age - o2.age;
+		}
+	};
+```
+
+다양한 출력의 예를 모아봤다.
+```java
+
+import java.util.*;
+
+public class comparatorTest {
+    public static void main(String[] args) {
+        String[] animals = {"cat", "Dog", "lion", "Tiger"};
+        List<String> animal_list = new ArrayList<String>(Arrays.asList(animals));
+
+
+        Arrays.sort(animals); //Comparable의 정의
+        System.out.println("1 Arrays 정렬= "+ Arrays.toString(animals));
+        Collections.sort(animal_list);
+        System.out.println("2 컬랙션 정렬 = "+ animal_list);
+
+        Arrays.sort(animals, String.CASE_INSENSITIVE_ORDER); //대소문자 구별안하고 sort
+        System.out.println("3 = "+ Arrays.toString(animals));
+
+        Arrays.sort(animals, new Desending());
+        System.out.println("4 = "+ Arrays.toString(animals));
+
+        Collections.sort(animal_list, (o1,o2)->{
+            if(o1 instanceof Comparable && o2 instanceof Comparable){
+                Comparable c1 = (Comparable)o1;
+                Comparable c2 = (Comparable) o2;
+            return c1.compareTo(c2)*-1;}
+            else return -1;
+        });
+        System.out.println("5 = "+ animal_list);
+    }
+
+    private static class Desending implements Comparator<String> {
+
+        @Override
+        public int compare(String o1, String o2) {
+            return -(o1.compareTo(o2));
+            }
+        }
+}
+// 1 Arrays 정렬= [Dog, Tiger, cat, lion]
+// 2 컬랙션 정렬 = [Dog, Tiger, cat, lion]
+// 3 = [cat, Dog, lion, Tiger]
+// 4 = [lion, cat, Tiger, Dog]
+// 5 = [lion, cat, Tiger, Dog]
+```
+
+
+
