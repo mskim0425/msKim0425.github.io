@@ -146,7 +146,7 @@ BIG Data → (TCP Header + Data) + (TCP Header + Data) + (TCP Header + Data) 식
 통신을 종료할 때 사용되면서, 3 way와 비슷하게 "다 보냈어?"를 확인하는 FIN을 이용하는 것이 추가되었다.
 
 
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/5_4%20way%20handshake%20(connection%20close.jpg?raw=true)
+<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/5_4%20way%20handshake%20(connection%20close.jpg?raw=true">
 
 # 
 
