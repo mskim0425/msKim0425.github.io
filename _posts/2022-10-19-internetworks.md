@@ -29,7 +29,9 @@ www.google.com을 찾아가는 데 있어서 바로 가는 것처럼 보이지�
 각 계층마다 무슨 액션을 했는지 알았으니, 
 
 
-이젠 구글 URL 검색 시 무슨 일이 일어나는지... 컴퓨터가 구글닷컴을 어떻게 이해하는지 한번 보자.
+이젠 구글 URL 검색 시 무슨 일이 일어나는지... 컴퓨터가 구글닷컴을 어떻게 이해하는지 한번 보자.  
+
+우선 Https://를 사용하기로 했으니 TCP연결을 한다는 것이고.. TCP 연결할 서버 주소를 찾아야한다. 그것이 바로 `DNS`
 
 `DNS? Domain Name System`
 www.google.com을 예로 들면 www를 제외한 나머지를 지칭하는 말이다. 
@@ -44,6 +46,9 @@ www.google.com을 예로 들면 www를 제외한 나머지를 지칭하는 말�
 ![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/2DNS%EC%9E%91%EB%8F%99%EC%9B%90%EB%A6%AC.jpg?raw=true)
 
 
+물론 host 파일이나 DNS cache 데이터가 있으면 아래와 같은 일 작동하지않는다.  
+BUT 우린 지금은 둘다 정보가 없다는 가정하에 설명을 하겠다.   
+PC가 아래의 순서대로 질의를 시작한다.  
 
 ## `DNS 작동원리`
 1. 브라우저에서 구글로 접속하려고 하는데 구글 서버의 IP를 모르는 상황
@@ -59,13 +64,18 @@ www.google.com을 예로 들면 www를 제외한 나머지를 지칭하는 말�
 
 6. 브라우저에서 반환된 주소 값으로 구글 서버로 접속하게 된다.
 
----
 
 `A Record는 뭐고 CNAME은 또 뭐지?`
 
-A Record - IP와 도메인과의 직통 연결
+A Record - IP와 도메인과의 직통 연결 *구글 행님과의 직통전화*  
+010.123.12.123 <=> 주소
 
-CNAME (canonical name) - IP가 유동적으로 변하는 서버를 위한 도메인 방식 (aws, firebase를 사용할 때)
+CNAME (canonical name) - IP가 유동적으로 변하는 서버를 위한 도메인 방식 (aws, firebase를 사용할 때 쓰는 방식)
+
+A record는 직접적으로 IP가 할당되어 있기 때문에 IP가 변경되면 직접적으로 도메인에 영향을 미치지만, CNAME은 도메인에 도메인이 매핑되어 있기 때문에 IP의 변경에 직접적인 영향을 받지 않는다. 나의 블로그도 CNAME으로 매핑되어있는 상황이다. 원주소는 [ms92kim/github.io](https://mskim92.github.io/) 였다.
+
+---
+
 ![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/3httprequest.png?raw=true)
 
 그럼 HTTP request 메시지를 구글 웹서버(포트 80)에게 보내는 것이다. 이 request를 위해서는 패킷을 만들어야 한다.
@@ -85,7 +95,8 @@ CNAME (canonical name) - IP가 유동적으로 변하는 서버를 위한 도메
 
 위와 같은 패킷을 통해  전송계층으로 진행한다면 TCP가 두두둥장한다.
 
-#
+---
+
 ## `TCP/전송계층`
 
 Transport layer(전송계층)은 한 줄로 요약하면 **`"End point 간 신뢰성 있는 데이터 전송을 담당하는 계층"이다`**
@@ -170,9 +181,9 @@ BIG Data → (TCP Header + Data) + (TCP Header + Data) + (TCP Header + Data) 식
 
 그럼 데이터를 우쨰 보내야 하나....?
 
- 
+ --- 
 
-IP 인터넷 계층 + Network Access Layer
+## IP 인터넷 계층 + Network Access Layer
 
 우리가 쓰는 컴퓨터는 보통 Private IP를 사용하고 있다. 그래서 공유기가 우리 소중한 IP주소를 public ip주소로 변환해준다.
 
