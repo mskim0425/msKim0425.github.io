@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Marvin 라이브러리를 활용한 S3에 리사이징된 이미지 업로드"
-date:   2023-01-2 13:11:04 +0900
+date:   2023-01-20 13:11:04 +0900
 categories: [Spring, troubleshooting]
 tags: [spring, troubleshooting]
 ---
