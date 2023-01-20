@@ -193,3 +193,4 @@ public class CustomMultipartFile implements MultipartFile {
 ## 출처
 [ImageIo 공식문서](https://docs.oracle.com/javase/7/docs/api/javax/imageio/ImageIO.html)  
 [Maven repo](https://marvinproject.sourceforge.net/en/tutorials.html)
+[Baeldung](https://www.baeldung.com/java-resize-image)
