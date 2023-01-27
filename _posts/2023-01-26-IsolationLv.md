@@ -104,6 +104,7 @@ mysql> SHOW VARIABLES WHERE VARIABLE_NAME='tx_isolation';
 (A) UPDATE account SET state = ‘rich’, money = money * 1000 WHERE id = 1;
 (A) COMMIT;
  ```
+ 
 |트랜잭션 A	|트랜잭션 B|
 |---|---|
 |BEGIN|	|
