@@ -126,6 +126,7 @@ row에 S lock이 걸려있으므로 데드락 상태로 전환되고 두 개의 
   @Transactional(isolation = Isolation.READ_COMMITTED)
   @Transactional(isolation = Isolation.REPEATABLE_READ)
   @Transactional(isolation = Isolation.SERIALIZABLE)
+  
 ```
 #### 계속해서 언급된 Consistent read이란?
 read(=SELECT) operation을 수행할 때 현재 DB의 값이 아닌 특정 시점의 DB snapshot을 읽어오는 것이다. snapshot은 commit 된 변화만이 적용된 상태를 의미한다.  
@@ -185,6 +186,27 @@ COMMIT;
 |Read Committed||0|0|
 |Repetable Read|||0|
 |Serializable||||  
+
+<!-- 트랜잭션 전파(Transaction Propagation)
+트랜잭션 전파란 트랜잭션의 경계에서 진행 중인 트랜잭션이 존재할 때 또는 존재하지 않을 때, 어떻게 동작할 것인지 결정하는 방식을 의미합니다.
+
+트랜잭션 전파는 propagation 애트리뷰트를 통해서 설정할 수 있으며, 대표적으로 아래와 같은 propagation 유형을 사용할 수 있습니다.
+
+Propagation.REQUIRED
+우리가 앞에서 @Transactional 애너테이션의 propagation 애트리뷰트에 지정한 Propagation.REQUIRED 는 일반적으로 가장 많이 사용되는 propagation 유형의 디폴트 값입니다.
+진행 중인 트랜잭션이 없으면 새로 시작하고, 진행 중인 트랜잭션이 있으면 해당 트랜잭션에 참여합니다.
+
+Propagation.REQUIRES_NEW
+이미 진행중인 트랜잭션과 무관하게 새로운 트랜잭션이 시작됩니다. 기존에 진행중이던 트랜잭션은 새로 시작된 트랜잭션이 종료할 때까지 중지됩니다.
+
+Propagation.MANDATORY
+Propagation.REQUIRED는 진행 중인 트랜잭션이 없으면 새로운 트랜잭션이 시작되는 반면, Propagation.MANDATORY는 진행 중인 트랜잭션이 없으면 예외를 발생시킵니다.
+
+Propagation.*NOT_SUPPORTED*
+트랜잭션을 필요로 하지 않음을 의미합니다. 진행 중인 트랜잭션이 있으면 메서드 실행이 종료될 때 까지 진행중인 트랜잭션은 중지되며, 메서드 실행이 종료되면 트랜잭션을 계속 진행합니다.
+
+Propagation.*NEVER*
+트랜잭션을 필요로 하지 않음을 의미하며, 진행 중인 트랜잭션이 존재할 경우에는 예외를 발생시킵니다 -->
 
 ## what I learn  
 row를 읽을떄는 디폴트 설정인 Repetable Read, CRUD를 진행할떄는 Serializable을 사용해서 진행했는데, 이젠 적절하게 isolation을 낮추면서 동시성을 높일수 있는 여러 LV을 고려하여 선택해야겠다.  
