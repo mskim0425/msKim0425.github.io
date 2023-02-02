@@ -13,7 +13,36 @@ tags: [sql, transaction]
 
 트랜잭션은 여러개의 작업을 하나로 묶은 실행 유닛이다.  
 각 트랜잭션은 하나의 특정 작업으로 시작을 해 묶여 있는 모든 작업들을 다 완료해야 정상적으로 종료된다.   
-여러개의 작업 중 단 하나의 작업을 실패하면 실패한 트랜잭션이라는 소리다.  
+여러개의 작업 중 단 하나의 작업을 실패하면 실패한 트랜잭션이라는 소리다.(롤백)    
+아래의 코드가 롤백과 커밋을 나타낸 예이다.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+
+        EntityManager em = emf.createEntityManager(); // 엔티티매니저
+        EntityTransaction tx = em.getTransaction(); //트랜젝션의 시작
+        tx.begin();
+        try {
+            //저장할 데이터~~
+            Member member = new Member();
+            member.setId(1L);
+            member.setName("Student A");
+            em.persist(member); // 저장
+
+            tx.commit(); //커밋
+        } catch (Exception e) {
+            tx.rollback(); // 문제 발생시 롤백
+        } finally {
+            em.close(); //트랜잭션 종료
+        }
+
+        emf.close(); //엔티니매니저 종류
+
+    }
+}
+```
   
 ## ACID
 ACID는 데이터베이스 내에서 일어나는 하나의 트랜잭션(transaction)의 안전성을 보장하기 위해 필요한 성질이다.  
