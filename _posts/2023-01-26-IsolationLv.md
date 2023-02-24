@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Isolation Level"
+title:  "Isolation Level + Inno DB Lock"
 date:   2023-01-26 12:20:57 +0900
 categories: [SQL , LOCK]
 tags: [sql, db, lock]
@@ -26,18 +26,33 @@ tags: [sql, db, lock]
 **같은 데이터를 동시에 수정할 것으로 가정**하고 데이터를 읽는 시점에서 락을 걸고 조회, 갱신 완료 시까지 락을 유지하는 경우  
    
 ## InnoDB LOCK  
- LOCK은 트랜잭션 처리의 절차를 보장하기 위한 방법이다. 격리단계에 따라 더 느슨하게 더 강하게 lock을 거는 것이다. 또한, DBMS별로 구현방식과 세부적인 방법이 제각각이기에 사용법을 알고 사용해한다. 필자는 MySQL의 InnoDB의 LOCK을 말할 예정이다.  
+ LOCK은 트랜잭션 처리의 절차를 보장하기 위한 방법이다. 격리단계에 따라 더 느슨하게 더 강하게 lock을 거는 것이다. 또한, DBMS별로 구현방식과 세부적인 방법이 제각각이기에 사용법을 알고 사용해한다. 필자는 MySQL의 InnoDB의 LOCK을 말할 예정이다.    
 
-### Row-level lock
-가장 기본적인 Lock은 테이블의 row마다 걸리는 락이있다.   
-이것은 공유락(shared lock, read lock), 배타락 (Exclusive lock, write lock) 두종류로 나뉜다.   
+  
+## 네임드락
+```sql
+SELECT GET_LOCK('락이름', 30); //30초 리밋의 락을 만드는것
+SELECT IS_FREE_LOC('락이름');
+```
+디비복제를 하던가 데이터를 넘겨야할떄 사용하는 락
 
-> `S lock = Read lock` S LOCK을 사용하는 쿼리끼는 같은 row에 접근이 가능하다.  
-> `X lock = Write lock` X LOCK이 걸린 row는 어떠한 쿼리도 접근 불가능
+
+### Shared and Exclusive Locks  
+InnoDB는 공유(S) 잠금과 배타적(X) 잠금의 두 가지 유형의 잠금이 있는 표준 행 수준 잠금을 구현한다.  
+
+> `S lock = Read lock` S LOCK을 사용하는 쿼리끼는 같은 row에 접근이 가능하다.   
+> 내가 이 테이블 읽을꺼니까 `입력하지마!`  
+> LOCK TABLES test READ;  
+> UNLOCK TABLES;  
+> 
+> `X lock = Write lock` X LOCK이 걸린 row는 어떠한 쿼리도 접근 불가능  
+> 내가 이테이블 수정할꺼니까 `읽지마!`  
+> LOCK TABLES test READ;   
 {: .prompt-tip}  
 
 ### Record lock  
-해당 레코드 락은 row가 아닌 DB의 인덱스 레코드에 걸리는 락이다. 여기서 s lock, x lock이 있다. 예시를 보자  
+해당 레코드 락은 row가 아닌 DB의 인덱스 레코드에 걸리는 락이다.   
+
 ```sql
 트랜잭션 A
 SELECT s1 FROM studnet WHERE s1 = 1 FOR UPDATE; 
@@ -50,6 +65,7 @@ DELETE FROM student where s1 = 1;
 ### Gap lock
 Gap lock은 DB index record의 gap에 걸리는 lock이다. 여기서 gap이란 index 중 DB에 실제 record가 없는 부분이다.   
 이게 무슨말이냐 하면..아래와 같은 테이블이 있고 현재 ID 칼럼에 인덱스가 걸려있는 상황이다.  
+`1~4까지 락이 걸린상태 SELECT ID from t1 where ID BETWEEN 1 AND 5 FOR UPDATE;`
 
 |ID|NAME|
 |:---:|:---:|
@@ -60,10 +76,11 @@ Gap lock은 DB index record의 gap에 걸리는 lock이다. 여기서 gap이란 
 
 현재 2와 4는 인덱스 레코드가 없다. 이 부분을 index record의 gap이라한다.  
 
- 위처럼 `gap lock은 해당 gap에 접근하려는 다른 쿼리의 접근을 막는다`. 이는 Record lock이 해당 index를 탈 때, 다른 쿼리의 접근을 막는 것과 동일하다.   
- 둘의 차이점은 record lock이 이미 존재하는 row가 변경되지 않도록 보호하는   
- 반면, gap lock은 조건에 해당하는 새로운 row가 추가되는 것을 방지하기 위함이다.
+ 위처럼 `gap lock은 해당 gap에 접근하려는 다른 쿼리의 접근을 막는다`. 이는 Record lock이 해당 index를 탈 때, 다른 쿼리의 접근을 막는 것과 동일하다. 둘의 차이점은 `record lock`이 이미 존재하는 row가 변경되지 않도록 보호하는 반면   
+ `gap lock`은 조건에 해당하는 새로운 row가 추가되는 것을 방지하기 위함이다.
 
+> 그 외에도 다양한 락들이 존재한다. [dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html#innodb-intention-locks) 참고하시라
+{: .prompt-tip}
 ## 격리단계  
 `Read Uncommitted`   
 가장 낮은 격리 수준, 커밋되지 않은 데이터를 읽을 수 있다.  
