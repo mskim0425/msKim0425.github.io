@@ -8,7 +8,7 @@ tags: [java, basic]
 
 ### 자바 8...30년까지? 
 이번 프로젝트를 하면서 자바 11을 VAR특성과 LTS(Long Term Support)이길래 사용해보았다...그런데 Oracle 사에서 Java8을 사용한 레거시 프로젝트들이 너무 많음을 고려하여 Java8이 Java11,Java17 보다 더 긴 지원기간을 갖게되었다. 🤷‍♂️
-<img src="https://raw.githubusercontent.com/msKim92/msKim92.github.io/main/images/java/java_history.png" width=500>  
+<img src="https://raw.githubusercontent.com/mskim0425/mskim0425.github.io/main/images/java/java_history.png" width=500>  
 자바 8이 2030년까지 지원한다는 소리를 듣고 이 참에 한번 각 버젼별로 괜찮은 기능을 정리해볼까한다.  
 
 ### JAVA 8

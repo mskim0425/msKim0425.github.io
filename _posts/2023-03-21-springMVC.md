@@ -36,7 +36,7 @@ i18n은 internationalization(국제화)의 약칭으로 소프트웨어가 언�
 
 프로토타입 스코프 같은 경우에는 생성과 의존관계 주입까지만 관여하고 그 이후에는 더이상 관여하지않는다. 즉, 해당 빈을 요청할때마다 새로운 인스턴스를 생성해서 반환한다.  
 
-<img src = "https://github.com/msKim92/msKim92.github.io/blob/main/images/java/2.png?raw=true">
+<img src = "https://github.com/mskim0425/mskim0425.github.io/blob/main/images/java/2.png?raw=true">
 
 ### Web Serever
 > Apache, nginx
@@ -79,7 +79,7 @@ Client(브라우저) -> Web Server(Apache) -> WAS(Tomcat) + Servlet(ServletDispa
 
 ### 서블릿
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/java/2.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/java/2.png?raw=true">
 
 서블릿은 자바에서 만든 확장된 CGI다. 앞서 설명한 기본 CGI와는 다르게 멀티스레드 방식으로 동작한다. 서버가 시작되고 서블릿을 만들게 되면 메모리에 저장해두고, 같은 서블릿을 사용하여 요청을 처리한다.  
   
@@ -100,7 +100,7 @@ JAVA의 대표적인 Servlet Container(WAS)는 Apache Tomcat으로 각각의 서
 
 ### Annotation 기반 스프링 MVC 등장
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/java/%EB%94%94%EC%8A%A4%ED%8C%A8%EC%B9%984.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/java/%EB%94%94%EC%8A%A4%ED%8C%A8%EC%B9%984.png?raw=true">
 
 이제서야 스프링 MVC에 대해 얘기할 수 있다.   
 spring에서 서블릿을 사용하고 있다면 대부분 프론트 컨트롤러인 dipatcher servlet을 사용한다. 여담으로 과거에는 mvc model 1에서는 컨트롤러단에서 view와 자바코드가 혼재되어 유지보수가 어려웠다고 한다.    

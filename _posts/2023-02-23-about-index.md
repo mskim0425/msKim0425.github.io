@@ -12,7 +12,7 @@ tags: [sql, index]
 
 인덱스는 조회성능 개선 - 디스크 I/O를 줄이는게 핵심이다.  
 테이블의 특정 데이터를 생성한다면, 해당 컬럼의 데이터를 정렬 후, 별도의 메모리 공간에 데이터의 물리적 주소를 Key, Value 형태로 저장한다.  
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/cs/%EC%9D%B8%EB%8D%B1%EC%8A%A4%201.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/cs/%EC%9D%B8%EB%8D%B1%EC%8A%A4%201.png?raw=true">
 
 많은 쿼리들의 대부분의 요청은 GET요청 방식이다. 수정 삭제에서 손해를 보더라도 검색속도와 시스템의 부하가 작아지기 때문에 사용한다.  
 `Where 절 일때`, 특정 조건의 데이터를 찾기 위해서 FULL TABLE 스캔을 해야하는데 인덱스를 통해서 전부다 조회할 필요가 없어진다.  
@@ -28,7 +28,7 @@ tags: [sql, index]
 
 이처럼 인덱스의 수정도 추가적으로 필요하기 때문에 데이터의 수정이 잦은 경우 성능이 낮아진다. 또 데이터의 인덱스를 제거하는 것이 아니라 '사용하지 않음'으로 처리하고 데이터를 남겨두기에, IUD 작업이 많은 경우 실제 데이터에 비해 인덱스가 과도하게 커지는 문제점이 발생할 수 있다. 별도의 메모리 공간에 저장되기 때문에 추가 저장 공간이 많이 필요하게 된다. 아래의 예시를 보자    
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/cs/%EC%9D%B8%EB%8D%B1%EC%8A%A4.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/cs/%EC%9D%B8%EB%8D%B1%EC%8A%A4.png?raw=true">
 
 1. 왼쪽에 index로 정리되어있는 테이블.
 2. ID 2 와 4를 삭제함.
@@ -46,7 +46,7 @@ tags: [sql, index]
 7. JOIN, WHERE, ORDER BY가 자주 호출되는 컬럼  
 
  필자의 경우 3번과 7번에 해당되는 경우라, cloudFront 서비스에서 인기 객체 지표를 보여주는 사이트를 통해 알아보았다.    
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/cs/%EC%9D%B8%EA%B8%B0%EA%B0%9D%EC%B2%B4.png?raw=true"> 
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/cs/%EC%9D%B8%EA%B8%B0%EA%B0%9D%EC%B2%B4.png?raw=true"> 
 
 보면 memberlist 랭킹을 나타내는 지표가 홈페이지 주소다음으로 많이 요청되는 것을 볼 수 있다.  
 
@@ -92,7 +92,7 @@ ON people(place, sex);
 #### 인덱스 컨디션 푸쉬다운    
 MySQL이 인덱스를 사용하여 테이블에서 행을 검색하는 경우의 최적화를 의미한다. 인덱스 컨디션 푸시다운을 활성화하고 인덱스의 컬럼만 사용하여 `where 조건의 일부를 평가할 수 있는 경우` MySQL 엔진은 WHERE 조건 부분을 스토리지엔진으로 푸시하는 경우다. 5.6부터는 자동으로 적용된다고 한다. 이로인해 그림처럼, DB 내부에서는 불필요한 I/O 및 데이터 전송 과정이 줄어들게 되고, 클라이언트 입장에서는 보다 빠른 응답 성능을 기대할 수 있다.  
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/cs/%EC%9D%B8%EB%8D%B1%EC%8A%A4%EC%BB%A8%EB%94%94%EC%85%98%ED%91%B8%EC%89%AC%EB%8B%A4%EC%9A%B4.png?raw=true">   
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/cs/%EC%9D%B8%EB%8D%B1%EC%8A%A4%EC%BB%A8%EB%94%94%EC%85%98%ED%91%B8%EC%89%AC%EB%8B%A4%EC%9A%B4.png?raw=true">   
 
 
 #### 인덱스 자료구조  

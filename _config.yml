@@ -27,10 +27,10 @@ description: >-                        # used by seo meta and the atom feed
   백엔드 개발자의 정리글, java, spring stuff
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: https://msKim92.github.io
+url: https://msKim0425.github.io
 
 github:
-  username: msKim92         # change to your github username
+  username: msKim0425         # change to your github username
 
 twitter:
   username:             # change to your twitter username
@@ -42,7 +42,7 @@ social:
   email: mins402kim@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-      - https://github.com/msKim92       # change to your github homepage
+      - https://github.com/msKim0425       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username

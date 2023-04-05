@@ -22,7 +22,7 @@ www.google.com을 찾아가는 데 있어서 바로 가는 것처럼 보이지�
  
  아래의 방식의 규칙을 통해 우린 인터넷을 사용하고 있다.
 
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/1TCPIP%EC%99%80%20OSI%207%EA%B3%84%EC%B8%B5%EC%9D%B4%20%ED%95%98%EB%8A%94%20%EC%97%AD%ED%95%A0%EC%9D%84%20%EA%B0%84%EB%9E%B5%ED%95%98%EA%B2%8C%20%EB%82%98%ED%83%80%EB%83%84.jpg?raw=true){: .shadow }
+![image](https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/1TCPIP%EC%99%80%20OSI%207%EA%B3%84%EC%B8%B5%EC%9D%B4%20%ED%95%98%EB%8A%94%20%EC%97%AD%ED%95%A0%EC%9D%84%20%EA%B0%84%EB%9E%B5%ED%95%98%EA%B2%8C%20%EB%82%98%ED%83%80%EB%83%84.jpg?raw=true){: .shadow }
 
 ---
 
@@ -43,7 +43,7 @@ www.google.com을 예로 들면 www를 제외한 나머지를 지칭하는 말�
 >우리도 누군가에게 전화할 때 전화번호부에서 이름을 검색해서 찾듯이 우리에게 도움 주는 프로토콜이 바로 `DNS`다.  
 {: .prompt-info}
   
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/2DNS%EC%9E%91%EB%8F%99%EC%9B%90%EB%A6%AC.jpg?raw=true)
+![image](https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/2DNS%EC%9E%91%EB%8F%99%EC%9B%90%EB%A6%AC.jpg?raw=true)
 
 
 물론 host 파일이나 DNS cache 데이터가 있으면 아래와 같은 일 작동하지않는다.  
@@ -72,11 +72,11 @@ A Record - IP와 도메인과의 직통 연결 *구글 행님과의 직통전화
 
 CNAME (canonical name) - IP가 유동적으로 변하는 서버를 위한 도메인 방식 (aws, firebase를 사용할 때 쓰는 방식)
 
-A record는 직접적으로 IP가 할당되어 있기 때문에 IP가 변경되면 직접적으로 도메인에 영향을 미치지만, CNAME은 도메인에 도메인이 매핑되어 있기 때문에 IP의 변경에 직접적인 영향을 받지 않는다. 나의 블로그도 CNAME으로 매핑되어있는 상황이다. 원주소는 [ms92kim/github.io](https://mskim92.github.io/) 였다.
+A record는 직접적으로 IP가 할당되어 있기 때문에 IP가 변경되면 직접적으로 도메인에 영향을 미치지만, CNAME은 도메인에 도메인이 매핑되어 있기 때문에 IP의 변경에 직접적인 영향을 받지 않는다. 나의 블로그도 CNAME으로 매핑되어있는 상황이다. 원주소는 [ms92kim/github.io](https://mskim0425.github.io/) 였다.
 
 ---
 
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/3httprequest.png?raw=true)
+![image](https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/3httprequest.png?raw=true)
 
 그럼 HTTP request 메시지를 구글 웹서버(포트 80)에게 보내는 것이다. 이 request를 위해서는 패킷을 만들어야 한다.
 
@@ -116,7 +116,7 @@ BIG Data → (TCP Header + Data) + (TCP Header + Data) + (TCP Header + Data) 식
 좀 더 자세히 알아보기 위해 아래 그림을 보자
 
 
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/4TCP%20IP%20HEADER.jpg?raw=true)
+![image](https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/4TCP%20IP%20HEADER.jpg?raw=true)
 
 #
  
@@ -126,7 +126,7 @@ BIG Data → (TCP Header + Data) + (TCP Header + Data) + (TCP Header + Data) 식
 
 처음 보면 이거 뭐고...?라는 생각이 들것이다. 물론 당연한 생각이다. 하지만 여기선 빨간색으로 된 부분에 대한 얘기만 할 것이다. header에 이런 내용이 담겨있구나 정도만 알면 된다. 빨간색 부분 즉 `컨트롤 비트`를 이해하기 위해 3-way handshake로 설명하겠다.
 
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/5_1_3way%20handshake%20(connetion%20%EC%97%B0%EA%B2%B0).jpg?raw=true)
+![image](https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/5_1_3way%20handshake%20(connetion%20%EC%97%B0%EA%B2%B0).jpg?raw=true)
 #
 
 ## **3way handshake (connetion 연결)**
@@ -157,7 +157,7 @@ BIG Data → (TCP Header + Data) + (TCP Header + Data) + (TCP Header + Data) 식
 통신을 종료할 때 사용되면서, 3 way와 비슷하게 "다 보냈어?"를 확인하는 FIN을 이용하는 것이 추가되었다.
 
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/5_4%20way%20handshake%20(connection%20close.jpg?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/5_4%20way%20handshake%20(connection%20close.jpg?raw=true">
 
 # 
 
@@ -191,7 +191,7 @@ BIG Data → (TCP Header + Data) + (TCP Header + Data) + (TCP Header + Data) 식
 
 이제 아래의 그림을 보자.
 
-![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/6%20ARP%20%EA%B5%AC%EB%8F%84%EB%B0%A9%EC%8B%9D.jpg?raw=true)
+![image](https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/6%20ARP%20%EA%B5%AC%EB%8F%84%EB%B0%A9%EC%8B%9D.jpg?raw=true)
 
   
 
@@ -207,7 +207,7 @@ ARP 구도방식
 
 데이터가 전송되었으니 이제 상호 간의 교류를 할 수 있다.  Transport layer 전송계층을  목적지 포트번호를 통해서 이것을 보고 해당 번호에 데이터를 전달해야 주고 Application layer에 다다르면 웹 서버가 사용될 HTTP Request 데이터를 GET 요청을 통해 적절하게 데이터를 얻을 수 있게 된다. 
 #
- ![image](https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/7%20%EC%9E%90%EC%A3%BC%20%EC%82%AC%EC%9A%A9%EB%90%98%EB%8A%94%20%ED%8F%AC%ED%8A%B8%EB%B2%88%ED%98%B8.jpg?raw=true)
+ ![image](https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/7%20%EC%9E%90%EC%A3%BC%20%EC%82%AC%EC%9A%A9%EB%90%98%EB%8A%94%20%ED%8F%AC%ED%8A%B8%EB%B2%88%ED%98%B8.jpg?raw=true)
  
 
 자주 사용되는 포트번호

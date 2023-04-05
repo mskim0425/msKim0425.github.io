@@ -49,7 +49,7 @@ ElementType.??? ??? `호출 시 사용하겠다`
 - RetentionPolicy.CLASS : `default` 값 입니다. 컴파일 타임 때만 .class 파일에 존재하고, 런타임 때는 없어진다. 바이트 코드 레벨에서 어떤 작업을 해야할 때 유용하다. Reflection 사용이 불가능.
 - RetentionPolicy.SOURCE : 컴파일 후에 정보들이 사라진다. 이 어노테이션은 컴파일이 완료된 후에는 의미가 없어진다.그러기에 바이트 코드에 기록되지 않는다. 예시로는 `@Override와 @SuppressWarnings` 어노테이션이 있다.
 - RetentionPlicy.RUNTIME : 이 어노테이션은 런타임시에도 .class 파일에 존재한다. 커스텀 어노테이션을 만들 때 주로 사용한다. Reflection 사용 가능이 가능  
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/java/javacompiler.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/java/javacompiler.png?raw=true">
 
 #### @Documented 
 Java doc에 문서화 여부를 결정한다.  
