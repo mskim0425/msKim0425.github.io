@@ -79,7 +79,7 @@ public static void main(String[] args){
 <details>
 <summary><span style="color: gold"> 아니 그럼 왜 이렇게 문제가 많은데 왜 쓰는거지? -> 의존성 주입 (feat. 싱글톤 컨테이너!!) </span></summary>
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/design/%EC%9D%98%EC%A1%B4%EC%84%B1.jpg?raw=true" width="1000" height="400">  
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/design/%EC%9D%98%EC%A1%B4%EC%84%B1.jpg?raw=true" width="1000" height="400">  
   
 메인 모듈이 직접 다른 하위 모듈에 대한 의존성을 주기보다는 중간에 의존성 주입(DI)을 통해 메인 모듈이 간접적으로 의존성을 주입하는 방식. `디커플링` 이라고도 한다.  
 의존성 주입의 장점: 모듈 간의 테스트를 쉽게하고 의존성 방향이 일관되고 관계가 명확해짐  
@@ -88,7 +88,7 @@ public static void main(String[] args){
 스프링 컨테이너는 위에 언급한 문제점을 해결하면서 싱글톤의 장점을 살린다.  
 `스프링 빈을 싱글톤 패턴으로 관리`  
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/design/%EC%8A%A4%ED%94%84%EB%A7%81%20DI%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88.png?raw=true" width="1000" height="400">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/design/%EC%8A%A4%ED%94%84%EB%A7%81%20DI%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88.png?raw=true" width="1000" height="400">
 
 <center><small> 김영한 강의 자료중 일부 발췌 </small></center>   
 

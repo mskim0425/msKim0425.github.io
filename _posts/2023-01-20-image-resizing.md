@@ -31,7 +31,7 @@ Serverless인 람다에서 이미지를 리사이징하는 방법은 저장된 �
 ## #3 해결과정 Marvin 라이브러리 사용
 ### java.awt.Graphics2D 라이브러리
 처음엔 Graphics2D를 이용해서 구현하였으나, 이미지가 점묘화되는 현상으로 다른 방안을 찾아야했다.
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/java/Graphics2D.png?raw=true" width=800>  
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/java/Graphics2D.png?raw=true" width=800>  
 
 ### Marvin 라이브러리
 marvin 라이브러리를 사용하기 위해선 build.gradle에 아래의 내용을 추가해야한다.
@@ -184,12 +184,12 @@ public class CustomMultipartFile implements MultipartFile {
 ```
 ## 결과 
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/java/%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EB%A6%AC%EC%82%AC%EC%9D%B4%EC%A7%95.png?raw=true" width=800>
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/java/%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EB%A6%AC%EC%82%AC%EC%9D%B4%EC%A7%95.png?raw=true" width=800>
 
 눈에 띄게 줄어든 용량과 이미지가 꺠지지 않음을 확인 할 수 있었다.
   
 또한 원본 이미지들을 다운로드 후, 다시 업로드는 하는 형태로 s3 프리티어 저장공간도 45%정도 확보하는 결과를 도출해 냈다.  
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/java/123123.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/java/123123.png?raw=true">
 ## 출처
 [ImageIo 공식문서](https://docs.oracle.com/javase/7/docs/api/javax/imageio/ImageIO.html)  
 [Maven repo](https://marvinproject.sourceforge.net/en/tutorials.html)

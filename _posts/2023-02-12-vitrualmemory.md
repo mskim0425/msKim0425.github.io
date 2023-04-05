@@ -59,7 +59,7 @@ OS의 대표적인 일 중의 하나인 컴퓨터 내의 한정된 메모리 자
  
 `가상메모리란?` 메모리 관리 기법으로 하나로 컴퓨터가 실제 이용 가능한 메모리 자원을 추상화하여 이를 USER에게는 큰 메모리로 보이게하는 방법이다. 그러기 위해선 가상 주소와 실제주소를 연결하는 PAGE TABLE이 있어야한다.   
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/cs/%EB%A9%94%EB%AA%A8%EB%A6%AC%EA%B4%80%EB%A6%AC.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/cs/%EB%A9%94%EB%AA%A8%EB%A6%AC%EA%B4%80%EB%A6%AC.png?raw=true">
 
 ##### PAGE TABLE이란?  
 `page table은 위와같이 가상주소와 실제 주소를 mapping하는 테이블이다`. 메인 메모리에 존재하며 프로세스마다 고유의 page table을 가진다. context switching(프로세스를 교체) 할 때마다 page table도 변경돼야 한다. 즉, CPU가 어느 page table을 사용할지 알아야 한다.  

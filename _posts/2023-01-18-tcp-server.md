@@ -15,7 +15,7 @@ tags: [cs, internet]
  꺠달음을 얻고   
  해당 지식을 나의 해석방식과 나의 그림으로 그려냈다. [영상 링크](https://www.youtube.com/watch?v=K9L9YZhEjC0&t=1341s)
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/%EA%B7%B8%EB%A6%BC1.png?raw=true">  
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/%EA%B7%B8%EB%A6%BC1.png?raw=true">  
 <center> 서버 쪽 이미지 </center>
  　　 
  　　   
@@ -34,7 +34,7 @@ DB → 드라이버  → 파일시스템을 거쳐 웹서버의 메모리영역 
 `8` window size가 보내려는 사이즈보다 크면 계속 보내고 작다면 wait한다.  
    이로인해 전송이 상당히 딜레이가 될 수 있다.
 
-<img src="https://github.com/msKim92/msKim92.github.io/blob/main/images/internet/%EA%B7%B8%EB%A6%BC2.png?raw=true">
+<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/internet/%EA%B7%B8%EB%A6%BC2.png?raw=true">
 <center>클라이언트 쪽 이미지</center>
  　 
  　　    
