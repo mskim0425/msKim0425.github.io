@@ -2,7 +2,7 @@
 layout: post
 title:  "Spring용어,웹서버 그리고 Spring MVC"
 date:   2023-03-21 11:01:04 +0900
-categories: [SPRING , MVC]
+categories: [MVC]
 tags: [spring, mvc]
 ---
 
