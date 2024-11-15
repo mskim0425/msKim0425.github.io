@@ -1,9 +1,17 @@
 ---
 layout: post
+
+
 title: "Rails AASM 상태관리와 관계설정"
+
+
 date: 2024-11-13 22:00:00 +0900
-categories: [Rails, Ruby]
-tags: [aasm, activerecord]
+
+
+categories: [Rails, assm, activerecord]
+
+
+tags: [rails, assm, activerecord]
 ---
 
 상태 관리에서 매우 중요한 부분이다. Rails에서는 AASM(Acts As State Machine)을 통해 효과적으로 상태를 관리할 수 있다.
@@ -179,4 +187,4 @@ class Product < ApplicationRecord
   has_many :reviewers, through: :product_reviews, source: :user  # N:M 관계 JOIN관계 명시
 end
 ```
-| 💡 Tip: N:M 관계를 설정할 때는 through 옵션을 써서 조인 테이블을 명시해야 한다. 이렇게 하면 user.reviewed_products처럼 직관적으로 접근할 수 있다.
+> 💡 Tip: N:M 관계를 설정할 때는 through 옵션을 써서 조인 테이블을 명시해야 한다. 이렇게 하면 user.reviewed_products처럼 직관적으로 접근할 수 있다.
