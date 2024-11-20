@@ -62,12 +62,12 @@ logger.error "심각한 오류 발생!"
 gem install byebug
 ```
 
-2. rails c byebug에 따른 장점
+2. rails c, byebug에 따른 장점
+
 ```ruby
   # byebug rails c 했을때 쓸만한것들 모음
   >Order.where(Id: 222441).to_sql 
   >"SELECT `Order`.* FROM `Order` WHERE `Order`.Id` = 222441" 
-
 ```
 
 3. 주요 명령어
