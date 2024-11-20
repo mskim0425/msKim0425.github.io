@@ -11,11 +11,11 @@ date:   2023-10-29 13:01:04 +0900
 
 
 
-categories: [ruby, ruby on rails]
+categories: [Rails, ruby]
 
 
 
-tags: [ruby, ruby on rails]
+tags: [rails, ruby]
 ---
 # <% > 와 <%= > 차이
 
