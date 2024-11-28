@@ -34,7 +34,7 @@ class MyController < ApplicationController
 end
 ```
 
-## Kaminari gem
+## Kaminari
 
 페이지네이션을 위한 Ruby gem이다. 풀스택용인듯
 
@@ -165,3 +165,223 @@ json.array! @users, partial: 'users/user', as: :user
   }
 ]
 ```
+## Pundit
+권한 부여 시스템을 제공하는 gem, 간단하게 정책 기반 인증을 구현가능 
+~~~ruby
+class PostPolicy
+  attr_reader :user, :post
+
+  def initialize(user, post)
+    @user = user
+    @post = post
+  end
+
+  def update?
+    user.admin? || post.user_id == user.id
+  end
+
+  def destroy?
+    user.admin? || post.user_id == user.id
+  end
+end
+
+class PostsController < ApplicationController
+  def update
+    @post = Post.find(params[:id])
+    authorize @post # 정책이 정의된 클래스를 자동으로 찾음
+    if @post.update(post_params)
+      redirect_to @post
+    end
+  end
+end
+# app/policy 디렉토리에 정의함
+class Policy
+  attr_reader :user, :post
+  
+  def initialize(user, post)
+    @user = user  # current_user가 자동으로 전달됨
+    @post = post  # authorize에 전달된 객체
+  end
+
+  def update?
+    user.admin? || post.user_id == user.id  # 관리자이거나 작성자인 경우만 true
+  end
+end
+~~~
+
+## Draper
+[데코레이터 패턴](https://sothoughtful.dev/posts/decorator/)을 사용하도록 모델에서 자주 사용되는 함수들을 하나의 파일로 만들어 사용함.
+
+~~~ruby
+# app/decorators/user_decorator.rb
+class UserDecorator < Draper::Decorator
+  delegate_all
+
+  def full_name
+    "#{object.first_name} #{object.last_name}"
+  end
+
+  def member_since
+    object.created_at.strftime("%B %Y")
+  end
+
+  def status_label
+    if object.active?
+      h.content_tag(:span, "활성", class: "badge badge-success")
+    else
+      h.content_tag(:span, "비활성", class: "badge badge-danger")
+    end
+  end
+end
+
+class UsersController < ApplicationController
+  def show
+    @user = User.find(params[:id]).decorate
+  end
+end
+~~~
+
+## Paper Trail
+모델의 변경 이력을 추적하고 관리할 수 있게 해주는 gem
+~~~ruby
+class Post < ApplicationRecord
+  has_paper_trail
+  
+  # 특정 필드만 추적
+  has_paper_trail only: [:title, :content]
+  
+  # 메타데이터 추가
+  has_paper_trail meta: {
+    editor_id: :editor_id,
+    category: :category_name
+  }
+end
+~~~
+
+~~~ruby
+# 모든 변경 이력 조회 DB에 저장해서 조회하는게 나을지도...?
+post = Post.find(1)
+post.versions.each do |version|
+  puts "변경일: #{version.created_at}"
+  puts "변경자: #{version.whodunnit}"
+  puts "이전 내용: #{version.reify.attributes}"
+  puts "현재 내용: #{version.object}"
+end
+
+# 특정 시점으로 되돌리기
+post = post.paper_trail.previous_version
+post.save
+~~~
+
+# 채워야할 잼 (강조채는 디폴트잼)
+ - [ ] active_record_union
+ - [ ] acts-as-taggable-on
+ - [ ] acts_as_paranoid
+ - [ ] amoeba
+ - [ ] ancestry
+ - [ ] annotate
+ - [ ] asset_sync
+ - [ ] awesome_print
+ - [ ] aws-sdk
+ - [ ] barby
+ - [ ] bootsnap
+ - [X] byebug
+ - [ ] capybara
+ - [ ] carrierwave
+ - [ ] caxlsx
+ - [ ] caxlsx_rails
+ - [ ] composite_primary_keys
+ - [ ] connection_pool
+ - [ ] coolsms
+ - [ ] database_cleaner
+ - [ ] devise
+ - [ ] dotenv-rails
+ - [ ] down
+ - [X] draper
+ - [ ] dynamoid
+ - [ ] elasticsearch-model
+ - [ ] elasticsearch-persistence
+ - [ ] elasticsearch-rails
+ - [ ] emoji-validator
+ - [ ] factory_bot_rails
+ - [ ] faker
+ - [ ] faraday
+ - [ ] faraday-retry
+ - [ ] fog-aws
+ - [ ] font-awesome-rails
+ - [ ] goldiloader
+ - [ ] hiredis
+ - [X] jbuilder
+ - [ ] jquery-form-rails
+ - [ ] **json** *
+ - [ ] jwt
+ - [X] kaminari
+ - [ ] letter_opener
+ - [ ] listen
+ - [ ] mail
+ - [ ] maxminddb
+ - [ ] mimemagic
+ - [ ] mini_magick
+ - [ ] multi_json
+ - [ ] mysql2
+ - [ ] mysql2-aurora
+ - [ ] nested_form
+ - [ ] *net-http*
+ - [ ] net-ldap
+ - [ ] nio4r
+ - [ ] nokogiri
+ - [ ] oj
+ - [ ] opentelemetry-exporter-otlp
+ - [ ] opentelemetry-instrumentation-all
+ - [ ] opentelemetry-sdk
+ - [ ] panko_serializer
+ - [X] paper_trail
+ - [ ] popbill
+ - [ ] pry-rails
+ - [ ] **psych** *
+ - [X] puma
+ - [X] pundit
+ - [ ] rack-attack
+ - [ ] rack-cors
+ - [ ] rails
+ - [ ] rails-i18n
+ - [ ] rails_param
+ - [ ] rails_same_site_cookie
+ - [ ] ratelimit
+ - [ ] redis
+ - [ ] redis-mutex
+ - [ ] redis-namespace
+ - [ ] redis-objects
+ - [ ] request_store
+ - [ ] retriable
+ - [ ] rolify
+ - [ ] roo
+ - [ ] roo-xls
+ - [ ] rspec-mocks
+ - [ ] rspec-rails
+ - [ ] rubocop
+ - [ ] rubyzip
+ - [ ] rufus-scheduler
+ - [ ] safe_attributes
+ - [ ] sass-rails
+ - [ ] search_cop
+ - [ ] sentry-rails
+ - [ ] sentry-ruby
+ - [ ] sentry-sidekiq
+ - [ ] shoulda-matchers
+ - [ ] sidekiq
+ - [ ] sidekiq-cron
+ - [ ] spring
+ - [ ] spring-watcher-listen
+ - [ ] str_enum
+ - [ ] swagger-docs
+ - [ ] twilio-ruby
+ - [ ] tzinfo-data
+ - [ ] ulid
+ - [ ] **uri** *
+ - [ ] user_agent_parser
+ - [ ] waterdrop
+ - [ ] webpacker
+ - [ ] wicked_pdf
+ - [ ] wkhtmltopdf-binary-edge-alpine
+ - [X] zipline
