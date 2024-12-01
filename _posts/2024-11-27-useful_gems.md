@@ -14,7 +14,7 @@ categories: [Rails, Gems]
 tags: [rails, gems]
 ---
 
-## ZipLine gem
+## ZipLine
 
 Zipline은 Rails 애플리케이션에서 동적으로 생성된 ZIP 파일을 스트리밍하기 위한 Ruby gem이다.
 
@@ -59,7 +59,7 @@ end
 <%= paginate @users, theme: 'bootstrap4' %>
 ```
 
-## Puma gem
+## Puma
 Ruby/Rack 애플리케이션을 위한 고성능 웹 서버 gem이다. 설정용 GEM
 
 - 멀티스레드 지원: 각 요청을 별도 스레드에서 처리
@@ -85,7 +85,7 @@ port ENV.fetch("PORT") { 3000 }
 environment ENV.fetch("RAILS_ENV") { "development" }
 ```
 
-## Jbuilder gem
+## Jbuilder
 Json을 편하게 처리하기 위한 gem
 
 ```ruby
@@ -257,131 +257,144 @@ class Post < ApplicationRecord
   }
 end
 ~~~
+## Sidekiq
+백그라운드 작업 처리를 위한 gem입니다.
 
-~~~ruby
-# 모든 변경 이력 조회 DB에 저장해서 조회하는게 나을지도...?
-post = Post.find(1)
-post.versions.each do |version|
-  puts "변경일: #{version.created_at}"
-  puts "변경자: #{version.whodunnit}"
-  puts "이전 내용: #{version.reify.attributes}"
-  puts "현재 내용: #{version.object}"
+**설정 예시**
+```ruby
+# app/workers/email_worker.rb
+class EmailWorker
+  include Sidekiq::Worker
+  
+  def perform(user_id)
+    user = User.find(user_id)
+    UserMailer.welcome_email(user).deliver_now # 대충 user한테 알림을 보낸 메서드
+  end
 end
 
-# 특정 시점으로 되돌리기
-post = post.paper_trail.previous_version
-post.save
-~~~
+# 기본으로 제공하는 메서드
+EmailWorker.perform_async(user.id)  # 비동기 실행
+EmailWorker.perform_in(2.hours, user.id)  # 2시간 후 실행
+EmailWorker.perform_at(2.days.from_now, user.id)  # 특정 시간에 실행
+```
 
-# 채워야할 잼 (강조채는 디폴트잼)
- - [ ] active_record_union
- - [ ] acts-as-taggable-on
- - [ ] acts_as_paranoid
- - [ ] amoeba
- - [ ] ancestry
- - [ ] annotate
- - [ ] asset_sync
- - [ ] awesome_print
- - [ ] aws-sdk
- - [ ] barby
- - [ ] bootsnap
- - [X] byebug
- - [ ] capybara
- - [ ] carrierwave
- - [ ] caxlsx
- - [ ] caxlsx_rails
- - [ ] composite_primary_keys
- - [ ] connection_pool
- - [ ] coolsms
- - [ ] database_cleaner
- - [ ] devise
- - [ ] dotenv-rails
- - [ ] down
- - [X] draper
- - [ ] dynamoid
- - [ ] elasticsearch-model
- - [ ] elasticsearch-persistence
- - [ ] elasticsearch-rails
- - [ ] emoji-validator
- - [ ] factory_bot_rails
- - [ ] faker
- - [ ] faraday
- - [ ] faraday-retry
- - [ ] fog-aws
- - [ ] font-awesome-rails
- - [ ] goldiloader
- - [ ] hiredis
- - [X] jbuilder
- - [ ] jquery-form-rails
- - [ ] **json** *
- - [ ] jwt
- - [X] kaminari
- - [ ] letter_opener
- - [ ] listen
- - [ ] mail
- - [ ] maxminddb
- - [ ] mimemagic
- - [ ] mini_magick
- - [ ] multi_json
- - [ ] mysql2
- - [ ] mysql2-aurora
- - [ ] nested_form
- - [ ] *net-http*
- - [ ] net-ldap
- - [ ] nio4r
- - [ ] nokogiri
- - [ ] oj
- - [ ] opentelemetry-exporter-otlp
- - [ ] opentelemetry-instrumentation-all
- - [ ] opentelemetry-sdk
- - [ ] panko_serializer
- - [X] paper_trail
- - [ ] popbill
- - [ ] pry-rails
- - [ ] **psych** *
- - [X] puma
- - [X] pundit
- - [ ] rack-attack
- - [ ] rack-cors
- - [ ] rails
- - [ ] rails-i18n
- - [ ] rails_param
- - [ ] rails_same_site_cookie
- - [ ] ratelimit
- - [ ] redis
- - [ ] redis-mutex
- - [ ] redis-namespace
- - [ ] redis-objects
- - [ ] request_store
- - [ ] retriable
- - [ ] rolify
- - [ ] roo
- - [ ] roo-xls
- - [ ] rspec-mocks
- - [ ] rspec-rails
- - [ ] rubocop
- - [ ] rubyzip
- - [ ] rufus-scheduler
- - [ ] safe_attributes
- - [ ] sass-rails
- - [ ] search_cop
- - [ ] sentry-rails
- - [ ] sentry-ruby
- - [ ] sentry-sidekiq
- - [ ] shoulda-matchers
- - [ ] sidekiq
- - [ ] sidekiq-cron
- - [ ] spring
- - [ ] spring-watcher-listen
- - [ ] str_enum
- - [ ] swagger-docs
- - [ ] twilio-ruby
- - [ ] tzinfo-data
- - [ ] ulid
- - [ ] **uri** *
- - [ ] user_agent_parser
- - [ ] waterdrop
- - [ ] webpacker
- - [ ] wicked_pdf
- - [ ] wkhtmltopdf-binary-edge-alpine
- - [X] zipline
+**장점 단점**
+- Redis를 사용하여 빠른 처리 속도 하지만 그만큼 비용이 많이 들고 레디스 메모리도 증가함
+- 실시간 모니터링 대시보드 제공
+- 실패한 작업 재시도 기능
+- 다중 큐 지원
+
+## Carrierwave
+간단한 코드 작성으로 파일 업로드를 위한 gem. 로컬이나 AWS s3 버킷에 저장가능
+
+**설정 예시**
+```ruby
+# app/uploaders/image_uploader.rb
+class ImageUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick  # 이미지 처리
+
+  storage :file  # 로컬 저장
+  storage :fog  # AWS S3 등 클라우드 저장
+
+  # 썸네일 생성
+  version :thumb do
+    process resize_to_fit: [100, 100]
+  end
+
+  # 허용하는 파일 형식
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
+end
+
+# 모델에서 사용
+class User < ApplicationRecord
+  mount_uploader :avatar, ImageUploader
+end
+```
+
+**사용 예시**
+```ruby
+# 컨트롤러
+def create
+  @user = User.new(user_params)
+  @user.avatar = params[:file]  # 파일 업로드
+  @user.save
+end
+
+# 뷰
+<%= image_tag @user.avatar.url %>  # 원본 이미지
+<%= image_tag @user.avatar.thumb.url %>  # 썸네일, S3로 부터 받음
+```
+
+## Figaro
+환경 변수 관리를 위한 gem. application.yml에 들어가는 민감정보를 방지함.
+
+**설정 예시**
+```yaml
+# config/application.yml
+development:
+  AWS_KEY: "dev_key_123"
+  API_SECRET: "dev_secret_456"
+
+production:
+  AWS_KEY: "prod_key_789"
+  API_SECRET: "prod_secret_012"
+```
+
+**사용 예시**
+```ruby
+# 어플리케이션 코드에서 접근
+ENV["AWS_KEY"]
+Figaro.env.aws_key
+
+# 필수 키 지정
+Figaro.require_keys("aws_key", "api_secret")
+```
+Figaro를 설치하게되면 config/application.yml 파일 생성되고
+.gitignore 파일에 /config/application.yml 자동 추가된다. 그래서 직접적인 파일공유를 해야하므로 별도의 환경변수 설정이 필요함. Heroku를 안쓰면 Rails credentials이 난듯?
+
+---
+## RSpec-Rails
+Rails 애플리케이션을 위한 테스팅 프레임워크
+
+**테스트 예시**
+```ruby
+# spec/models/user_spec.rb
+RSpec.describe User, type: :model do
+  # 모델 유효성 검사
+  it "vaildation이 잘되나" do
+    user = User.new(
+      email: "test@example.com",
+      password: "password123"
+    )
+    expect(user).to be_valid
+  end
+
+  # 연관 관계 테스트
+  it "has many posts" do
+    should have_many(:posts)
+  end
+end
+
+# spec/controllers/users_controller_spec.rb
+RSpec.describe UsersController, type: :controller do
+  describe "GET #index" do
+    it "returns a success response" do
+      get :index
+      expect(response).to be_successful
+    end
+  end
+
+  describe "POST #create" do
+    it "creates a new user" do
+      expect {
+        post :create, params: { user: valid_attributes }
+      }.to change(User, :count).by(1)
+    end
+  end
+end
+```
+
+다양한 테스트 도구 제공 (목업, 스텁 등)과 리포트를 제공함.
+하지만 나는 rails c or s 하고 직접값 입력하는게 루비를 잘쓰는게 아닐까 싶다.
