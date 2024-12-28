@@ -11,7 +11,7 @@ date: 2024-12-21 13:40:00 +0900
 categories: [index, single, multi]
 
 
-tags: [index, single, multi]
+tags: [mysql, index]
 ---
 
 전에 클러스터인덱스와 넌클러스터 인덱스에 대해 다뤄봤었는데 복습겸 다시 한번 적자면    
