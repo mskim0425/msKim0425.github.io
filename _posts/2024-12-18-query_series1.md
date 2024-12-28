@@ -11,7 +11,7 @@ date: 2024-12-18 22:00:00 +0900
 categories: [LEAD, LAG, OVER, PARTITION]
 
 
-tags: [LEAD, LAG, OVER, PARTITION]
+tags: [mysql, query]
 ---
 
 ## **윈도우 함수란?**
