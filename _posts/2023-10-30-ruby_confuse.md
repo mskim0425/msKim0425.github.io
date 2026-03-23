@@ -11,7 +11,7 @@ date:   2023-10-29 13:01:04 +0900
 
 
 
-categories: [Rails, ruby]
+categories: [Dev, Rails]
 
 
 

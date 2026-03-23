@@ -11,7 +11,7 @@ date:   2023-05-17 12:01:04 +0900
 
 
 
-categories: [cluster-index,uncluser-index]
+categories: [Dev, Database]
 
 
 

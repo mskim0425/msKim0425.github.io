@@ -2,7 +2,7 @@
 layout: post
 title:  "구조패턴 - 플라이웨이트 패턴"
 date:   2022-12-05 15:11:04 +0900
-categories: [CS ,  Design Pattern]
+categories: [Dev, Design Pattern]
 tags: [cs, design pattern]
 ---
 # flyweight Pattern

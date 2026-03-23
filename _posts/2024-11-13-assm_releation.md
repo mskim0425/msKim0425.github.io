@@ -8,7 +8,7 @@ title: "Rails AASM 상태관리와 관계설정"
 date: 2024-11-13 22:00:00 +0900
 
 
-categories: [Rails, assm, activerecord]
+categories: [Dev, Rails]
 
 
 tags: [rails, assm, activerecord]

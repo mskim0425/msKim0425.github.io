@@ -2,7 +2,7 @@
 layout: post
 title:  "Index... 랜덤 Io, 순차 IO"
 date:   2023-02-23 11:01:04 +0900
-categories: [SQL, index]
+categories: [Dev, Database]
 tags: [sql, index]
 ---
 

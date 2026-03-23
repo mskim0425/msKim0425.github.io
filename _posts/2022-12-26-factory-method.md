@@ -2,7 +2,7 @@
 layout: post
 title:  "생성 패턴 - 팩토리 메서드 패턴"
 date:   2022-12-26 15:10:57 +0900
-categories: [CS ,  Design Pattern]
+categories: [Dev, Design Pattern]
 tags: [cs, design pattern]
 ---
 # Factory Method Pattern

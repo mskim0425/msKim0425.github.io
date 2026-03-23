@@ -8,7 +8,7 @@ title: "비슷하면서 다른 SQL 정리"
 date: 2025-01-14 19:40:00 +0900
 
 
-categories: [PARTITION, GROUP]
+categories: [Dev, SQL]
 
 
 tags: [mysql, PARTITION, GROUPBY]

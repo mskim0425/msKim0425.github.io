@@ -2,7 +2,7 @@
 layout: post
 title:  "생성 패턴 - 프로토타입 패턴"
 date:   2022-12-26 15:10:57 +0900
-categories: [CS ,  Design Pattern]
+categories: [Dev, Design Pattern]
 tags: [cs, design pattern]
 ---
 # Prototype Method Pattern 🧙‍♂️

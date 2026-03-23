@@ -2,7 +2,7 @@
 layout: post
 title:  "Persistence Context"
 date:   2023-01-06 15:11:04 +0900
-categories: [JPA, SQL]
+categories: [Dev, JPA]
 tags: [jpa, sql]
 ---
 

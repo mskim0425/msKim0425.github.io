@@ -2,7 +2,7 @@
 layout: post
 title:  "OS - Memory"
 date:   2023-02-12 11:01:04 +0900
-categories: [CS, memory]
+categories: [Dev, CS]
 tags: [cs, memory]
 ---
 

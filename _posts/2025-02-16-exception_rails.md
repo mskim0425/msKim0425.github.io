@@ -2,7 +2,7 @@
 layout: post
 title: "Ruby on Rails Exception 그리고 트랜잭션"
 date: 2025-02-16 11:40:00 +0900
-categories: [Web Development, Performance Optimization]
+categories: [Dev, Rails]
 tags: [ruby-on-rails, exception, transaction]
 ---
 
