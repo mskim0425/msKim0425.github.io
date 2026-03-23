@@ -22,6 +22,17 @@ SoThoughtful; covers four main topics:
 - Tags: {{ site.url }}/tags/
 - Archives: {{ site.url }}/archives/
 - Privacy Policy: {{ site.url }}/privacy-policy/
+- Tools: {{ site.url }}/tools/
+
+## Free Developer Tools
+
+### JSON Formatter & Validator
+Free online JSON formatter, validator, and minifier. Runs 100% in the browser — no data sent to any server.
+URL: {{ site.url }}/tools/json-formatter/
+
+### Diff Checker
+Free online text comparison tool. Compare two blocks of text and see differences highlighted. Runs entirely in the browser.
+URL: {{ site.url }}/tools/diff-checker/
 
 ## Content Highlights
 
