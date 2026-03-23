@@ -45,9 +45,7 @@ Practical notes on Java, Spring Boot, Ruby on Rails, SQL optimization, design pa
 ## Author
 
 - Name: Minsub Kim
-- Location: Seoul, South Korea
 - GitHub: https://github.com/msKim0425
-- Email: mins402kim@gmail.com
 
 ## Technical Details
 
