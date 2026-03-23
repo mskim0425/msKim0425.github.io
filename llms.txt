@@ -1,0 +1,47 @@
+---
+permalink: /llms.txt
+---
+# SoThoughtful;
+
+> A personal blog by Minsub Kim — backend developer, food explorer, and cultural storyteller based in Seoul, Korea.
+
+## About This Site
+
+SoThoughtful; covers four main topics:
+
+- **Dev**: Backend development tutorials and real-world notes on Java, Spring, Ruby on Rails, SQL, design patterns, infrastructure, and system design.
+- **Korean Food**: Honest restaurant reviews in Seoul with photos, menu details, pricing, and practical tips for visitors.
+- **K-Culture**: Korean culture, YouTube trends, and lifestyle content — a window into modern Korean life.
+- **MBTI & Lifestyle**: Personality-based content exploring how MBTI types experience food, travel, and work.
+
+## Key Pages
+
+- Homepage: {{ site.url }}/
+- About: {{ site.url }}/about/
+- Categories: {{ site.url }}/categories/
+- Tags: {{ site.url }}/tags/
+- Archives: {{ site.url }}/archives/
+- Privacy Policy: {{ site.url }}/privacy-policy/
+
+## Content Highlights
+
+### Korean Food Reviews
+Restaurant reviews with course-by-course photos, pricing, reservation tips, and Google Maps links. Written from a local Korean perspective for an international audience.
+
+### Backend Development
+Practical notes on Java, Spring Boot, Ruby on Rails, SQL optimization, design patterns, caching strategies, Kafka, Docker, and CI/CD. Written by a working backend developer.
+
+## Author
+
+- Name: Minsub Kim
+- Location: Seoul, South Korea
+- GitHub: https://github.com/msKim0425
+- Email: mins402kim@gmail.com
+
+## Technical Details
+
+- Built with: Jekyll + Chirpy Theme
+- Hosted on: GitHub Pages
+- Language: English (primary), Korean (legacy posts)
+- Feed: {{ site.url }}/feed.xml
+- Sitemap: {{ site.url }}/sitemap.xml

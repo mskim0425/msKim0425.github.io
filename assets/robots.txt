@@ -6,4 +6,35 @@ permalink: /robots.txt
 User-agent: *
 Allow: /
 
+# AI Crawlers - Explicitly Allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 Sitemap: {{ '/sitemap.xml' | absolute_url }}
+
+# LLMs.txt for AI model discovery
+# See: {{ '/llms.txt' | absolute_url }}

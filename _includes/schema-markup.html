@@ -1,0 +1,96 @@
+<!-- Schema.org JSON-LD for AI & Search Engine Discovery -->
+
+{% if page.layout == 'home' %}
+<!-- WebSite Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.social.name }}",
+    "url": "{{ site.social.links[0] }}"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/search/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endif %}
+
+{% if page.layout == 'post' %}
+<!-- Article Schema for Blog Posts -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{% if page.categories contains 'Korean Food' %}Restaurant{% else %}BlogPosting{% endif %}",
+  {% if page.categories contains 'Korean Food' %}
+  "headline": "{{ page.title | escape }}",
+  "description": "{{ page.content | strip_html | truncatewords: 50 | escape }}",
+  {% else %}
+  "headline": "{{ page.title | escape }}",
+  "description": "{{ page.content | strip_html | truncatewords: 50 | escape }}",
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.social.name }}",
+    "url": "{{ site.social.links[0] }}"
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  },
+  {% if page.image.path %}
+  "image": "{{ page.image.path | absolute_url }}",
+  {% endif %}
+  "keywords": "{{ page.tags | join: ', ' }}",
+  "articleSection": "{{ page.categories | join: ' > ' }}",
+  "inLanguage": "en"
+}
+</script>
+
+{% if page.categories contains 'Korean Food' %}
+<!-- Restaurant Review Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Restaurant",
+    "name": "{{ page.title | split: '—' | first | strip | escape }}"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.social.name }}"
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "reviewBody": "{{ page.content | strip_html | truncatewords: 100 | escape }}"
+}
+</script>
+{% endif %}
+
+<!-- FAQ Schema if post has FAQ section -->
+{% assign faq_content = page.content | split: '## FAQ' %}
+{% if faq_content.size > 1 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": []
+}
+</script>
+{% endif %}
+
+{% endif %}

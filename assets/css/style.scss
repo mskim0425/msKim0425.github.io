@@ -10,3 +10,18 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 @import "{{ site.theme }}";
 
 /* append your custom style below */
+
+/* Side-by-side image grid for posts */
+.img-grid {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.img-grid img {
+  flex: 1;
+  max-width: calc(50% - 4px);
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
