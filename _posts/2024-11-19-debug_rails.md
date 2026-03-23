@@ -8,7 +8,7 @@ title: "Rails 디버깅"
 date: 2024-11-19 22:00:00 +0900
 
 
-categories: [Rails, Debug]
+categories: [Dev, Debug]
 
 
 tags: [rails, debug]

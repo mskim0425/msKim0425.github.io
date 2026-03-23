@@ -8,7 +8,7 @@ title: "INDEX에 관하여"
 date: 2024-12-21 13:40:00 +0900
 
 
-categories: [index, single, multi]
+categories: [Dev, Database]
 
 
 tags: [mysql, index]

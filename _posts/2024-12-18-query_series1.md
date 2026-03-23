@@ -8,7 +8,7 @@ title: "mysql 쿼리 기능"
 date: 2024-12-18 22:00:00 +0900
 
 
-categories: [LEAD, LAG, OVER, PARTITION]
+categories: [Dev, SQL]
 
 
 tags: [mysql, query]

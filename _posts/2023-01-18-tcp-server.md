@@ -2,7 +2,7 @@
 layout: post
 title:  "서버에 저장된 FILE 가져오는 로직"
 date:   2023-01-18 17:21:07 +0900
-categories: [CS , Internet]
+categories: [Dev, Network]
 tags: [cs, internet] 
 ---
 

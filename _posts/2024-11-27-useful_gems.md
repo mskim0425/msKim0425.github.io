@@ -8,7 +8,7 @@ title: "Ruby GEM 시리즈"
 date: 2024-11-27 22:00:00 +0900
 
 
-categories: [Rails, Gems]
+categories: [Dev, Gems]
 
 
 tags: [rails, gems]

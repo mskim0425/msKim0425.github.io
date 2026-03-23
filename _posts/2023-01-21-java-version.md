@@ -2,7 +2,7 @@
 layout: post
 title:  "Java 8-17 정리"
 date:   2023-01-21 21:20:57 +0900
-categories: [Java , Basic]
+categories: [Dev, Java]
 tags: [java, basic]
 ---
 

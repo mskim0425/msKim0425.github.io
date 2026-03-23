@@ -2,7 +2,7 @@
 layout: post
 title:  "Isolation Level + Inno DB Lock"
 date:   2023-01-26 12:20:57 +0900
-categories: [SQL , LOCK]
+categories: [Dev, SQL]
 tags: [sql, db, lock]
 ---
 

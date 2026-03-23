@@ -2,7 +2,7 @@
 layout: post
 title:  "인터넷 사용법?"
 date:   2022-10-19 09:41:57 +0900
-categories: [CS , Internet]
+categories: [Dev, Network]
 tags: [cs, internet]
 ---
 

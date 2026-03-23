@@ -2,7 +2,7 @@
 layout: post
 title:  "생성패턴 - 싱글톤 패턴"
 date:   2022-12-22 12:15:07 +0900
-categories: [CS ,  Design Pattern]
+categories: [Dev, Design Pattern]
 tags: [cs, design pattern]
 ---
 # Singleton Pattern

@@ -2,7 +2,7 @@
 layout: post
 title:  "[Spring] Annotation"
 date:   2022-09-27 15:41:57 +0900
-categories: [annotation]
+categories: [Dev, Java]
 tags: [java, spring]
 ---
 

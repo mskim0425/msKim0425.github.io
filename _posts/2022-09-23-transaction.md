@@ -2,7 +2,7 @@
 layout: post
 title:  "Transaction, Normalization"
 date:   2022-09-23 10:41:57 +0900
-categories: [SQL , transaction]
+categories: [Dev, SQL]
 tags: [sql, transaction]
 ---
 

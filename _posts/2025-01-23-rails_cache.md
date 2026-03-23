@@ -2,7 +2,7 @@
 layout: post
 title: "Ruby on Rails 성능 최적화: 레일즈 캐싱"
 date: 2025-01-25 19:40:00 +0900
-categories: [Web Development, Performance Optimization]
+categories: [Dev, Rails]
 tags: [ruby-on-rails, cache, memory-management, performance-tuning, rails-optimization]
 ---
 

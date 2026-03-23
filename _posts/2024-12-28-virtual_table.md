@@ -8,7 +8,7 @@ title: "가상테이블"
 date: 2024-12-28 09:40:00 +0900
 
 
-categories: [virtual_table]
+categories: [Dev, SQL]
 
 
 tags: [mysql,virtual_table]
