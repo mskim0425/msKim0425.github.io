@@ -43,6 +43,8 @@
 
   {{ seo_tags }}
 
+  {% include schema-markup.html %}
+
   <title>
   {%- unless page.layout == "home" -%}
     {{ page.title | append: " | "}}

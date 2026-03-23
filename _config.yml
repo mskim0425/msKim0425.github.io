@@ -21,10 +21,10 @@ timezone: Asia/Seoul
 
 title: SoThoughtful;                          # the main title
 
-tagline: 백엔드 개발자   # it will display as the sub-title
+tagline: Dev Life · Korean Food · K-Culture   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  백엔드 개발자의 정리글, java, spring stuff
+  Backend developer in Seoul sharing dev notes, Korean restaurant reviews, and K-culture stories.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: https://msKim0425.github.io
@@ -77,7 +77,7 @@ theme_mode: dark
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: 'https://raw.githubusercontent.com/cotes2020/chirpy-images/main'
+img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
 avatar: 'https://avatars.githubusercontent.com/u/107451298?s=400&u=e5165c561ac67ec7819798bbd37382f3630f4a99&v=4'
