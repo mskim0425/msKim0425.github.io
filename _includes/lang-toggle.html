@@ -1,0 +1,93 @@
+<!-- Language Toggle Button -->
+<button class="lang-toggle btn" aria-label="Switch Language" onclick="toggleLang()">
+  <i class="fas fa-globe"></i>
+  <small id="langLabel" style="font-size:0.65rem;margin-left:2px;">EN</small>
+</button>
+
+<script>
+(function() {
+  const LOCALES = {
+    en: {
+      tabs: {
+        home: 'HOME', categories: 'CATEGORIES', tags: 'TAGS',
+        archives: 'ARCHIVES', tools: 'TOOLS', about: 'REFERENCE'
+      },
+      search: 'search',
+      label: 'EN'
+    },
+    ko: {
+      tabs: {
+        home: '홈', categories: '카테고리', tags: '태그',
+        archives: '아카이브', tools: '도구', about: '나의 정보'
+      },
+      search: '검색',
+      label: 'KO'
+    }
+  };
+
+  const TAB_KEYS = ['home', 'categories', 'tags', 'archives', 'tools', 'about'];
+
+  function applyLang(lang) {
+    const loc = LOCALES[lang];
+    if (!loc) return;
+
+    // Update sidebar tab labels
+    const navItems = document.querySelectorAll('#sidebar .nav-item a span, #sidebar .nav-link span');
+    navItems.forEach(function(span) {
+      const text = span.textContent.trim().toUpperCase();
+      // Find which tab this matches
+      for (var i = 0; i < TAB_KEYS.length; i++) {
+        var key = TAB_KEYS[i];
+        if (text === LOCALES.en.tabs[key].toUpperCase() || text === LOCALES.ko.tabs[key].toUpperCase()) {
+          span.textContent = loc.tabs[key].toUpperCase();
+          break;
+        }
+      }
+    });
+
+    // Update search hint
+    var searchInput = document.getElementById('search-input');
+    if (searchInput) {
+      searchInput.setAttribute('placeholder', loc.search);
+    }
+
+    // Update toggle label
+    var label = document.getElementById('langLabel');
+    if (label) label.textContent = loc.label;
+
+    localStorage.setItem('siteLanguage', lang);
+  }
+
+  // Initialize on page load
+  var savedLang = localStorage.getItem('siteLanguage') || 'en';
+  document.addEventListener('DOMContentLoaded', function() {
+    applyLang(savedLang);
+  });
+  // Also run immediately in case DOM is already loaded
+  if (document.readyState !== 'loading') {
+    applyLang(savedLang);
+  }
+
+  window.toggleLang = function() {
+    var current = localStorage.getItem('siteLanguage') || 'en';
+    var next = current === 'en' ? 'ko' : 'en';
+    applyLang(next);
+  };
+})();
+</script>
+
+<style>
+  .lang-toggle {
+    color: var(--sidebar-btn-color, #868e96);
+    background: transparent;
+    border: none;
+    padding: 4px 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s;
+  }
+  .lang-toggle:hover {
+    color: var(--sidebar-active-color, #fff);
+  }
+</style>
