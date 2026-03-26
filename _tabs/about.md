@@ -17,7 +17,7 @@ I've been building things with **Java, Spring, Ruby on Rails**, and whatever els
 - **Dev Life** — Real-world backend stuff. Not textbook theory, but the messy, "why-is-this-not-working" kind of notes that actually help.
 - **Korean Food Adventures** — I live in Seoul. I eat well. I'll show you where and why, with photos and honest reviews. No sponsored fluff.
 - **K-Culture & Trends** — What's blowing up on Korean YouTube, what's weird, what's wonderful. A window into Korean life from someone actually living it.
-- **MBTI & Lifestyle** — Because apparently everyone needs to know if you're an INTJ before they'll trust your restaurant recommendations.
+- **MBTI & Lifestyle** — Because apparently everyone needs to know if you're an ESTJ before they'll trust your restaurant recommendations.
 
 ### Why English?
 
