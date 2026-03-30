@@ -42,7 +42,9 @@ layout: page
 
 {% for post in posts %}
 
-  <div class="post-preview">
+  <div class="post-preview {% if post.image %}has-thumb{% endif %}">
+
+    <div class="post-main">
     <h1>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </h1>
@@ -83,6 +85,17 @@ layout: page
 
     </div> <!-- .post-meta -->
 
+    </div> <!-- .post-main -->
+
+    {% if post.image %}
+      <a href="{{ post.url | relative_url }}" class="post-thumb">
+        {% if post.image.path %}
+          <img src="{{ post.image.path | relative_url }}" alt="{{ post.image.alt | default: post.title }}" loading="lazy">
+        {% else %}
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+        {% endif %}
+      </a>
+    {% endif %}
   </div> <!-- .post-review -->
 
 {% endfor %}
