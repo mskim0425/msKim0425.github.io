@@ -4,6 +4,7 @@ title: "Sundae Silrok — The Korean Soul Food You Didn't Know You Needed"
 date: 2026-03-30 12:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [sundaeguk, korean-food, soul-food, gukbap, sundae, korean-sausage, lunch-spot, comfort-food]
+description: "Sundae Silrok serves rich, milky sundaeguk with a free banchan bar and traditional Korean drinks. The ultimate comfort food in Seoul — here's why locals keep coming back."
 image:
   path: /images/sundae-silrok/sundaeguk-chives.jpg
   alt: A steaming bowl of sundaeguk topped with fresh chives at Sundae Silrok

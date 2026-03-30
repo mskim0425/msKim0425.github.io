@@ -4,6 +4,7 @@ title: "Kanda Soba — The Best Mazesoba I've Ever Had in Seoul"
 date: 2026-03-26 12:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [mazesoba, ramen, kanda-soba, seoul-restaurant, japanese-food, noodles, lunch-spot, abura-soba]
+description: "Kanda Soba serves the best mazesoba in Seoul — rich meat sauce, raw egg yolk, and perfectly chewy noodles near Jamsil. A must-visit for noodle lovers."
 image:
   path: /images/kanda-soba/mazesoba.jpg
   alt: Mazesoba at Kanda Soba topped with raw egg yolk, green onions, seaweed, and rich meat sauce

@@ -80,13 +80,46 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
   .opt-btn.active { background: rgba(166,227,161,0.15); color: #a6e3a1; border-color: #a6e3a1; }
   .opt-btn .kr { font-size: 0.68rem; font-weight: 400; opacity: 0.65; }
 
-  @media (max-width: 768px) { .tool-row { flex-direction: column; } }
+  /* ===== Cron specific ===== */
+  .cron-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .cron-field { display: flex; flex-direction: column; gap: 4px; }
+  .cron-field label { font-size: 0.75rem; font-weight: 600; color: #89b4fa; text-align: center; }
+  .cron-field select, .cron-field input {
+    padding: 8px; border: 1px solid #444; border-radius: 6px;
+    background: #1e1e2e; color: #cdd6f4; font-family: 'Fira Code', monospace;
+    font-size: 13px; text-align: center; appearance: auto;
+  }
+  .cron-field select:focus, .cron-field input:focus { border-color: #89b4fa; outline: none; }
+  .cron-expr-display {
+    padding: 16px; border-radius: 8px; background: #1e1e2e; border: 1px solid #444;
+    font-family: 'Fira Code', monospace; font-size: 1.4rem; font-weight: 700;
+    color: #cdd6f4; text-align: center; letter-spacing: 4px; margin: 4px 0;
+  }
+  .cron-desc {
+    padding: 10px 14px; border-radius: 6px; background: rgba(137,180,250,0.1);
+    color: #89b4fa; font-size: 0.85rem; text-align: center;
+  }
+  .cron-next {
+    padding: 12px; border-radius: 8px; background: #1e1e2e; border: 1px solid #444;
+    font-family: 'Fira Code', monospace; font-size: 0.82rem; color: #a6adc8; line-height: 1.8;
+  }
+  .cron-presets { display: flex; gap: 6px; flex-wrap: wrap; }
+  .cron-preset {
+    padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 500;
+    cursor: pointer; border: 1px solid #444; background: #313244; color: #cdd6f4;
+    transition: all 0.2s;
+  }
+  .cron-preset:hover { border-color: #89b4fa; color: #89b4fa; }
+  .cron-preset.active { background: rgba(137,180,250,0.15); color: #89b4fa; border-color: #89b4fa; }
+
+  @media (max-width: 768px) { .tool-row { flex-direction: column; } .cron-grid { grid-template-columns: repeat(3, 1fr); } }
 </style>
 
 <!-- ===== Tab Bar ===== -->
 <div class="tool-tabs">
   <button class="tool-tab active" onclick="switchTab('json', this)">JSON Formatter<span class="kr">JSON 포맷터</span></button>
   <button class="tool-tab" onclick="switchTab('diff', this)">Diff Checker<span class="kr">텍스트 비교</span></button>
+  <button class="tool-tab" onclick="switchTab('cron', this)">Cron Generator<span class="kr">크론 생성기</span></button>
 </div>
 
 <!-- ===== JSON Formatter Panel ===== -->
@@ -149,6 +182,75 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
   </div>
 </div>
 
+<!-- ===== Cron Generator Panel ===== -->
+<div id="panel-cron" class="tool-panel">
+  <div class="tc">
+    <div class="tool-btn-row">
+      <button class="tool-btn tool-btn-primary" onclick="cronCopy()">Copy <span class="kr">복사</span></button>
+      <button class="tool-btn tool-btn-secondary" onclick="cronReset()">Reset <span class="kr">초기화</span></button>
+    </div>
+
+    <span class="tool-label">PRESETS <span style="font-weight:400;opacity:0.6;">프리셋</span></span>
+    <div class="cron-presets">
+      <button class="cron-preset" onclick="cronPreset('* * * * *',this)">Every Minute</button>
+      <button class="cron-preset" onclick="cronPreset('0 * * * *',this)">Every Hour</button>
+      <button class="cron-preset" onclick="cronPreset('0 0 * * *',this)">Every Day (midnight)</button>
+      <button class="cron-preset" onclick="cronPreset('0 9 * * *',this)">Every Day (9 AM)</button>
+      <button class="cron-preset" onclick="cronPreset('0 9 * * 1-5',this)">Weekdays 9 AM</button>
+      <button class="cron-preset" onclick="cronPreset('0 0 * * 0',this)">Every Sunday</button>
+      <button class="cron-preset" onclick="cronPreset('0 0 1 * *',this)">1st of Month</button>
+      <button class="cron-preset" onclick="cronPreset('*/5 * * * *',this)">Every 5 Min</button>
+      <button class="cron-preset" onclick="cronPreset('*/15 * * * *',this)">Every 15 Min</button>
+      <button class="cron-preset" onclick="cronPreset('0 */2 * * *',this)">Every 2 Hours</button>
+      <button class="cron-preset" onclick="cronPreset('0 0 1 1 *',this)">Yearly (Jan 1)</button>
+    </div>
+
+    <span class="tool-label">EXPRESSION <span style="font-weight:400;opacity:0.6;">크론 표현식</span></span>
+    <div class="cron-expr-display" id="cronDisplay">* * * * *</div>
+    <div class="cron-desc" id="cronDesc">Every minute</div>
+
+    <span class="tool-label">EDITOR <span style="font-weight:400;opacity:0.6;">편집기</span></span>
+    <div class="cron-grid">
+      <div class="cron-field">
+        <label>Minute <span style="opacity:0.6">분</span></label>
+        <input type="text" id="cronMin" value="*" oninput="cronUpdate()">
+      </div>
+      <div class="cron-field">
+        <label>Hour <span style="opacity:0.6">시</span></label>
+        <input type="text" id="cronHour" value="*" oninput="cronUpdate()">
+      </div>
+      <div class="cron-field">
+        <label>Day <span style="opacity:0.6">일</span></label>
+        <input type="text" id="cronDom" value="*" oninput="cronUpdate()">
+      </div>
+      <div class="cron-field">
+        <label>Month <span style="opacity:0.6">월</span></label>
+        <input type="text" id="cronMonth" value="*" oninput="cronUpdate()">
+      </div>
+      <div class="cron-field">
+        <label>Weekday <span style="opacity:0.6">요일</span></label>
+        <input type="text" id="cronDow" value="*" oninput="cronUpdate()">
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.75rem;color:#6c7086;margin-top:-4px;">
+      <div>0-59</div><div style="grid-column:1;">0-23</div>
+      <div style="grid-column:1/span 1;display:none;"></div>
+    </div>
+
+    <span class="tool-label">CHEAT SHEET <span style="font-weight:400;opacity:0.6;">참고</span></span>
+    <div class="cron-next" id="cronCheat">
+      <code>*</code> = every &nbsp;&nbsp; <code>,</code> = list (1,3,5) &nbsp;&nbsp; <code>-</code> = range (1-5) &nbsp;&nbsp; <code>/</code> = step (*/5)<br>
+      <strong>Minute:</strong> 0-59 &nbsp; <strong>Hour:</strong> 0-23 &nbsp; <strong>Day:</strong> 1-31 &nbsp; <strong>Month:</strong> 1-12 &nbsp; <strong>Weekday:</strong> 0-6 (0=Sun)
+    </div>
+
+    <span class="tool-label">NEXT 5 RUNS <span style="font-weight:400;opacity:0.6;">다음 5회 실행 시간</span></span>
+    <div class="cron-next" id="cronNext">Click a preset or edit fields above...</div>
+
+    <div id="cronStatus" class="tool-status"></div>
+  </div>
+</div>
+
 <script>
 /* ===== Tab Switching ===== */
 function switchTab(name, btn) {
@@ -159,12 +261,14 @@ function switchTab(name, btn) {
   history.replaceState(null, '', '#' + name);
 }
 (function() {
+  var tabs = ['json','diff','cron'];
   var h = location.hash.replace('#','');
-  if (h === 'diff' || h === 'json') {
+  var idx = tabs.indexOf(h);
+  if (idx >= 0) {
     document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
     document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
     document.getElementById('panel-' + h).classList.add('active');
-    document.querySelectorAll('.tool-tab')[h === 'diff' ? 1 : 0].classList.add('active');
+    document.querySelectorAll('.tool-tab')[idx].classList.add('active');
   }
 })();
 
@@ -313,4 +417,148 @@ function diffClear() {
 }
 document.getElementById('diffA').addEventListener('keydown', function(e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') diffRun(); });
 document.getElementById('diffB').addEventListener('keydown', function(e) { if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') diffRun(); });
+
+/* ===== Cron Generator ===== */
+function cronUpdate() {
+  var m = document.getElementById('cronMin').value.trim() || '*';
+  var h = document.getElementById('cronHour').value.trim() || '*';
+  var dom = document.getElementById('cronDom').value.trim() || '*';
+  var mon = document.getElementById('cronMonth').value.trim() || '*';
+  var dow = document.getElementById('cronDow').value.trim() || '*';
+  var expr = m + ' ' + h + ' ' + dom + ' ' + mon + ' ' + dow;
+  document.getElementById('cronDisplay').textContent = expr;
+  document.getElementById('cronDesc').textContent = cronDescribe(m, h, dom, mon, dow);
+  cronCalcNext(m, h, dom, mon, dow);
+  document.querySelectorAll('.cron-preset').forEach(function(b) { b.classList.remove('active'); });
+}
+
+function cronPreset(expr, btn) {
+  var parts = expr.split(' ');
+  document.getElementById('cronMin').value = parts[0];
+  document.getElementById('cronHour').value = parts[1];
+  document.getElementById('cronDom').value = parts[2];
+  document.getElementById('cronMonth').value = parts[3];
+  document.getElementById('cronDow').value = parts[4];
+  document.getElementById('cronDisplay').textContent = expr;
+  document.getElementById('cronDesc').textContent = cronDescribe(parts[0],parts[1],parts[2],parts[3],parts[4]);
+  cronCalcNext(parts[0],parts[1],parts[2],parts[3],parts[4]);
+  document.querySelectorAll('.cron-preset').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+}
+
+function cronCopy() {
+  var expr = document.getElementById('cronDisplay').textContent;
+  navigator.clipboard.writeText(expr).then(function() {
+    var el = document.getElementById('cronStatus');
+    el.textContent = '\u2713 Copied: ' + expr; el.className = 'tool-status success';
+  });
+}
+
+function cronReset() {
+  cronPreset('* * * * *', null);
+}
+
+function cronDescribe(m, h, dom, mon, dow) {
+  var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MONTHS = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+  var parts = [];
+
+  // Minute
+  if (m === '*') parts.push('Every minute');
+  else if (m.indexOf('/') > -1) parts.push('Every ' + m.split('/')[1] + ' minutes');
+  else parts.push('At minute ' + m);
+
+  // Hour
+  if (h !== '*') {
+    if (h.indexOf('/') > -1) parts[0] = 'Every ' + h.split('/')[1] + ' hours';
+    else {
+      var hr = parseInt(h);
+      var ampm = hr >= 12 ? 'PM' : 'AM';
+      var h12 = hr === 0 ? 12 : (hr > 12 ? hr - 12 : hr);
+      if (m !== '*' && m.indexOf('/') === -1) parts[0] = 'At ' + h12 + ':' + (parseInt(m) < 10 ? '0' : '') + parseInt(m) + ' ' + ampm;
+      else parts.push('during hour ' + h);
+    }
+  }
+
+  // Day of month
+  if (dom !== '*') parts.push('on day ' + dom + ' of the month');
+
+  // Month
+  if (mon !== '*') {
+    var mIdx = parseInt(mon);
+    if (mIdx >= 1 && mIdx <= 12) parts.push('in ' + MONTHS[mIdx]);
+    else parts.push('in month ' + mon);
+  }
+
+  // Day of week
+  if (dow !== '*') {
+    var dowStr = dow.split(',').map(function(d) {
+      if (d.indexOf('-') > -1) {
+        var r = d.split('-');
+        return DAYS[parseInt(r[0])] + '-' + DAYS[parseInt(r[1])];
+      }
+      return DAYS[parseInt(d)] || d;
+    }).join(', ');
+    parts.push('on ' + dowStr);
+  }
+
+  return parts.join(', ');
+}
+
+function cronCalcNext(m, h, dom, mon, dow) {
+  var el = document.getElementById('cronNext');
+  try {
+    var results = [];
+    var now = new Date();
+    var d = new Date(now.getTime());
+
+    for (var attempt = 0; attempt < 525600 && results.length < 5; attempt++) {
+      d = new Date(d.getTime() + 60000);
+
+      if (!cronMatch(d.getMonth() + 1, mon)) continue;
+      if (!cronMatch(d.getDate(), dom)) continue;
+      if (!cronMatch(d.getDay(), dow)) continue;
+      if (!cronMatch(d.getHours(), h)) continue;
+      if (!cronMatch(d.getMinutes(), m)) continue;
+
+      var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+      var dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      results.push(
+        dayNames[d.getDay()] + '  ' +
+        d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()) + '  ' +
+        pad(d.getHours()) + ':' + pad(d.getMinutes())
+      );
+    }
+
+    if (results.length > 0) {
+      el.innerHTML = results.map(function(r, i) { return '<span style="color:#a6e3a1;">' + (i+1) + '.</span>  ' + r; }).join('\n');
+    } else {
+      el.textContent = 'No matching runs found in the next year.';
+    }
+  } catch (e) {
+    el.textContent = 'Invalid expression';
+  }
+}
+
+function cronMatch(value, field) {
+  if (field === '*') return true;
+  var parts = field.split(',');
+  for (var i = 0; i < parts.length; i++) {
+    var p = parts[i];
+    if (p.indexOf('/') > -1) {
+      var sf = p.split('/');
+      var start = sf[0] === '*' ? 0 : parseInt(sf[0]);
+      var step = parseInt(sf[1]);
+      if ((value - start) >= 0 && (value - start) % step === 0) return true;
+    } else if (p.indexOf('-') > -1) {
+      var range = p.split('-');
+      if (value >= parseInt(range[0]) && value <= parseInt(range[1])) return true;
+    } else {
+      if (value === parseInt(p)) return true;
+    }
+  }
+  return false;
+}
+
+cronUpdate();
 </script>
