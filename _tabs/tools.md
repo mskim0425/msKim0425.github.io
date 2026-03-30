@@ -123,6 +123,7 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
 </div>
 
 <!-- ===== JSON Formatter Panel ===== -->
+<div id="json"></div>
 <div id="panel-json" class="tool-panel active">
   <div class="tc">
     <div class="tool-btn-row">
@@ -155,6 +156,7 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
 </div>
 
 <!-- ===== Diff Checker Panel ===== -->
+<div id="diff"></div>
 <div id="panel-diff" class="tool-panel">
   <div class="tc">
     <div class="tool-btn-row">
@@ -183,6 +185,7 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
 </div>
 
 <!-- ===== Cron Generator Panel ===== -->
+<div id="cron"></div>
 <div id="panel-cron" class="tool-panel">
   <div class="tc">
     <div class="tool-btn-row">
