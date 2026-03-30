@@ -3,7 +3,7 @@ layout: page
 icon: fas fa-wrench
 order: 4
 title: Dev Tools
-description: Free online developer tools — JSON Formatter, Diff Checker and more. No data sent to any server, runs entirely in your browser.
+description: Free online developer tools — JSON Formatter, Diff Checker, Cron Generator, Timestamp Converter & World Clock. No data sent to any server, runs entirely in your browser.
 ---
 
 <style>
@@ -112,7 +112,51 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
   .cron-preset:hover { border-color: #89b4fa; color: #89b4fa; }
   .cron-preset.active { background: rgba(137,180,250,0.15); color: #89b4fa; border-color: #89b4fa; }
 
-  @media (max-width: 768px) { .tool-row { flex-direction: column; } .cron-grid { grid-template-columns: repeat(3, 1fr); } }
+  /* ===== Timestamp / World Clock specific ===== */
+  .ts-live-clock {
+    padding: 20px; border-radius: 10px; background: #1e1e2e; border: 1px solid #444;
+    text-align: center; margin-bottom: 12px;
+  }
+  .ts-live-time {
+    font-family: 'Fira Code', monospace; font-size: 2.2rem; font-weight: 700;
+    color: #cdd6f4; letter-spacing: 2px;
+  }
+  .ts-live-date { font-size: 0.9rem; color: #6c7086; margin-top: 4px; }
+  .ts-live-unix {
+    font-family: 'Fira Code', monospace; font-size: 1rem; color: #89b4fa;
+    margin-top: 8px; cursor: pointer; transition: color 0.2s;
+  }
+  .ts-live-unix:hover { color: #74c7ec; }
+  .ts-converter { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+  .ts-converter > div { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 4px; }
+  .ts-input {
+    width: 100%; padding: 10px 12px; border: 1px solid #444; border-radius: 6px;
+    background: #1e1e2e; color: #cdd6f4; font-family: 'Fira Code', monospace; font-size: 14px;
+  }
+  .ts-input:focus { outline: none; border-color: #89b4fa; }
+  .ts-arrow { font-size: 1.5rem; color: #6c7086; padding: 8px; text-align: center; flex-shrink: 0; align-self: flex-end; }
+  .ts-world-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+  .ts-world-card {
+    padding: 14px; border-radius: 8px; background: #1e1e2e; border: 1px solid #444;
+    transition: border-color 0.2s;
+  }
+  .ts-world-card:hover { border-color: #89b4fa; }
+  .ts-world-city { font-size: 0.8rem; font-weight: 600; color: #89b4fa; margin-bottom: 4px; }
+  .ts-world-time { font-family: 'Fira Code', monospace; font-size: 1.1rem; color: #cdd6f4; }
+  .ts-world-date { font-size: 0.75rem; color: #6c7086; margin-top: 2px; }
+  .ts-world-offset { font-size: 0.7rem; color: #6c7086; }
+  .ts-formats { padding: 14px; border-radius: 8px; background: #1e1e2e; border: 1px solid #444; }
+  .ts-format-row {
+    display: flex; justify-content: space-between; padding: 6px 0;
+    border-bottom: 1px solid rgba(68,68,68,0.5); font-size: 0.85rem; cursor: pointer;
+    transition: background 0.2s; border-radius: 4px; padding: 6px 8px;
+  }
+  .ts-format-row:hover { background: rgba(137,180,250,0.1); }
+  .ts-format-row:last-child { border-bottom: none; }
+  .ts-format-label { color: #6c7086; font-weight: 500; }
+  .ts-format-value { color: #cdd6f4; font-family: 'Fira Code', monospace; font-size: 0.82rem; }
+
+  @media (max-width: 768px) { .tool-row { flex-direction: column; } .cron-grid { grid-template-columns: repeat(3, 1fr); } .ts-converter { flex-direction: column; } .ts-arrow { display: none; } }
 </style>
 
 <!-- ===== Tab Bar ===== -->
@@ -120,6 +164,7 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
   <button class="tool-tab active" onclick="switchTab('json', this)">JSON Formatter<span class="kr">JSON 포맷터</span></button>
   <button class="tool-tab" onclick="switchTab('diff', this)">Diff Checker<span class="kr">텍스트 비교</span></button>
   <button class="tool-tab" onclick="switchTab('cron', this)">Cron Generator<span class="kr">크론 생성기</span></button>
+  <button class="tool-tab" onclick="switchTab('timestamp', this)">Timestamp<span class="kr">시간 변환</span></button>
 </div>
 
 <!-- ===== JSON Formatter Panel ===== -->
@@ -254,6 +299,51 @@ description: Free online developer tools — JSON Formatter, Diff Checker and mo
   </div>
 </div>
 
+<!-- ===== Timestamp / World Clock Panel ===== -->
+<div id="timestamp"></div>
+<div id="panel-timestamp" class="tool-panel">
+  <div class="tc">
+
+    <span class="tool-label">LIVE CLOCK <span style="font-weight:400;opacity:0.6;">현재 시간</span></span>
+    <div class="ts-live-clock">
+      <div class="ts-live-time" id="tsLiveTime">--:--:--</div>
+      <div class="ts-live-date" id="tsLiveDate">Loading...</div>
+      <div class="ts-live-unix" id="tsLiveUnix" onclick="tsCopyUnix()" title="Click to copy 클릭하여 복사">Unix: ---</div>
+    </div>
+
+    <span class="tool-label">CONVERTER <span style="font-weight:400;opacity:0.6;">변환기</span></span>
+    <div class="ts-converter">
+      <div>
+        <span class="tool-label" style="font-size:0.78rem;">Unix Timestamp</span>
+        <input type="text" class="ts-input" id="tsUnixInput" placeholder="e.g. 1711785600" oninput="tsFromUnix()">
+      </div>
+      <div class="ts-arrow">⇄</div>
+      <div>
+        <span class="tool-label" style="font-size:0.78rem;">Human Date (ISO 8601)</span>
+        <input type="text" class="ts-input" id="tsHumanInput" placeholder="e.g. 2026-03-30T12:00:00" oninput="tsFromHuman()">
+      </div>
+    </div>
+
+    <div class="tool-btn-row" style="margin-top:4px;">
+      <button class="tool-btn tool-btn-primary" onclick="tsNow()">Now <span class="kr">현재</span></button>
+      <button class="tool-btn tool-btn-secondary" onclick="tsCopy()">Copy <span class="kr">복사</span></button>
+      <button class="tool-btn tool-btn-secondary" onclick="tsClear()">Clear <span class="kr">초기화</span></button>
+      <span class="tool-divider"></span>
+      <select id="tsUnit" class="tool-btn tool-btn-secondary" style="appearance:auto;" onchange="tsFromUnix()">
+        <option value="s" selected>Seconds (s)</option>
+        <option value="ms">Milliseconds (ms)</option>
+      </select>
+    </div>
+
+    <div id="tsFormats" class="ts-formats" style="display:none;"></div>
+    <div id="tsStatus" class="tool-status"></div>
+
+    <span class="tool-label">WORLD CLOCK <span style="font-weight:400;opacity:0.6;">세계 시간</span></span>
+    <div class="ts-world-grid" id="tsWorldGrid"></div>
+
+  </div>
+</div>
+
 <script>
 /* ===== Tab Switching ===== */
 function switchTab(name, btn) {
@@ -264,7 +354,7 @@ function switchTab(name, btn) {
   history.replaceState(null, '', '#' + name);
 }
 (function() {
-  var tabs = ['json','diff','cron'];
+  var tabs = ['json','diff','cron','timestamp'];
   var h = location.hash.replace('#','');
   var idx = tabs.indexOf(h);
   if (idx >= 0) {
@@ -564,4 +654,171 @@ function cronMatch(value, field) {
 }
 
 cronUpdate();
+
+/* ===== Timestamp / World Clock ===== */
+var tsWorldZones = [
+  { city: 'Seoul / Tokyo', tz: 'Asia/Seoul', flag: '🇰🇷' },
+  { city: 'Shanghai / Beijing', tz: 'Asia/Shanghai', flag: '🇨🇳' },
+  { city: 'Singapore', tz: 'Asia/Singapore', flag: '🇸🇬' },
+  { city: 'Mumbai', tz: 'Asia/Kolkata', flag: '🇮🇳' },
+  { city: 'Dubai', tz: 'Asia/Dubai', flag: '🇦🇪' },
+  { city: 'London', tz: 'Europe/London', flag: '🇬🇧' },
+  { city: 'Berlin / Paris', tz: 'Europe/Berlin', flag: '🇩🇪' },
+  { city: 'New York', tz: 'America/New_York', flag: '🇺🇸' },
+  { city: 'Chicago', tz: 'America/Chicago', flag: '🇺🇸' },
+  { city: 'Los Angeles', tz: 'America/Los_Angeles', flag: '🇺🇸' },
+  { city: 'São Paulo', tz: 'America/Sao_Paulo', flag: '🇧🇷' },
+  { city: 'Sydney', tz: 'Australia/Sydney', flag: '🇦🇺' }
+];
+
+function tsUpdateLive() {
+  var now = new Date();
+  var timeEl = document.getElementById('tsLiveTime');
+  var dateEl = document.getElementById('tsLiveDate');
+  var unixEl = document.getElementById('tsLiveUnix');
+  if (!timeEl) return;
+  timeEl.textContent = now.toLocaleTimeString('en-US', { hour12: false, hour:'2-digit', minute:'2-digit', second:'2-digit' });
+  dateEl.textContent = now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  unixEl.textContent = 'Unix: ' + Math.floor(now.getTime() / 1000) + '  (click to copy)';
+}
+
+function tsUpdateWorld() {
+  var grid = document.getElementById('tsWorldGrid');
+  if (!grid) return;
+  var now = new Date();
+  var html = '';
+  for (var i = 0; i < tsWorldZones.length; i++) {
+    var z = tsWorldZones[i];
+    var opts = { timeZone: z.tz, hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: false };
+    var dateOpts = { timeZone: z.tz, weekday:'short', month:'short', day:'numeric' };
+    var offHrs = tsGetOffset(now, z.tz);
+    html += '<div class="ts-world-card">';
+    html += '<div class="ts-world-city">' + z.flag + ' ' + z.city + '</div>';
+    html += '<div class="ts-world-time">' + now.toLocaleTimeString('en-US', opts) + '</div>';
+    html += '<div class="ts-world-date">' + now.toLocaleDateString('en-US', dateOpts) + '</div>';
+    html += '<div class="ts-world-offset">UTC' + offHrs + '</div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+function tsGetOffset(date, tz) {
+  var utcStr = date.toLocaleString('en-US', { timeZone: 'UTC', hour:'numeric', hour12:false });
+  var tzStr = date.toLocaleString('en-US', { timeZone: tz, hour:'numeric', hour12:false });
+  var diff = (parseInt(tzStr) - parseInt(utcStr));
+  if (diff > 12) diff -= 24;
+  if (diff < -12) diff += 24;
+  return (diff >= 0 ? '+' : '') + diff;
+}
+
+function tsFromUnix() {
+  var input = document.getElementById('tsUnixInput').value.trim();
+  if (!input) { document.getElementById('tsFormats').style.display = 'none'; return; }
+  var val = parseFloat(input);
+  if (isNaN(val)) { tsShowStatus('Invalid timestamp', 'error'); return; }
+  var unit = document.getElementById('tsUnit').value;
+  var ms = unit === 'ms' ? val : val * 1000;
+  var d = new Date(ms);
+  if (isNaN(d.getTime())) { tsShowStatus('Invalid timestamp', 'error'); return; }
+  document.getElementById('tsHumanInput').value = d.toISOString();
+  tsShowFormats(d);
+  tsShowStatus('Converted from Unix → Human', 'success');
+}
+
+function tsFromHuman() {
+  var input = document.getElementById('tsHumanInput').value.trim();
+  if (!input) { document.getElementById('tsFormats').style.display = 'none'; return; }
+  var d = new Date(input);
+  if (isNaN(d.getTime())) { tsShowStatus('Invalid date format', 'error'); return; }
+  var unit = document.getElementById('tsUnit').value;
+  var ts = unit === 'ms' ? d.getTime() : Math.floor(d.getTime() / 1000);
+  document.getElementById('tsUnixInput').value = ts;
+  tsShowFormats(d);
+  tsShowStatus('Converted from Human → Unix', 'success');
+}
+
+function tsNow() {
+  var now = new Date();
+  var unit = document.getElementById('tsUnit').value;
+  document.getElementById('tsUnixInput').value = unit === 'ms' ? now.getTime() : Math.floor(now.getTime() / 1000);
+  document.getElementById('tsHumanInput').value = now.toISOString();
+  tsShowFormats(now);
+  tsShowStatus('Set to current time', 'success');
+}
+
+function tsShowFormats(d) {
+  var el = document.getElementById('tsFormats');
+  var local = d.toLocaleString('en-US', { dateStyle:'full', timeStyle:'long' });
+  var iso = d.toISOString();
+  var utc = d.toUTCString();
+  var relative = tsRelative(d);
+  var dayOfYear = Math.floor((d - new Date(d.getFullYear(),0,0)) / 86400000);
+  var weekNum = Math.ceil(((d - new Date(d.getFullYear(),0,1)) / 86400000 + new Date(d.getFullYear(),0,1).getDay() + 1) / 7);
+  var rows = [
+    ['ISO 8601', iso],
+    ['UTC String', utc],
+    ['Local', local],
+    ['Relative', relative],
+    ['Unix (seconds)', Math.floor(d.getTime()/1000)],
+    ['Unix (milliseconds)', d.getTime()],
+    ['Day of Year', dayOfYear + ' / 365'],
+    ['Week Number', 'W' + weekNum]
+  ];
+  var html = '';
+  for (var i = 0; i < rows.length; i++) {
+    html += '<div class="ts-format-row" onclick="tsCopyText(\'' + String(rows[i][1]).replace(/'/g,"\\'") + '\')" title="Click to copy">';
+    html += '<span class="ts-format-label">' + rows[i][0] + '</span>';
+    html += '<span class="ts-format-value">' + rows[i][1] + '</span>';
+    html += '</div>';
+  }
+  el.innerHTML = html;
+  el.style.display = 'block';
+}
+
+function tsRelative(d) {
+  var now = new Date();
+  var diff = (d.getTime() - now.getTime()) / 1000;
+  var abs = Math.abs(diff);
+  var suffix = diff < 0 ? ' ago' : ' from now';
+  if (abs < 60) return Math.floor(abs) + ' seconds' + suffix;
+  if (abs < 3600) return Math.floor(abs / 60) + ' minutes' + suffix;
+  if (abs < 86400) return Math.floor(abs / 3600) + ' hours' + suffix;
+  if (abs < 2592000) return Math.floor(abs / 86400) + ' days' + suffix;
+  if (abs < 31536000) return Math.floor(abs / 2592000) + ' months' + suffix;
+  return Math.floor(abs / 31536000) + ' years' + suffix;
+}
+
+function tsCopyUnix() {
+  var unix = Math.floor(new Date().getTime() / 1000);
+  tsCopyText(String(unix));
+}
+
+function tsCopy() {
+  var unix = document.getElementById('tsUnixInput').value;
+  var human = document.getElementById('tsHumanInput').value;
+  if (unix || human) tsCopyText(unix + ' | ' + human);
+}
+
+function tsCopyText(text) {
+  navigator.clipboard.writeText(text).then(function() {
+    tsShowStatus('Copied: ' + text, 'success');
+  });
+}
+
+function tsClear() {
+  document.getElementById('tsUnixInput').value = '';
+  document.getElementById('tsHumanInput').value = '';
+  document.getElementById('tsFormats').style.display = 'none';
+  document.getElementById('tsStatus').className = 'tool-status';
+}
+
+function tsShowStatus(msg, type) {
+  var el = document.getElementById('tsStatus');
+  el.textContent = msg;
+  el.className = 'tool-status ' + type;
+}
+
+setInterval(function() { tsUpdateLive(); tsUpdateWorld(); }, 1000);
+tsUpdateLive();
+tsUpdateWorld();
 </script>
