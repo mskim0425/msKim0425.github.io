@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "STAY by Yannick Alléno — Fine Dining on the 81st Floor of Seoul"
+title: "STAY by Yannick Alléno Seoul — SIGNIEL 81F Fine Dining (Menu, Price & Review)"
 date: 2026-02-22 20:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [fine-dining, seoul-restaurant, stay, signiel, lotte-world-tower, french-cuisine, proposal, michelin]
-description: "An honest review of STAY by Yannick Alléno at SIGNIEL Seoul — 11-course French tasting menu on the 81st floor of Lotte World Tower with breathtaking Han River views."
+tags: [stay-restaurant, stay-by-yannick-alleno, signiel-seoul, lotte-world-tower, fine-dining-seoul, french-cuisine, michelin, seoul-restaurant, proposal-restaurant, date-restaurant-seoul, jamsil]
+description: "STAY by Yannick Alléno at SIGNIEL Seoul — 11-course French tasting menu on the 81st floor of Lotte World Tower. Michelin-level dining with Han River sunset views. Full menu, prices & honest review."
 image:
   path: /images/stay-seoul/han-river-sunset.jpg
-  alt: Sunset view of the Han River from STAY restaurant, 81st floor of Lotte World Tower
+  alt: Sunset view of Han River from STAY restaurant by Yannick Alléno, 81st floor SIGNIEL Seoul Lotte World Tower
 ---
 
 ## Why STAY?

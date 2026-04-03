@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Kanda Soba — The Best Mazesoba I've Ever Had in Seoul"
+title: "Kanda Soba Seoul — Best Mazesoba Near Jamsil (Menu, Price & Review)"
 date: 2026-03-26 12:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [mazesoba, ramen, kanda-soba, seoul-restaurant, japanese-food, noodles, lunch-spot, abura-soba]
-description: "Kanda Soba serves the best mazesoba in Seoul — rich meat sauce, raw egg yolk, and perfectly chewy noodles near Jamsil. A must-visit for noodle lovers."
+tags: [kandasoba, kanda-soba, mazesoba, mazesoba-seoul, abura-soba, seoul-restaurant, jamsil-food, japanese-food, noodles, ramen-seoul, songpa, lunch-spot]
+description: "Kanda Soba (칸다소바) near Jamsil serves the best mazesoba in Seoul. Rich meat sauce, raw egg yolk, chewy noodles, and free rice refills. Full menu, prices & honest review inside."
 image:
   path: /images/kanda-soba/mazesoba.jpg
-  alt: Mazesoba at Kanda Soba topped with raw egg yolk, green onions, seaweed, and rich meat sauce
+  alt: Mazesoba at Kanda Soba Seoul topped with raw egg yolk, green onions, seaweed, and rich meat sauce — best mazesoba in Jamsil
 ---
 
 ## A 10-Minute Walk That's 100% Worth It

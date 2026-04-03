@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Sundae Silrok — The Korean Soul Food You Didn't Know You Needed"
+title: "Sundae Silrok Seoul — Best Sundaeguk (Korean Blood Sausage Soup) Review"
 date: 2026-03-30 12:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [sundaeguk, korean-food, soul-food, gukbap, sundae, korean-sausage, lunch-spot, comfort-food]
-description: "Sundae Silrok serves rich, milky sundaeguk with a free banchan bar and traditional Korean drinks. The ultimate comfort food in Seoul — here's why locals keep coming back."
+tags: [sundae-silrok, sundaeguk, sundaeguk-seoul, korean-food, korean-soul-food, gukbap, sundae, korean-blood-sausage, korean-street-food, comfort-food, seoul-restaurant, local-food-seoul]
+description: "Sundae Silrok (순대실록) in Seoul serves the richest sundaeguk in town — milky broth, tender sundae, free banchan bar, and traditional sikhye. A must-try Korean comfort food for adventurous eaters."
 image:
   path: /images/sundae-silrok/sundaeguk-chives.jpg
-  alt: A steaming bowl of sundaeguk topped with fresh chives at Sundae Silrok
+  alt: Steaming bowl of sundaeguk topped with fresh chives at Sundae Silrok Seoul — best Korean blood sausage soup
 ---
 
 ## The Real Korean Soul Food
