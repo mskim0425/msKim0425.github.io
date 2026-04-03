@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "STAY by Yannick Alléno Seoul — SIGNIEL 81F Fine Dining (Menu, Price & Review)"
+title: "STAY by Yannick Alléno Seoul — SIGNIEL Fine Dining (시그니엘 STAY)"
 date: 2026-02-22 20:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [stay-restaurant, stay-by-yannick-alleno, signiel-seoul, lotte-world-tower, fine-dining-seoul, french-cuisine, michelin, seoul-restaurant, proposal-restaurant, date-restaurant-seoul, jamsil]

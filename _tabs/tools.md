@@ -156,6 +156,18 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
   .ts-format-label { color: #6c7086; font-weight: 500; }
   .ts-format-value { color: #cdd6f4; font-family: 'Fira Code', monospace; font-size: 0.82rem; }
 
+  /* ===== FAQ section ===== */
+  .tool-faq { margin-top: 24px; padding-top: 16px; border-top: 1px solid #313244; }
+  .tool-faq summary {
+    font-size: 0.85rem; font-weight: 600; color: #89b4fa; cursor: pointer;
+    padding: 8px 0; list-style: none;
+  }
+  .tool-faq summary::before { content: '▸ '; }
+  .tool-faq[open] summary::before { content: '▾ '; }
+  .tool-faq .faq-item { padding: 8px 0; border-bottom: 1px solid rgba(68,68,68,0.3); }
+  .tool-faq .faq-q { font-size: 0.82rem; font-weight: 600; color: #cdd6f4; margin-bottom: 4px; }
+  .tool-faq .faq-a { font-size: 0.8rem; color: #a6adc8; line-height: 1.5; }
+
   @media (max-width: 768px) { .tool-row { flex-direction: column; } .cron-grid { grid-template-columns: repeat(3, 1fr); } .ts-converter { flex-direction: column; } .ts-arrow { display: none; } }
 </style>
 
@@ -197,6 +209,12 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
         <div id="jsonOutputStats" class="tool-stats"></div>
       </div>
     </div>
+    <details class="tool-faq">
+      <summary>FAQ — JSON Formatter</summary>
+      <div class="faq-item"><div class="faq-q">Is my data safe? 데이터가 안전한가요?</div><div class="faq-a">Yes. 100% client-side JavaScript. No data sent to any server.<br>네. 모든 처리가 브라우저에서 실행됩니다. 서버 전송 없음.</div></div>
+      <div class="faq-item"><div class="faq-q">Does it work offline? 오프라인에서도 되나요?</div><div class="faq-a">Once loaded, yes.<br>페이지 로드 후 인터넷 없이 동작합니다.</div></div>
+      <div class="faq-item"><div class="faq-q">Max file size? 최대 크기는?</div><div class="faq-a">Several MB. For 50MB+, use <code>jq</code> CLI.<br>수 MB까지 가능. 50MB 이상은 커맨드라인 <code>jq</code> 추천.</div></div>
+    </details>
   </div>
 </div>
 
@@ -226,6 +244,12 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
     <span class="tool-label">DIFF RESULT</span>
     <div id="diffOutput" class="diff-output"><span class="diff-same">Click "Compare" to see differences...</span></div>
     <div id="diffStats" class="diff-stats"></div>
+    <details class="tool-faq">
+      <summary>FAQ — Diff Checker</summary>
+      <div class="faq-item"><div class="faq-q">Can I compare entire files? 파일 전체 비교 가능?</div><div class="faq-a">Yes. Paste full contents. Handles thousands of lines.<br>네. 전체 내용을 붙여넣으세요. 수천 줄도 처리 가능.</div></div>
+      <div class="faq-item"><div class="faq-q">Binary files? 바이너리 파일은?</div><div class="faq-a">Text only. Use Beyond Compare for binary.<br>텍스트만 지원. 바이너리는 Beyond Compare 등 전문 도구 사용.</div></div>
+      <div class="faq-item"><div class="faq-q">How is this different from git diff?</div><div class="faq-a">Visual color-coded output in browser. No CLI needed.<br>브라우저에서 색상 하이라이트. CLI 불필요.</div></div>
+    </details>
   </div>
 </div>
 
@@ -296,6 +320,12 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
     <div class="cron-next" id="cronNext">Click a preset or edit fields above...</div>
 
     <div id="cronStatus" class="tool-status"></div>
+    <details class="tool-faq">
+      <summary>FAQ — Cron Generator</summary>
+      <div class="faq-item"><div class="faq-q">6-field or 7-field cron? 6필드/7필드 지원?</div><div class="faq-a">Standard 5-field Unix only. For Quartz (Java), add seconds manually.<br>표준 5필드만 지원. Quartz는 초 필드를 직접 추가하세요.</div></div>
+      <div class="faq-item"><div class="faq-q">GitHub Actions compatible? GitHub Actions 호환?</div><div class="faq-a">Yes. Note: GitHub Actions cron runs in UTC (KST -9h).<br>네. 단, GitHub Actions는 UTC 기준 (한국시간 -9시간).</div></div>
+      <div class="faq-item"><div class="faq-q">Are next runs accurate? 다음 실행 시간 정확?</div><div class="faq-a">Calculated from your browser's time &amp; timezone.<br>브라우저의 현재 시간/타임존 기준 계산.</div></div>
+    </details>
   </div>
 </div>
 
@@ -340,6 +370,13 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 
     <span class="tool-label">WORLD CLOCK <span style="font-weight:400;opacity:0.6;">세계 시간</span></span>
     <div class="ts-world-grid" id="tsWorldGrid"></div>
+
+    <details class="tool-faq">
+      <summary>FAQ — Timestamp Converter</summary>
+      <div class="faq-item"><div class="faq-q">What is a Unix timestamp? Unix 타임스탬프란?</div><div class="faq-a">Seconds since Jan 1, 1970 UTC. A universal time format.<br>1970년 1월 1일 UTC부터 경과한 초 수. 범용 시간 표현.</div></div>
+      <div class="faq-item"><div class="faq-q">10 digits vs 13 digits? 10자리 vs 13자리?</div><div class="faq-a">10 = seconds (Unix). 13 = milliseconds (Java/JS). Toggle to switch.<br>10 = 초. 13 = 밀리초 (Java/JS). 토글로 전환.</div></div>
+      <div class="faq-item"><div class="faq-q">Timezone support? 타임존 반영?</div><div class="faq-a">Local format uses browser timezone. ISO 8601 includes offset.<br>로컬은 브라우저 타임존, ISO 8601에 오프셋 포함.</div></div>
+    </details>
 
   </div>
 </div>
