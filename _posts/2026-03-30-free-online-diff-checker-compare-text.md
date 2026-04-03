@@ -1,8 +1,8 @@
 ---
-title: "Free Online Diff Checker — Compare Text & Code Side by Side"
+title: "Diff Checker — Compare Text & Code Side by Side"
 date: 2026-03-30 11:00:00 +0900
 categories: [Dev Life, Tools]
-tags: [diff, compare, text-comparison, developer-tools, free-tools, code-review, diff-checker-online]
+tags: [diff, compare, text-comparison, developer-tools, code-review, diff-checker]
 description: "Compare two blocks of text or code instantly in your browser. Highlights additions, deletions, and changes line by line. No signup, no data sent to any server."
 ---
 
