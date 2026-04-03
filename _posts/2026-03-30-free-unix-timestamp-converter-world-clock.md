@@ -1,8 +1,8 @@
 ---
-title: "Free Unix Timestamp Converter & World Clock — Instant Time Zone Tool"
+title: "Unix Timestamp Converter & World Clock — Instant Time Zone Tool"
 date: 2026-03-30 14:00:00 +0900
 categories: [Dev Life, Tools]
-tags: [timestamp, unix-time, epoch, converter, world-clock, timezone, developer-tools, free-tools, epoch-converter]
+tags: [timestamp, unix-time, epoch, converter, world-clock, timezone, developer-tools, epoch-converter]
 description: "Convert Unix timestamps to human-readable dates and back. Live world clock showing 12 major time zones. Click any format to copy. No signup, runs in your browser."
 ---
 

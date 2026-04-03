@@ -1,8 +1,8 @@
 ---
-title: "Free Online JSON Formatter & Validator — No Signup, No Data Sent"
+title: "JSON Formatter & Validator — No Signup, No Data Sent"
 date: 2026-03-30 10:00:00 +0900
 categories: [Dev Life, Tools]
-tags: [json, formatter, validator, developer-tools, free-tools, online-tools, json-beautifier, json-minifier]
+tags: [json, formatter, validator, developer-tools, json-beautifier, json-minifier]
 description: "Format, validate, and beautify JSON instantly in your browser. 100% client-side — your data never leaves your machine. No signup required."
 ---
 

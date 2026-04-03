@@ -1,8 +1,8 @@
 ---
-title: "무료 온라인 JSON 포맷터 & 유효성 검사 — 회원가입 없이 바로 사용"
+title: "JSON 포맷터 & 유효성 검사 — 회원가입 없이 바로 사용"
 date: 2026-03-30 10:30:00 +0900
 categories: [Dev Life, Tools]
-tags: [json, json-포맷터, json-정리, json-검증, 개발자도구, 무료도구, 온라인도구, json-beautifier]
+tags: [json, json-포맷터, json-정리, json-검증, 개발자도구, json-beautifier]
 description: "JSON 포맷 정리, 유효성 검사, 압축을 브라우저에서 바로. 서버 전송 없이 100% 클라이언트에서 실행. 회원가입 불필요."
 ---
 

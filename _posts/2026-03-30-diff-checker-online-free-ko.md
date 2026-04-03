@@ -1,8 +1,8 @@
 ---
-title: "무료 온라인 텍스트 비교 도구 (Diff Checker) — 코드 & 텍스트 차이점 비교"
+title: "텍스트 비교 도구 (Diff Checker) — 코드 & 텍스트 차이점 비교"
 date: 2026-03-30 11:30:00 +0900
 categories: [Dev Life, Tools]
-tags: [diff, 텍스트비교, 코드비교, diff-checker, 개발자도구, 무료도구, 파일비교]
+tags: [diff, 텍스트비교, 코드비교, diff-checker, 개발자도구, 파일비교]
 description: "두 텍스트를 붙여넣으면 차이점을 줄 단위로 하이라이트. 추가(초록), 삭제(빨강) 즉시 확인. 서버 전송 없이 브라우저에서 실행."
 ---
 
