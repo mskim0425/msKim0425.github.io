@@ -172,11 +172,11 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 </style>
 
 <!-- ===== Tab Bar ===== -->
-<div class="tool-tabs">
-  <button class="tool-tab active" onclick="switchTab('json', this)">JSON Formatter<span class="kr">JSON 포맷터</span></button>
-  <button class="tool-tab" onclick="switchTab('diff', this)">Diff Checker<span class="kr">텍스트 비교</span></button>
-  <button class="tool-tab" onclick="switchTab('cron', this)">Cron Generator<span class="kr">크론 생성기</span></button>
-  <button class="tool-tab" onclick="switchTab('timestamp', this)">Timestamp<span class="kr">시간 변환</span></button>
+<div class="tool-tabs" id="toolTabBar">
+  <button class="tool-tab active" data-tab="json">JSON Formatter<span class="kr">JSON 포맷터</span></button>
+  <button class="tool-tab" data-tab="diff">Diff Checker<span class="kr">텍스트 비교</span></button>
+  <button class="tool-tab" data-tab="cron">Cron Generator<span class="kr">크론 생성기</span></button>
+  <button class="tool-tab" data-tab="timestamp">Timestamp<span class="kr">시간 변환</span></button>
 </div>
 
 <!-- ===== JSON Formatter Panel ===== -->
@@ -383,23 +383,26 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 
 <script>
 /* ===== Tab Switching ===== */
-function switchTab(name, btn) {
+function switchTab(name) {
   document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
   document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
-  document.getElementById('panel-' + name).classList.add('active');
-  btn.classList.add('active');
+  var panel = document.getElementById('panel-' + name);
+  if (panel) panel.classList.add('active');
+  var btn = document.querySelector('.tool-tab[data-tab="' + name + '"]');
+  if (btn) btn.classList.add('active');
   history.replaceState(null, '', '#' + name);
 }
 (function() {
+  /* Bind click events via JS instead of inline onclick */
+  document.querySelectorAll('.tool-tab[data-tab]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      switchTab(btn.getAttribute('data-tab'));
+    });
+  });
+  /* Handle hash on page load */
   var tabs = ['json','diff','cron','timestamp'];
   var h = location.hash.replace('#','');
-  var idx = tabs.indexOf(h);
-  if (idx >= 0) {
-    document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
-    document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
-    document.getElementById('panel-' + h).classList.add('active');
-    document.querySelectorAll('.tool-tab')[idx].classList.add('active');
-  }
+  if (tabs.indexOf(h) >= 0) { switchTab(h); }
 })();
 
 /* ===== JSON Formatter ===== */
