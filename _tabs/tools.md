@@ -3,7 +3,7 @@ layout: page
 icon: fas fa-wrench
 order: 4
 title: Dev Tools
-description: Free online developer tools — JSON Formatter, Diff Checker, Cron Generator, Timestamp Converter & World Clock. No data sent to any server, runs entirely in your browser.
+description: Free online developer tools — JSON Formatter, Diff Checker, Cron Generator, Timestamp Converter, Base64 Encoder/Decoder. No data sent to any server, runs entirely in your browser.
 ---
 
 <style>
@@ -177,6 +177,7 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
   <button class="tool-tab" data-tab="diff">Diff Checker<span class="kr">텍스트 비교</span></button>
   <button class="tool-tab" data-tab="cron">Cron Generator<span class="kr">크론 생성기</span></button>
   <button class="tool-tab" data-tab="timestamp">Timestamp<span class="kr">시간 변환</span></button>
+  <button class="tool-tab" data-tab="base64">Base64<span class="kr">인코더/디코더</span></button>
 </div>
 
 <!-- ===== JSON Formatter Panel ===== -->
@@ -381,6 +382,58 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
   </div>
 </div>
 
+<!-- ===== Base64 Encoder/Decoder Panel ===== -->
+<div id="base64"></div>
+<div id="panel-base64" class="tool-panel">
+  <div class="tc">
+    <div class="tool-btn-row">
+      <button class="tool-btn tool-btn-primary" onclick="b64Encode()">Encode <span class="kr">인코딩</span></button>
+      <button class="tool-btn tool-btn-primary" onclick="b64Decode()">Decode <span class="kr">디코딩</span></button>
+      <span class="tool-divider"></span>
+      <button class="tool-btn tool-btn-secondary" onclick="b64Copy()">Copy Output <span class="kr">결과 복사</span></button>
+      <button class="tool-btn tool-btn-secondary" onclick="b64Swap()">Swap ⇄ <span class="kr">교환</span></button>
+      <button class="tool-btn tool-btn-secondary" onclick="b64Clear()">Clear <span class="kr">초기화</span></button>
+      <span class="tool-divider"></span>
+      <select id="b64Charset" class="tool-btn tool-btn-secondary" style="appearance:auto;">
+        <option value="utf8" selected>UTF-8</option>
+        <option value="ascii">ASCII</option>
+      </select>
+      <label style="font-size:0.8rem;color:#6c7086;display:flex;align-items:center;gap:4px;cursor:pointer;">
+        <input type="checkbox" id="b64UrlSafe"> URL-safe
+      </label>
+    </div>
+    <div id="b64Status" class="tool-status"></div>
+    <div class="tool-row">
+      <div>
+        <span class="tool-label">INPUT <span style="font-weight:400;opacity:0.6;">Plain text or Base64</span></span>
+        <textarea id="b64Input" class="tool-textarea" placeholder="Paste text to encode, or Base64 string to decode...&#10;&#10;Example:&#10;Hello, World! 안녕하세요!"></textarea>
+        <div id="b64InputStats" class="tool-stats"></div>
+      </div>
+      <div>
+        <span class="tool-label">OUTPUT <span style="font-weight:400;opacity:0.6;">결과</span></span>
+        <textarea id="b64Output" class="tool-textarea" placeholder="Result will appear here..." readonly></textarea>
+        <div id="b64OutputStats" class="tool-stats"></div>
+      </div>
+    </div>
+
+    <span class="tool-label" style="margin-top:8px;">FILE ENCODE / DECODE <span style="font-weight:400;opacity:0.6;">파일 인코딩 / 디코딩</span></span>
+    <div style="padding:20px;border:2px dashed #444;border-radius:8px;text-align:center;color:#6c7086;font-size:0.85rem;cursor:pointer;transition:border-color 0.2s;" id="b64DropZone" onclick="document.getElementById('b64FileInput').click()">
+      Drop a file here or click to select<br><span style="font-size:0.75rem;">파일을 여기에 드래그하거나 클릭하여 선택 (max 5MB)</span>
+      <input type="file" id="b64FileInput" style="display:none;" onchange="b64FileEncode(this)">
+    </div>
+    <div id="b64FileStatus" class="tool-status"></div>
+
+    <details class="tool-faq">
+      <summary>FAQ — Base64 Encoder / Decoder</summary>
+      <div class="faq-item"><div class="faq-q">What is Base64? Base64란?</div><div class="faq-a">An encoding that converts binary data into ASCII text using 64 characters (A-Z, a-z, 0-9, +, /).<br>바이너리 데이터를 64개 문자(A-Z, a-z, 0-9, +, /)로 변환하는 인코딩.</div></div>
+      <div class="faq-item"><div class="faq-q">What is URL-safe Base64? URL-safe Base64란?</div><div class="faq-a">Replaces + with - and / with _ to avoid URL encoding issues. Common in JWTs and data URIs.<br>+를 -, /를 _로 대체하여 URL 인코딩 문제를 방지. JWT, 데이터 URI에서 사용.</div></div>
+      <div class="faq-item"><div class="faq-q">Can I encode files? 파일도 인코딩 가능?</div><div class="faq-a">Yes. Drag & drop or click to upload (max 5MB). Useful for embedding images in HTML/CSS.<br>가능합니다. 드래그 앤 드롭 또는 클릭 (최대 5MB). HTML/CSS에 이미지 삽입시 유용.</div></div>
+      <div class="faq-item"><div class="faq-q">Is my data safe? 데이터가 안전한가요?</div><div class="faq-a">100% client-side. Nothing is sent to any server. Check the source code yourself.<br>100% 브라우저 처리. 서버 전송 없음. 소스코드를 직접 확인해보세요.</div></div>
+    </details>
+
+  </div>
+</div>
+
 <script>
 /* ===== Tab Switching ===== */
 function switchTab(name) {
@@ -400,7 +453,7 @@ function switchTab(name) {
     });
   });
   /* Handle hash on page load */
-  var tabs = ['json','diff','cron','timestamp'];
+  var tabs = ['json','diff','cron','timestamp','base64'];
   var h = location.hash.replace('#','');
   if (tabs.indexOf(h) >= 0) { switchTab(h); }
 })();
@@ -861,4 +914,119 @@ function tsShowStatus(msg, type) {
 setInterval(function() { tsUpdateLive(); tsUpdateWorld(); }, 1000);
 tsUpdateLive();
 tsUpdateWorld();
+
+/* ===== Base64 Encoder/Decoder ===== */
+function b64IsUrlSafe() { return document.getElementById('b64UrlSafe').checked; }
+
+function b64Encode() {
+  var input = document.getElementById('b64Input').value;
+  if (!input) { b64ShowStatus('Enter text to encode. 인코딩할 텍스트를 입력하세요.', 'error'); return; }
+  try {
+    var encoded = btoa(unescape(encodeURIComponent(input)));
+    if (b64IsUrlSafe()) { encoded = encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+    document.getElementById('b64Output').value = encoded;
+    b64UpdateStats();
+    b64ShowStatus('Encoded successfully. 인코딩 완료. (' + input.length + ' chars → ' + encoded.length + ' chars)', 'success');
+  } catch (e) { b64ShowStatus('Encode error: ' + e.message, 'error'); }
+}
+
+function b64Decode() {
+  var input = document.getElementById('b64Input').value.trim();
+  if (!input) { b64ShowStatus('Enter Base64 to decode. 디코딩할 Base64를 입력하세요.', 'error'); return; }
+  try {
+    var b64 = input;
+    if (b64IsUrlSafe()) { b64 = b64.replace(/-/g, '+').replace(/_/g, '/'); }
+    while (b64.length % 4 !== 0) b64 += '=';
+    var decoded = decodeURIComponent(escape(atob(b64)));
+    document.getElementById('b64Output').value = decoded;
+    b64UpdateStats();
+    b64ShowStatus('Decoded successfully. 디코딩 완료. (' + input.length + ' chars → ' + decoded.length + ' chars)', 'success');
+  } catch (e) { b64ShowStatus('Invalid Base64 string. 유효하지 않은 Base64 문자열입니다.', 'error'); }
+}
+
+function b64Copy() {
+  var output = document.getElementById('b64Output').value;
+  if (!output) { b64ShowStatus('Nothing to copy. 복사할 내용이 없습니다.', 'error'); return; }
+  navigator.clipboard.writeText(output).then(function() {
+    b64ShowStatus('Copied to clipboard! 클립보드에 복사됨!', 'success');
+  });
+}
+
+function b64Swap() {
+  var inp = document.getElementById('b64Input');
+  var out = document.getElementById('b64Output');
+  var tmp = out.value;
+  inp.value = tmp;
+  out.value = '';
+  b64UpdateStats();
+  document.getElementById('b64Status').className = 'tool-status';
+}
+
+function b64Clear() {
+  document.getElementById('b64Input').value = '';
+  document.getElementById('b64Output').value = '';
+  document.getElementById('b64Status').className = 'tool-status';
+  document.getElementById('b64InputStats').textContent = '';
+  document.getElementById('b64OutputStats').textContent = '';
+  document.getElementById('b64FileStatus').className = 'tool-status';
+}
+
+function b64UpdateStats() {
+  var inp = document.getElementById('b64Input').value;
+  var out = document.getElementById('b64Output').value;
+  document.getElementById('b64InputStats').textContent = inp ? inp.length + ' chars, ' + new Blob([inp]).size + ' bytes' : '';
+  document.getElementById('b64OutputStats').textContent = out ? out.length + ' chars, ' + new Blob([out]).size + ' bytes' : '';
+}
+
+function b64ShowStatus(msg, type) {
+  var el = document.getElementById('b64Status');
+  el.textContent = msg;
+  el.className = 'tool-status ' + type;
+}
+
+/* File encoding */
+function b64FileEncode(fileInput) {
+  var file = fileInput.files[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) {
+    b64FileShowStatus('File too large (max 5MB). 파일이 너무 큽니다 (최대 5MB).', 'error');
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function() {
+    var base64 = reader.result.split(',')[1] || '';
+    document.getElementById('b64Output').value = base64;
+    var dataUri = reader.result;
+    document.getElementById('b64Input').value = 'data:' + file.type + ';base64 (file: ' + file.name + ', ' + (file.size / 1024).toFixed(1) + ' KB)';
+    b64UpdateStats();
+    b64FileShowStatus('File encoded: ' + file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB → ' + base64.length + ' chars)', 'success');
+  };
+  reader.readAsDataURL(file);
+  fileInput.value = '';
+}
+
+function b64FileShowStatus(msg, type) {
+  var el = document.getElementById('b64FileStatus');
+  el.textContent = msg;
+  el.className = 'tool-status ' + type;
+}
+
+/* Drag & drop */
+(function() {
+  var zone = document.getElementById('b64DropZone');
+  if (!zone) return;
+  zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.style.borderColor = '#89b4fa'; });
+  zone.addEventListener('dragleave', function() { zone.style.borderColor = '#444'; });
+  zone.addEventListener('drop', function(e) {
+    e.preventDefault(); zone.style.borderColor = '#444';
+    if (e.dataTransfer.files.length > 0) {
+      var inp = document.getElementById('b64FileInput');
+      inp.files = e.dataTransfer.files;
+      b64FileEncode(inp);
+    }
+  });
+})();
+
+/* Live char count on input */
+document.getElementById('b64Input').addEventListener('input', function() { b64UpdateStats(); });
 </script>
