@@ -105,7 +105,7 @@ There are plenty of famous sundaeguk joints in Seoul. But what makes Sundae Silr
 | **Google Maps** | [Link](https://maps.app.goo.gl/bAaoRwzXcFkqzVk97) |
 
 <div class="map-embed">
-<iframe src="https://maps.google.com/maps?q=순대실록&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+<iframe src="https://maps.google.com/maps?q=H2M3%2B5F+서울특별시&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
 </div>
 
 ---
