@@ -160,6 +160,10 @@ STAY's staff was incredible about the whole thing. They coordinated the flowers,
 | **Celebration Cake** | Mango or Chocolate with custom message (+₩30,000) |
 | **Google Maps** | [View on Google Maps](https://maps.app.goo.gl/vjJnpygy1tdbQNEL6) |
 
+<div class="map-embed">
+<iframe src="https://maps.google.com/maps?q=STAY+by+Yannick+Alleno+SIGNIEL+Seoul&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
 > **Tip**: If you're going for dinner, try to book a **window seat for sunset time** (around 5:30-6:00 PM in winter, 7:00-7:30 PM in summer). The view transition from golden hour to night cityscape is absolutely worth it.
 {: .prompt-tip}
 
