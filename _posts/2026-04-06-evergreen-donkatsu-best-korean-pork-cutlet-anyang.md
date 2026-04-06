@@ -38,15 +38,11 @@ _Handwritten signs at the entrance — business hours and the house rules. Peak 
 
 The system is simple: order at the kiosk outside, wait for your number, then head in. Once seated, help yourself to the **banchan bar** — rice from a Cuckoo rice cooker, fresh coleslaw with creamy dressing, kkakdugi (cubed radish kimchi), and danmuji (pickled radish).
 
-<div class="img-grid">
-
 ![Self-service banchan bar with rice cooker, pickled radish, kimchi, and coleslaw](/images/evergreen-donkatsu/banchan-bar.jpg)
 _The banchan bar: rice, kkakdugi, radish, and coleslaw — self-service, eat as much as you want_
 
 ![Plate of fresh coleslaw with creamy dressing, kkakdugi, and danmuji](/images/evergreen-donkatsu/coleslaw-plate.jpg)
 _The coleslaw alone is worth mentioning — crunchy, creamy, and generous_
-
-</div>
 
 The seating is tight — you'll be close enough to your neighbor to share a conversation (whether you planned to or not). But that's part of the charm. It feels like eating at someone's house where everyone's welcome.
 
@@ -79,7 +75,7 @@ If you know **Gyokaizen (교카이젠)** nearby, that's proper Japanese-style to
 ## FAQ
 
 **What kind of donkatsu is this?**
-Gyeongsik donkatsu (경양식 돈까스) — Korean-style Western pork cutlet. Thicker batter, rich demi-glace sauce, served with bread and soup instead of rice and miso. Completely different from Japanese tonkatsu.
+Gyeongsik donkatsu (경양식 돈까스) — Korean-style Western pork cutlet. Thicker batter, rich demi-glace sauce, served with bread and soup instead of rice and miso. but you can eat rice in there. Completely different from Japanese tonkatsu.
 
 **Is there only one menu item?**
 Yes. Single menu: handmade donkatsu for ₩14,000. That's it. Sides (coleslaw, rice, kimchi) are self-service and included.
@@ -94,4 +90,4 @@ The food is date-worthy. The atmosphere is cozy but seats are close together, so
 No dedicated parking. Use the nearby public surface parking lot (공영지상주차장) — a short walk away.
 
 **Can I get takeout?**
-The sign at the restaurant says leftover food cannot be packed to go (남은 음식은 포장 안됩니다). Dine-in only for the full experience.
+No and also the sign at the restaurant says leftover food cannot be packed to go (남은 음식은 포장 안됩니다). 
