@@ -6,7 +6,7 @@ categories: [Korean Food, Seoul]
 tags: [kandasoba, kanda-soba, mazesoba, mazesoba-seoul, abura-soba, seoul-restaurant, hyehwa-food, hyehwa, japanese-food, noodles, ramen-seoul, daehangno, lunch-spot]
 description: "Kanda Soba (칸다소바) in Hyehwa serves the best mazesoba in Seoul. Rich meat sauce, raw egg yolk, chewy noodles, and free rice refills. Full menu, prices & honest review inside."
 image:
-  path: /images/kanda-soba/mazesoba.jpg
+  path: /images/kanda-soba/mazesoba.webp
   alt: Mazesoba at Kanda Soba Seoul topped with raw egg yolk, green onions, seaweed, and rich meat sauce — best mazesoba in Hyehwa
 ---
 
@@ -16,7 +16,7 @@ I'll be honest — there are plenty of decent lunch spots within a 2-minute radi
 
 Kanda Soba is a Tokyo-style mazesoba (まぜそば) and ramen joint. If you're not familiar with mazesoba, it's basically ramen without the broth — thick noodles tossed in a rich, savory sauce with a variety of toppings. Think of it as the "dry" version of ramen, and honestly, sometimes it hits harder than the soup kind.
 
-![Entrance to Kanda Soba](/images/kanda-soba/entrance.jpg)
+![Entrance to Kanda Soba](/images/kanda-soba/entrance.webp)
 _The narrow alley entrance — easy to miss, impossible to forget once you've found it_
 
 ---
@@ -25,7 +25,7 @@ _The narrow alley entrance — easy to miss, impossible to forget once you've fo
 
 I've eaten my way through a lot of noodle spots in Seoul, but Kanda Soba's mazesoba is firmly in my **top 3 of all time**. It arrives in a big white bowl — a mountain of rich, spicy meat sauce with a raw egg yolk sitting right on top like a golden crown. Surrounding it: finely sliced green onions, chopped chives, crumbled dried fish powder, and generous sheets of crispy seaweed (nori).
 
-![Mazesoba at Kanda Soba](/images/kanda-soba/mazesoba.jpg)
+![Mazesoba at Kanda Soba](/images/kanda-soba/mazesoba.webp)
 _The legendary mazesoba — mix everything together and prepare to be amazed_
 
 You mix it all together yourself, and the egg yolk melts into the sauce creating this unbelievably rich, coating texture on every strand of noodle. The balance between the savory meat sauce, the fresh bite of the onions, and the umami from the seaweed and fish powder is just perfection. It's bold, it's messy, and it's absolutely addictive.
@@ -41,7 +41,7 @@ And if you're still hungry after the noodles (like me — I'm a big guy), **rice
 
 If mazesoba isn't your thing (though I question your taste), their ramen is excellent too. Thick slices of chashu pork sit on top of a cloudy, deeply savory tonkotsu broth. The soft-boiled eggs are done perfectly — jammy yolks, every single time. And that wall of nori standing tall in the bowl? Pure drama and deliciousness.
 
-![Tonkotsu ramen at Kanda Soba](/images/kanda-soba/ramen.jpg)
+![Tonkotsu ramen at Kanda Soba](/images/kanda-soba/ramen.webp)
 _Rich tonkotsu ramen with chashu, soft-boiled egg, spinach, and a wall of nori_
 
 ---
@@ -59,8 +59,8 @@ If you visit, do yourself a favor and order one. Just eat faster than my coworke
 Every table has a steel container of self-serve pickled radish (단무지/takuan), and let me tell you — it's **insanely good**. It's got that perfect sweet-tangy crunch that cleanses your palate between bites of rich mazesoba. I always go back for seconds. It sounds like a minor detail, but honestly, the pickled radish here elevates the whole meal.
 
 <div class="img-grid">
-  <img src="/images/kanda-soba/pickled-radish.jpg" alt="Self-serve pickled radish at Kanda Soba">
-  <img src="/images/kanda-soba/counter-condiments.jpg" alt="Counter setup with condiments and self-serve sides">
+  <img src="/images/kanda-soba/pickled-radish.webp" alt="Self-serve pickled radish at Kanda Soba">
+  <img src="/images/kanda-soba/counter-condiments.webp" alt="Counter setup with condiments and self-serve sides">
 </div>
 _Self-serve pickled radish and condiments — grab as much takuan as you want_
 
@@ -71,8 +71,8 @@ _Self-serve pickled radish and condiments — grab as much takuan as you want_
 On the wall, there's a framed poster explaining their broth-making process. They use pork bones, chicken bones, and other ingredients, simmering them for over **24 hours** in the traditional Tokyo style. After that, they add dried sardines, shrimp, and vegetables to build layers of umami. The finished broth is stored within 48 hours to keep it fresh.
 
 <div class="img-grid">
-  <img src="/images/kanda-soba/broth-process.jpg" alt="Broth making process explained on the restaurant wall">
-  <img src="/images/kanda-soba/kitchen-counter.jpg" alt="Open kitchen counter at Kanda Soba with yellow stools">
+  <img src="/images/kanda-soba/broth-process.webp" alt="Broth making process explained on the restaurant wall">
+  <img src="/images/kanda-soba/kitchen-counter.webp" alt="Open kitchen counter at Kanda Soba with yellow stools">
 </div>
 _Left: Their 24-hour broth process, explained step by step. Right: The cozy counter-only seating with an open kitchen view_
 

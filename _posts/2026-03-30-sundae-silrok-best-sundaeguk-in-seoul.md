@@ -6,7 +6,7 @@ categories: [Korean Food, Seoul]
 tags: [sundae-silrok, sundaeguk, sundaeguk-seoul, korean-food, korean-soul-food, gukbap, sundae, korean-blood-sausage, korean-street-food, comfort-food, seoul-restaurant, local-food-seoul]
 description: "Sundae Silrok (순대실록) in Seoul serves the richest sundaeguk in town — milky broth, tender sundae, free banchan bar, and traditional sikhye. A must-try Korean comfort food for adventurous eaters."
 image:
-  path: /images/sundae-silrok/sundaeguk-chives.jpg
+  path: /images/sundae-silrok/sundaeguk-chives.webp
   alt: Steaming bowl of sundaeguk topped with fresh chives at Sundae Silrok Seoul — best Korean blood sausage soup
 ---
 
@@ -22,7 +22,7 @@ If you're a foreigner in Seoul, open to meat, and craving something hot and deep
 
 Sundaeguk is a hearty pork broth soup loaded with sundae (Korean blood sausage made with glass noodles and pork intestine), alongside chunks of pork, offal, and sometimes napa cabbage. It comes bubbling hot in a stone pot with a bowl of rice on the side. It's the kind of food that warms your entire body from the first sip — the ultimate Korean comfort meal.
 
-![Table setup at Sundae Silrok](/images/sundae-silrok/table-setup.jpg)
+![Table setup at Sundae Silrok](/images/sundae-silrok/table-setup.webp)
 _The table setup — banchan, ssamjang, and a tablet for ordering. Ready for action._
 
 ---
@@ -31,7 +31,7 @@ _The table setup — banchan, ssamjang, and a tablet for ordering. Ready for act
 
 My coworkers and I come here **at least once every two weeks**, and we always order the same thing: **Traditional Sundaeguk "Special" (전통순대국밥 특)**. The "special" means extra everything — more sundae, more meat, more of that milky pork broth. It's generous, filling, and the kind of meal that carries you through the entire afternoon without a single snack craving.
 
-![Sundaeguk closeup — thick chunks of sundae and pork](/images/sundae-silrok/sundaeguk-closeup.jpg)
+![Sundaeguk closeup — thick chunks of sundae and pork](/images/sundae-silrok/sundaeguk-closeup.webp)
 _The "Special" — look at those thick chunks of sundae and pork. This is not a light lunch._
 
 I'll be honest — when the bowl arrived, my hands moved faster than my brain. I started eating before I remembered I was supposed to photograph it first. So yes, the photo has a spoon already in action. Real reviews come from real hunger.
@@ -43,8 +43,8 @@ I'll be honest — when the bowl arrived, my hands moved faster than my brain. I
 Here's how the regulars eat it. First, grab a huge handful of **chives (부추)** — or as they call it in Busan, **jeongguji (정구지)** — and drop them right into the soup. Then scoop **two big spoonfuls of perilla seed powder (들깨가루)** from the black pot on the table and sprinkle it on top.
 
 <div class="img-grid">
-  <img src="/images/sundae-silrok/sundaeguk-chives.jpg" alt="Sundaeguk loaded with fresh chives and perilla powder">
-  <img src="/images/sundae-silrok/perilla-powder.jpg" alt="Perilla seed powder in a traditional black pot">
+  <img src="/images/sundae-silrok/sundaeguk-chives.webp" alt="Sundaeguk loaded with fresh chives and perilla powder">
+  <img src="/images/sundae-silrok/perilla-powder.webp" alt="Perilla seed powder in a traditional black pot">
 </div>
 _Left: My bowl after the chive-and-perilla treatment. Right: The perilla powder pot — don't be shy, two spoonfuls minimum._
 
@@ -62,7 +62,7 @@ Most Korean restaurants have decent ssamjang (쌈장, fermented bean paste dip),
 
 One of the best parts? The **self-serve banchan station**. You walk up and load your tray with whatever you want: kkakdugi (cubed radish kimchi), fresh chives, raw garlic, green chili peppers, pickled onion, and that incredible house ssamjang. There's a sign that says "버려지는 음식이 너무 많습니다" (too much food is being wasted) — so take what you need, but eat everything you take.
 
-![Self-serve banchan bar](/images/sundae-silrok/banchan-bar.jpg)
+![Self-serve banchan bar](/images/sundae-silrok/banchan-bar.webp)
 _The banchan bar — kkakdugi, chives, green peppers, ssamjang, pickled onion, and more. All free, all self-serve._
 
 The **kkakdugi** deserves special mention. It's fresh, crunchy, and perfectly fermented — the ideal companion to a rich, hot bowl of sundaeguk. You need that tangy crunch to cut through the heavy broth.
@@ -73,7 +73,7 @@ The **kkakdugi** deserves special mention. It's fresh, crunchy, and perfectly fe
 
 After your meal, swing by the drink machine near the counter. They have frozen **sikhye (식혜)**, a traditional Korean sweet rice punch, and **omija (오미자)**, a five-flavor berry drink — both ₩2,500 each. The icy sikhye after a steaming bowl of sundaeguk is *chef's kiss*. Perfect palate cleanser.
 
-![Frozen sikhye and omija drink machine](/images/sundae-silrok/sikhye-omija.jpg)
+![Frozen sikhye and omija drink machine](/images/sundae-silrok/sikhye-omija.webp)
 _Frozen traditional sikhye (left) and omija punch (right) — ₩2,500 each. The perfect way to finish._
 
 ---

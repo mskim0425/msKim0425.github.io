@@ -44,7 +44,7 @@ OS와 디바이스가 서로 통신할 수 있는 sw 구성요소. 보통 마우
 
 메모리에 내용을 얘기하기 전, 메모리 앞단에서 일어나는 일에 대해 알필요가 있다. CPU에 해당되는 캐시와 레지스트리인데 둘의 기능과 차이에 대해 알아보자.  
 
-<img src="https://melonicedlatte.com/system/uploads/images/000/001/482/original/image.png?1541583910">
+<img src="https://melonicedlatte.com/system/uploads/images/000/001/482/original/image.webp?1541583910">
 
 `레지스터`란 CPU안에 있는 작은 메모리로써 작은 메모리와 휘발성을 가지고 있으며 용량도 매우 적다. 일반적으로는 현재 계산을 수행중인 값을 저장하는데 사용된다.  
 
@@ -59,7 +59,7 @@ OS의 대표적인 일 중의 하나인 컴퓨터 내의 한정된 메모리 자
  
 `가상메모리란?` 메모리 관리 기법으로 하나로 컴퓨터가 실제 이용 가능한 메모리 자원을 추상화하여 이를 USER에게는 큰 메모리로 보이게하는 방법이다. 그러기 위해선 가상 주소와 실제주소를 연결하는 PAGE TABLE이 있어야한다.   
 
-<img src="https://github.com/mskim0425/mskim0425.github.io/blob/main/images/cs/%EB%A9%94%EB%AA%A8%EB%A6%AC%EA%B4%80%EB%A6%AC.png?raw=true">
+<img src="/images/cs/메모리관리.webp">
 
 ##### PAGE TABLE이란?  
 `page table은 위와같이 가상주소와 실제 주소를 mapping하는 테이블이다`. 메인 메모리에 존재하며 프로세스마다 고유의 page table을 가진다. context switching(프로세스를 교체) 할 때마다 page table도 변경돼야 한다. 즉, CPU가 어느 page table을 사용할지 알아야 한다.  

@@ -6,7 +6,7 @@ categories: [Korean Food, Seoul]
 tags: [stay-restaurant, stay-by-yannick-alleno, signiel-seoul, lotte-world-tower, fine-dining-seoul, french-cuisine, michelin, seoul-restaurant, proposal-restaurant, date-restaurant-seoul, jamsil]
 description: "STAY by Yannick Alléno at SIGNIEL Seoul — 11-course French tasting menu on the 81st floor of Lotte World Tower. Michelin-level dining with Han River sunset views. Full menu, prices & honest review."
 image:
-  path: /images/stay-seoul/han-river-sunset.jpg
+  path: /images/stay-seoul/han-river-sunset.webp
   alt: Sunset view of Han River from STAY restaurant by Yannick Alléno, 81st floor SIGNIEL Seoul Lotte World Tower
 ---
 
@@ -24,7 +24,7 @@ But I'm not here to just flex. I genuinely think this is one of the best dining 
 
 We went with the **Must Try course** — their signature dinner tasting menu. The menu card itself is elegant and bilingual (English & Korean), which is nice if you're visiting Seoul and don't speak Korean.
 
-![STAY Must Try menu](/images/stay-seoul/stay-menu.jpg)
+![STAY Must Try menu](/images/stay-seoul/stay-menu.webp)
 _The Must Try course menu — 11 courses crafted by Chef Yannick Alléno_
 
 Here's what we had, course by course:
@@ -46,8 +46,8 @@ Potato, Comté cheese, spinach, squid ink tuile, and black truffle mayo. The com
 ### 4. Scallops 'Soufflé' with Parsley Butter
 
 <div class="img-grid">
-  <img src="/images/stay-seoul/scallop-souffle.jpg" alt="Scallop Soufflé close-up">
-  <img src="/images/stay-seoul/scallop-view.jpg" alt="Scallop dish with the sunset view">
+  <img src="/images/stay-seoul/scallop-souffle.webp" alt="Scallop Soufflé close-up">
+  <img src="/images/stay-seoul/scallop-view.webp" alt="Scallop dish with the sunset view">
 </div>
 _Left: Scallops 'Soufflé' with parsley butter / Right: Same dish with that sunset view_
 
@@ -57,14 +57,14 @@ And look at that sunset behind the plate. Timing matters when you're dining at 8
 
 ### 5. The View — Let's Take a Moment
 
-![Han River sunset from 81st floor](/images/stay-seoul/han-river-sunset.jpg)
+![Han River sunset from 81st floor](/images/stay-seoul/han-river-sunset.webp)
 _Seoul at golden hour from the 81st floor. You can see the Han River, Namsan Tower, and the mountains beyond._
 
 Between courses, you get these moments where you just stare out the window. The Han River bending through the city, bridges connecting Gangnam to the north, mountains in the distance turning purple as the sun drops. This is Seoul at its most cinematic.
 
 ### 6. Agnolotti with Ox Tail Confit
 
-![Agnolotti in sea urchin soup](/images/stay-seoul/agnolotti.jpg)
+![Agnolotti in sea urchin soup](/images/stay-seoul/agnolotti.webp)
 _Agnolotti with ox tail confit, sea urchin soup, and sobacha_
 
 Rich, deep, and complex. The ox tail confit inside the pasta is melt-in-your-mouth tender, and the sea urchin soup base gives it this oceanic depth. The sobacha (buckwheat tea) element adds an unexpected Korean twist. This is what I mean by Alléno's genius — French technique meets Korean ingredients.
@@ -72,8 +72,8 @@ Rich, deep, and complex. The ox tail confit inside the pasta is melt-in-your-mou
 ### 7. Pan-fired Lobster with Spinach Fondue
 
 <div class="img-grid">
-  <img src="/images/stay-seoul/lobster-1.jpg" alt="Lobster with beurre blanc and caviar">
-  <img src="/images/stay-seoul/lobster-2.jpg" alt="Lobster from another angle">
+  <img src="/images/stay-seoul/lobster-1.webp" alt="Lobster with beurre blanc and caviar">
+  <img src="/images/stay-seoul/lobster-2.webp" alt="Lobster from another angle">
 </div>
 _Pan-fired lobster with spinach fondue, beurre blanc, trout roe, and caviar_
 
@@ -81,7 +81,7 @@ The star of the savory courses. The lobster is pan-fired to perfection — crisp
 
 ### 8. Duck with Orange Sauce
 
-![Duck with crispy potato and ginger purée](/images/stay-seoul/duck.jpg)
+![Duck with crispy potato and ginger purée](/images/stay-seoul/duck.webp)
 _Duck with orange sauce, crispy potato, carrot & ginger purée_
 
 Classic French duck à l'orange, but elevated. The duck is cooked pink and tender, paired with crispy potato, a smooth carrot & ginger purée, and that glossy orange sauce tying everything together. The sourcing is interesting too — duck from France, chicken from Korea.
@@ -89,8 +89,8 @@ Classic French duck à l'orange, but elevated. The duck is cooked pink and tende
 ### 9. Charcoal-grilled 1++ Han-woo Beef
 
 <div class="img-grid">
-  <img src="/images/stay-seoul/hanwoo-beef-1.jpg" alt="Han-woo beef with potato and marrow">
-  <img src="/images/stay-seoul/hanwoo-beef-2.jpg" alt="Han-woo beef close-up">
+  <img src="/images/stay-seoul/hanwoo-beef-1.webp" alt="Han-woo beef with potato and marrow">
+  <img src="/images/stay-seoul/hanwoo-beef-2.webp" alt="Han-woo beef close-up">
 </div>
 _1++ Korean Han-woo beef, charcoal-grilled with potato and marrow. Look at that color._
 
@@ -102,14 +102,14 @@ This is the main event. **1++ grade Korean Han-woo** (the highest marbling grade
 
 ### 10. Calisson
 
-![Calisson dessert](/images/stay-seoul/calisson.jpg)
+![Calisson dessert](/images/stay-seoul/calisson.webp)
 _A silky, delicate Calisson — light and refreshing after the rich mains_
 
 I'll be honest — I had never heard of Calisson before this dinner. Turns out it's a **traditional French confection from Aix-en-Provence**, made with candied fruit and almond paste, typically topped with royal icing. STAY's version was silky smooth, not too sweet, with a delicate almond flavor that lingers. It completely surprised me. One of those desserts you don't expect to love, and then you're quietly wishing they'd bring another one.
 
 ### 11. Cacao Nibs Meringue
 
-![Cacao nibs meringue](/images/stay-seoul/cacao-meringue.jpg)
+![Cacao nibs meringue](/images/stay-seoul/cacao-meringue.webp)
 _Cacao nibs meringue — crunchy, chocolatey, and not too sweet_
 
 Rich chocolate meets airy meringue. The cacao nibs give it a satisfying crunch. This is the kind of dessert that makes you forget you've already eaten 10 courses.
@@ -123,8 +123,8 @@ And then came the final surprise. But it wasn't from the Pastry Library...
 ## The Proposal
 
 <div class="img-grid">
-  <img src="/images/stay-seoul/proposal-cake.jpg" alt="Will you marry me? cake">
-  <img src="/images/stay-seoul/proposal-ring.jpg" alt="The ring - she said yes">
+  <img src="/images/stay-seoul/proposal-cake.webp" alt="Will you marry me? cake">
+  <img src="/images/stay-seoul/proposal-ring.webp" alt="The ring - she said yes">
 </div>
 _Left: "Will you marry me?" in chocolate / Right: She said yes._
 
@@ -135,8 +135,8 @@ Here's something useful if you're planning something similar: STAY offers a **ca
 The timing was everything. I coordinated with the staff so the cake would come out right after the last dessert course, when the night view of Seoul was at its most stunning. The moment the plate landed on the table with those words... I pulled out the ring. Perfect timing, perfect setting.
 
 <div class="img-grid">
-  <img src="/images/stay-seoul/bouquet.jpg" alt="Pink roses bouquet">
-  <img src="/images/stay-seoul/couple-photo.jpg" alt="Us, that night">
+  <img src="/images/stay-seoul/bouquet.webp" alt="Pink roses bouquet">
+  <img src="/images/stay-seoul/couple-photo.webp" alt="Us, that night">
 </div>
 _The bouquet was hidden until the perfect moment. The best dinner of my life, for obvious reasons._
 
