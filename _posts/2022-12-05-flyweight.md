@@ -41,13 +41,13 @@ tags: [cs, design pattern]
 ---
 
 　　
-<img src="https://refactoring.guru/images/patterns/content/flyweight/flyweight-2x.png?id=6a8f17d9550c75c3d648a605c4d31b45" width="300" height="300">
+<img src="https://refactoring.guru/images/patterns/content/flyweight/flyweight-2x.webp?id=6a8f17d9550c75c3d648a605c4d31b45" width="300" height="300">
 
 ## <span style="color: gold"> 플라이웨이트 패턴이란? </span>  
 다수의 객체가 생성되는 경우(new Class) 모두가 갖는 본질적인 요소를 클래스화해서 공유함으로써 메모리를 절약하고,  
 **`클래스의 경량화`**를 목적으로 하는 디자인 패턴이다. 여러개의 가상 인스턴스를 제공하여 메모리 절감을 함. 
 　　
-![img](https://refactoring.guru/images/patterns/diagrams/flyweight/example-2x.png?id=9423640fe3688a64201389b6e7aa1f48)
+![img](https://refactoring.guru/images/patterns/diagrams/flyweight/example-2x.webp?id=9423640fe3688a64201389b6e7aa1f48)
 
 **`TreeType`**은 Tree 클래스에서 반복되는 상태를 추출한 클래스  
 **`TreeFactory`**는 기존 TreeType을 사용할지 새로운 객체를 생성할지 결정하는 공간.  

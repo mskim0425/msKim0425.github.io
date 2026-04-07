@@ -32,7 +32,7 @@ LEAD(<expression>[, offset[, default_value]]) OVER (PARTITION BY <expr> ORDER BY
 - **PARTITION BY**: 데이터를 그룹화하여 각 그룹 내에서 별도로 계산.
 - **ORDER BY**: 행의 순서를 지정.
 
-![image](https://github.com/mskim0425/msKim0425.github.io/blob/main/images/sql/lead_examp.jpg?raw=true)
+![image](/images/sql/lead_examp.webp)
 
 ```sql
 SELECT 

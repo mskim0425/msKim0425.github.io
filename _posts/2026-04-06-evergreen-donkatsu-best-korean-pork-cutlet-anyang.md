@@ -5,7 +5,7 @@ categories: [Korean Food, Anyang]
 tags: [evergreen-donkatsu, 에버그린, donkatsu, pork-cutlet, korean-food, anyang, indeogwon, gyeongsik-donkatsu, comfort-food, korean-restaurant, date-spot]
 description: "Evergreen (에버그린) in Indeogwon serves handmade Korean-style donkatsu with incredible demi-glace sauce, freshly baked bread, and the best cream soup. A hidden gem in Anyang."
 image:
-  path: /images/evergreen-donkatsu/donkatsu-plate.jpg
+  path: /images/evergreen-donkatsu/donkatsu-plate.webp
   alt: Korean-style donkatsu with rich demi-glace sauce, cream soup, and freshly baked bread at Evergreen in Indeogwon, Anyang
 ---
 
@@ -15,7 +15,7 @@ If you think donkatsu is donkatsu — crispy pork, some sauce, done — **Evergr
 
 And honestly? I came for the donkatsu, but I might come back just for the **bread and soup**.
 
-![The donkatsu plate at Evergreen — thick-cut pork cutlet under a river of demi-glace sauce, with freshly baked bread and cream soup](/images/evergreen-donkatsu/donkatsu-plate.jpg)
+![The donkatsu plate at Evergreen — thick-cut pork cutlet under a river of demi-glace sauce, with freshly baked bread and cream soup](/images/evergreen-donkatsu/donkatsu-plate.webp)
 _The main event: handmade donkatsu smothered in rich demi-glace, a warm bread roll, and a cup of cream soup_
 
 ## The Bread and Soup Steal the Show
@@ -28,25 +28,25 @@ Is this a donkatsu restaurant or a bread restaurant? I honestly can't decide, an
 
 ## The Full Experience
 
-![Exterior of Evergreen donkatsu restaurant — a modest corner building with green signage in a quiet Indeogwon neighborhood](/images/evergreen-donkatsu/exterior.jpg)
+![Exterior of Evergreen donkatsu restaurant — a modest corner building with green signage in a quiet Indeogwon neighborhood](/images/evergreen-donkatsu/exterior.webp)
 _Don't let the humble exterior fool you — this place has been packing in locals for years_
 
 Evergreen doesn't look like much from outside. It sits on a quiet corner in a residential area near Indeogwon — the kind of place you'd walk right past if nobody told you about it. But show up around lunchtime and you'll see people **waiting outside**. There's no fancy interior, no Instagram-worthy plating. Just honest food in a cozy, home-style atmosphere.
 
-![The entrance with handwritten signs showing business hours and ordering instructions](/images/evergreen-donkatsu/entrance.jpg)
+![The entrance with handwritten signs showing business hours and ordering instructions](/images/evergreen-donkatsu/entrance.webp)
 _Handwritten signs at the entrance — business hours and the house rules. Peak local restaurant energy._
 
 The system is simple: order at the kiosk outside, wait for your number, then head in. Once seated, help yourself to the **banchan bar** — rice from a Cuckoo rice cooker, fresh coleslaw with creamy dressing, kkakdugi (cubed radish kimchi), and danmuji (pickled radish).
 
-![Self-service banchan bar with rice cooker, pickled radish, kimchi, and coleslaw](/images/evergreen-donkatsu/banchan-bar.jpg)
+![Self-service banchan bar with rice cooker, pickled radish, kimchi, and coleslaw](/images/evergreen-donkatsu/banchan-bar.webp)
 _The banchan bar: rice, kkakdugi, radish, and coleslaw — self-service, eat as much as you want_
 
-![Plate of fresh coleslaw with creamy dressing, kkakdugi, and danmuji](/images/evergreen-donkatsu/coleslaw-plate.jpg)
+![Plate of fresh coleslaw with creamy dressing, kkakdugi, and danmuji](/images/evergreen-donkatsu/coleslaw-plate.webp)
 _The coleslaw alone is worth mentioning — crunchy, creamy, and generous_
 
 The seating is tight — you'll be close enough to your neighbor to share a conversation (whether you planned to or not). But that's part of the charm. It feels like eating at someone's house where everyone's welcome.
 
-![Table setup for two — both plates of donkatsu with bread and soup, plus the shared banchan plate](/images/evergreen-donkatsu/table-setup.jpg)
+![Table setup for two — both plates of donkatsu with bread and soup, plus the shared banchan plate](/images/evergreen-donkatsu/table-setup.webp)
 _Date-worthy? Absolutely. Just don't expect candlelight — expect great food._
 
 ## How It Compares
