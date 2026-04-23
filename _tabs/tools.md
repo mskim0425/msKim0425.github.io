@@ -649,12 +649,12 @@ function cronDescribe(m, h, dom, mon, dow) {
   var MONTHS = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
   var parts = [];
 
-  // Minute
+  /* Minute */
   if (m === '*') parts.push('Every minute');
   else if (m.indexOf('/') > -1) parts.push('Every ' + m.split('/')[1] + ' minutes');
   else parts.push('At minute ' + m);
 
-  // Hour
+  /* Hour */
   if (h !== '*') {
     if (h.indexOf('/') > -1) parts[0] = 'Every ' + h.split('/')[1] + ' hours';
     else {
@@ -666,17 +666,17 @@ function cronDescribe(m, h, dom, mon, dow) {
     }
   }
 
-  // Day of month
+  /* Day of month */
   if (dom !== '*') parts.push('on day ' + dom + ' of the month');
 
-  // Month
+  /* Month */
   if (mon !== '*') {
     var mIdx = parseInt(mon);
     if (mIdx >= 1 && mIdx <= 12) parts.push('in ' + MONTHS[mIdx]);
     else parts.push('in month ' + mon);
   }
 
-  // Day of week
+  /* Day of week */
   if (dow !== '*') {
     var dowStr = dow.split(',').map(function(d) {
       if (d.indexOf('-') > -1) {
