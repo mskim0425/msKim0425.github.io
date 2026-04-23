@@ -421,5 +421,3 @@ input.addEventListener('change', async (e) => {
 작은 것부터 하나씩. 완벽한 파이프라인을 한 번에 구축하려 하지 말고, 지금 가장 아픈 곳부터 개선하면 된다.
 
 ---
-
-*이미지 최적화에 관해 더 깊이 알고 싶다면 [web.dev의 이미지 가이드](https://web.dev/fast/#optimize-your-images)를 추천한다.*
