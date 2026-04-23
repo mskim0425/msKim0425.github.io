@@ -185,11 +185,11 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 <div id="panel-json" class="tool-panel active">
   <div class="tc">
     <div class="tool-btn-row">
-      <button class="tool-btn tool-btn-primary" onclick="jsonFormat()">Format <span class="kr">정리</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="jsonMinify()">Minify <span class="kr">압축</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="jsonValidate()">Validate <span class="kr">검증</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="jsonCopy()">Copy <span class="kr">복사</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="jsonClear()">Clear <span class="kr">초기화</span></button>
+      <button class="tool-btn tool-btn-primary" data-action="jsonFormat">Format <span class="kr">정리</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="jsonMinify">Minify <span class="kr">압축</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="jsonValidate">Validate <span class="kr">검증</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="jsonCopy">Copy <span class="kr">복사</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="jsonClear">Clear <span class="kr">초기화</span></button>
       <span class="tool-divider"></span>
       <select id="indentSize" class="tool-btn tool-btn-secondary" style="appearance:auto;">
         <option value="2" selected>2 spaces</option>
@@ -224,12 +224,12 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 <div id="panel-diff" class="tool-panel">
   <div class="tc">
     <div class="tool-btn-row">
-      <button class="tool-btn tool-btn-primary" onclick="diffRun()">Compare <span class="kr">비교</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="diffSwap()">Swap <span class="kr">교체</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="diffClear()">Clear <span class="kr">초기화</span></button>
+      <button class="tool-btn tool-btn-primary" data-action="diffRun">Compare <span class="kr">비교</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="diffSwap">Swap <span class="kr">교체</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="diffClear">Clear <span class="kr">초기화</span></button>
       <span class="tool-divider"></span>
-      <button class="opt-btn" id="btnWhitespace" onclick="diffToggleOpt('ignoreWhitespace')">Whitespace <span class="kr">공백 무시</span></button>
-      <button class="opt-btn" id="btnCase" onclick="diffToggleOpt('ignoreCase')">Case <span class="kr">대소문자 무시</span></button>
+      <button class="opt-btn" id="btnWhitespace" data-action="diffToggleOpt" data-arg="ignoreWhitespace"">Whitespace <span class="kr">공백 무시</span></button>
+      <button class="opt-btn" id="btnCase" data-action="diffToggleOpt" data-arg="ignoreCase"">Case <span class="kr">대소문자 무시</span></button>
     </div>
     <div id="diffStatus" class="tool-status"></div>
     <div class="tool-row">
@@ -259,23 +259,23 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 <div id="panel-cron" class="tool-panel">
   <div class="tc">
     <div class="tool-btn-row">
-      <button class="tool-btn tool-btn-primary" onclick="cronCopy()">Copy <span class="kr">복사</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="cronReset()">Reset <span class="kr">초기화</span></button>
+      <button class="tool-btn tool-btn-primary" data-action="cronCopy">Copy <span class="kr">복사</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="cronReset">Reset <span class="kr">초기화</span></button>
     </div>
 
     <span class="tool-label">PRESETS <span style="font-weight:400;opacity:0.6;">프리셋</span></span>
     <div class="cron-presets">
-      <button class="cron-preset" onclick="cronPreset('* * * * *',this)">Every Minute</button>
-      <button class="cron-preset" onclick="cronPreset('0 * * * *',this)">Every Hour</button>
-      <button class="cron-preset" onclick="cronPreset('0 0 * * *',this)">Every Day (midnight)</button>
-      <button class="cron-preset" onclick="cronPreset('0 9 * * *',this)">Every Day (9 AM)</button>
-      <button class="cron-preset" onclick="cronPreset('0 9 * * 1-5',this)">Weekdays 9 AM</button>
-      <button class="cron-preset" onclick="cronPreset('0 0 * * 0',this)">Every Sunday</button>
-      <button class="cron-preset" onclick="cronPreset('0 0 1 * *',this)">1st of Month</button>
-      <button class="cron-preset" onclick="cronPreset('*/5 * * * *',this)">Every 5 Min</button>
-      <button class="cron-preset" onclick="cronPreset('*/15 * * * *',this)">Every 15 Min</button>
-      <button class="cron-preset" onclick="cronPreset('0 */2 * * *',this)">Every 2 Hours</button>
-      <button class="cron-preset" onclick="cronPreset('0 0 1 1 *',this)">Yearly (Jan 1)</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="* * * * *"">Every Minute</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 * * * *"">Every Hour</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 * * *"">Every Day (midnight)</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 9 * * *"">Every Day (9 AM)</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 9 * * 1-5"">Weekdays 9 AM</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 * * 0"">Every Sunday</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 1 * *"">1st of Month</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="*/5 * * * *"">Every 5 Min</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="*/15 * * * *"">Every 15 Min</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 */2 * * *"">Every 2 Hours</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 1 1 *"">Yearly (Jan 1)</button>
     </div>
 
     <span class="tool-label">EXPRESSION <span style="font-weight:400;opacity:0.6;">크론 표현식</span></span>
@@ -286,23 +286,23 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
     <div class="cron-grid">
       <div class="cron-field">
         <label>Minute <span style="opacity:0.6">분</span></label>
-        <input type="text" id="cronMin" value="*" oninput="cronUpdate()">
+        <input type="text" id="cronMin" value="*" data-oninput="cronUpdate">
       </div>
       <div class="cron-field">
         <label>Hour <span style="opacity:0.6">시</span></label>
-        <input type="text" id="cronHour" value="*" oninput="cronUpdate()">
+        <input type="text" id="cronHour" value="*" data-oninput="cronUpdate">
       </div>
       <div class="cron-field">
         <label>Day <span style="opacity:0.6">일</span></label>
-        <input type="text" id="cronDom" value="*" oninput="cronUpdate()">
+        <input type="text" id="cronDom" value="*" data-oninput="cronUpdate">
       </div>
       <div class="cron-field">
         <label>Month <span style="opacity:0.6">월</span></label>
-        <input type="text" id="cronMonth" value="*" oninput="cronUpdate()">
+        <input type="text" id="cronMonth" value="*" data-oninput="cronUpdate">
       </div>
       <div class="cron-field">
         <label>Weekday <span style="opacity:0.6">요일</span></label>
-        <input type="text" id="cronDow" value="*" oninput="cronUpdate()">
+        <input type="text" id="cronDow" value="*" data-oninput="cronUpdate">
       </div>
     </div>
 
@@ -339,28 +339,28 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
     <div class="ts-live-clock">
       <div class="ts-live-time" id="tsLiveTime">--:--:--</div>
       <div class="ts-live-date" id="tsLiveDate">Loading...</div>
-      <div class="ts-live-unix" id="tsLiveUnix" onclick="tsCopyUnix()" title="Click to copy 클릭하여 복사">Unix: ---</div>
+      <div class="ts-live-unix" id="tsLiveUnix" data-action="tsCopyUnix" title="Click to copy 클릭하여 복사">Unix: ---</div>
     </div>
 
     <span class="tool-label">CONVERTER <span style="font-weight:400;opacity:0.6;">변환기</span></span>
     <div class="ts-converter">
       <div>
         <span class="tool-label" style="font-size:0.78rem;">Unix Timestamp</span>
-        <input type="text" class="ts-input" id="tsUnixInput" placeholder="e.g. 1711785600" oninput="tsFromUnix()">
+        <input type="text" class="ts-input" id="tsUnixInput" placeholder="e.g. 1711785600" data-oninput="tsFromUnix">
       </div>
       <div class="ts-arrow">⇄</div>
       <div>
         <span class="tool-label" style="font-size:0.78rem;">Human Date (ISO 8601)</span>
-        <input type="text" class="ts-input" id="tsHumanInput" placeholder="e.g. 2026-03-30T12:00:00" oninput="tsFromHuman()">
+        <input type="text" class="ts-input" id="tsHumanInput" placeholder="e.g. 2026-03-30T12:00:00" data-oninput="tsFromHuman">
       </div>
     </div>
 
     <div class="tool-btn-row" style="margin-top:4px;">
-      <button class="tool-btn tool-btn-primary" onclick="tsNow()">Now <span class="kr">현재</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="tsCopy()">Copy <span class="kr">복사</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="tsClear()">Clear <span class="kr">초기화</span></button>
+      <button class="tool-btn tool-btn-primary" data-action="tsNow">Now <span class="kr">현재</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="tsCopy">Copy <span class="kr">복사</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="tsClear">Clear <span class="kr">초기화</span></button>
       <span class="tool-divider"></span>
-      <select id="tsUnit" class="tool-btn tool-btn-secondary" style="appearance:auto;" onchange="tsFromUnix()">
+      <select id="tsUnit" class="tool-btn tool-btn-secondary" style="appearance:auto;" data-onchange="tsFromUnix">
         <option value="s" selected>Seconds (s)</option>
         <option value="ms">Milliseconds (ms)</option>
       </select>
@@ -387,12 +387,12 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 <div id="panel-base64" class="tool-panel">
   <div class="tc">
     <div class="tool-btn-row">
-      <button class="tool-btn tool-btn-primary" onclick="b64Encode()">Encode <span class="kr">인코딩</span></button>
-      <button class="tool-btn tool-btn-primary" onclick="b64Decode()">Decode <span class="kr">디코딩</span></button>
+      <button class="tool-btn tool-btn-primary" data-action="b64Encode">Encode <span class="kr">인코딩</span></button>
+      <button class="tool-btn tool-btn-primary" data-action="b64Decode">Decode <span class="kr">디코딩</span></button>
       <span class="tool-divider"></span>
-      <button class="tool-btn tool-btn-secondary" onclick="b64Copy()">Copy Output <span class="kr">결과 복사</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="b64Swap()">Swap ⇄ <span class="kr">교환</span></button>
-      <button class="tool-btn tool-btn-secondary" onclick="b64Clear()">Clear <span class="kr">초기화</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="b64Copy">Copy Output <span class="kr">결과 복사</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="b64Swap">Swap ⇄ <span class="kr">교환</span></button>
+      <button class="tool-btn tool-btn-secondary" data-action="b64Clear">Clear <span class="kr">초기화</span></button>
       <span class="tool-divider"></span>
       <select id="b64Charset" class="tool-btn tool-btn-secondary" style="appearance:auto;">
         <option value="utf8" selected>UTF-8</option>
@@ -417,9 +417,9 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
     </div>
 
     <span class="tool-label" style="margin-top:8px;">FILE ENCODE / DECODE <span style="font-weight:400;opacity:0.6;">파일 인코딩 / 디코딩</span></span>
-    <div style="padding:20px;border:2px dashed #444;border-radius:8px;text-align:center;color:#6c7086;font-size:0.85rem;cursor:pointer;transition:border-color 0.2s;" id="b64DropZone" onclick="document.getElementById('b64FileInput').click()">
+    <div style="padding:20px;border:2px dashed #444;border-radius:8px;text-align:center;color:#6c7086;font-size:0.85rem;cursor:pointer;transition:border-color 0.2s;" id="b64DropZone" data-action="b64DropClick">
       Drop a file here or click to select<br><span style="font-size:0.75rem;">파일을 여기에 드래그하거나 클릭하여 선택 (max 5MB)</span>
-      <input type="file" id="b64FileInput" style="display:none;" onchange="b64FileEncode(this)">
+      <input type="file" id="b64FileInput" style="display:none;" data-onchange="b64FileEncode">
     </div>
     <div id="b64FileStatus" class="tool-status"></div>
 
@@ -859,13 +859,16 @@ function tsShowFormats(d) {
   ];
   var html = '';
   for (var i = 0; i < rows.length; i++) {
-    html += '<div class="ts-format-row" onclick="tsCopyText(\'' + String(rows[i][1]).replace(/'/g,"\\'") + '\')" title="Click to copy">';
+    html += '<div class="ts-format-row" data-copy="' + String(rows[i][1]).replace(/"/g,'&quot;') + '" title="Click to copy">';
     html += '<span class="ts-format-label">' + rows[i][0] + '</span>';
     html += '<span class="ts-format-value">' + rows[i][1] + '</span>';
     html += '</div>';
   }
   el.innerHTML = html;
   el.style.display = 'block';
+  el.querySelectorAll('.ts-format-row[data-copy]').forEach(function(row) {
+    row.addEventListener('click', function() { tsCopyText(row.getAttribute('data-copy')); });
+  });
 }
 
 function tsRelative(d) {
@@ -1029,4 +1032,60 @@ function b64FileShowStatus(msg, type) {
 
 /* Live char count on input */
 document.getElementById('b64Input').addEventListener('input', function() { b64UpdateStats(); });
+
+/* ===== Bind all data-action / data-oninput / data-onchange ===== */
+(function() {
+  var actions = {
+    jsonFormat: jsonFormat, jsonMinify: jsonMinify, jsonValidate: jsonValidate,
+    jsonCopy: jsonCopy, jsonClear: jsonClear,
+    diffRun: diffRun, diffSwap: diffSwap, diffClear: diffClear,
+    cronCopy: cronCopy, cronReset: cronReset,
+    tsNow: tsNow, tsCopy: tsCopy, tsClear: tsClear, tsCopyUnix: tsCopyUnix,
+    b64Encode: b64Encode, b64Decode: b64Decode, b64Copy: b64Copy,
+    b64Swap: b64Swap, b64Clear: b64Clear,
+    b64DropClick: function() { document.getElementById('b64FileInput').click(); }
+  };
+
+  /* data-action="funcName" click bindings */
+  document.querySelectorAll('[data-action]').forEach(function(el) {
+    var name = el.getAttribute('data-action');
+
+    /* Special: diffToggleOpt with data-arg */
+    if (name === 'diffToggleOpt') {
+      el.addEventListener('click', function() { diffToggleOpt(el.getAttribute('data-arg')); });
+      return;
+    }
+
+    /* Special: cronPreset with data-arg */
+    if (name === 'cronPreset') {
+      el.addEventListener('click', function() { cronPreset(el.getAttribute('data-arg'), el); });
+      return;
+    }
+
+    if (actions[name]) {
+      el.addEventListener('click', function() { actions[name](); });
+    }
+  });
+
+  /* data-oninput="funcName" input bindings */
+  var inputActions = {
+    cronUpdate: cronUpdate, tsFromUnix: tsFromUnix, tsFromHuman: tsFromHuman
+  };
+  document.querySelectorAll('[data-oninput]').forEach(function(el) {
+    var name = el.getAttribute('data-oninput');
+    if (inputActions[name]) {
+      el.addEventListener('input', function() { inputActions[name](); });
+    }
+  });
+
+  /* data-onchange="funcName" change bindings */
+  document.querySelectorAll('[data-onchange]').forEach(function(el) {
+    var name = el.getAttribute('data-onchange');
+    if (name === 'tsFromUnix') {
+      el.addEventListener('change', function() { tsFromUnix(); });
+    } else if (name === 'b64FileEncode') {
+      el.addEventListener('change', function() { b64FileEncode(el); });
+    }
+  });
+})();
 </script>
