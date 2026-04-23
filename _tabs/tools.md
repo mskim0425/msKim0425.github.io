@@ -228,8 +228,8 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
       <button class="tool-btn tool-btn-secondary" data-action="diffSwap">Swap <span class="kr">교체</span></button>
       <button class="tool-btn tool-btn-secondary" data-action="diffClear">Clear <span class="kr">초기화</span></button>
       <span class="tool-divider"></span>
-      <button class="opt-btn" id="btnWhitespace" data-action="diffToggleOpt" data-arg="ignoreWhitespace"">Whitespace <span class="kr">공백 무시</span></button>
-      <button class="opt-btn" id="btnCase" data-action="diffToggleOpt" data-arg="ignoreCase"">Case <span class="kr">대소문자 무시</span></button>
+      <button class="opt-btn" id="btnWhitespace" data-action="diffToggleOpt" data-arg="ignoreWhitespace">Whitespace <span class="kr">공백 무시</span></button>
+      <button class="opt-btn" id="btnCase" data-action="diffToggleOpt" data-arg="ignoreCase">Case <span class="kr">대소문자 무시</span></button>
     </div>
     <div id="diffStatus" class="tool-status"></div>
     <div class="tool-row">
@@ -265,17 +265,17 @@ description: Free online developer tools — JSON Formatter, Diff Checker, Cron 
 
     <span class="tool-label">PRESETS <span style="font-weight:400;opacity:0.6;">프리셋</span></span>
     <div class="cron-presets">
-      <button class="cron-preset" data-action="cronPreset" data-arg="* * * * *"">Every Minute</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 * * * *"">Every Hour</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 * * *"">Every Day (midnight)</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 9 * * *"">Every Day (9 AM)</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 9 * * 1-5"">Weekdays 9 AM</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 * * 0"">Every Sunday</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 1 * *"">1st of Month</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="*/5 * * * *"">Every 5 Min</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="*/15 * * * *"">Every 15 Min</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 */2 * * *"">Every 2 Hours</button>
-      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 1 1 *"">Yearly (Jan 1)</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="* * * * *">Every Minute</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 * * * *">Every Hour</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 * * *">Every Day (midnight)</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 9 * * *">Every Day (9 AM)</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 9 * * 1-5">Weekdays 9 AM</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 * * 0">Every Sunday</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 1 * *">1st of Month</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="*/5 * * * *">Every 5 Min</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="*/15 * * * *">Every 15 Min</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 */2 * * *">Every 2 Hours</button>
+      <button class="cron-preset" data-action="cronPreset" data-arg="0 0 1 1 *">Yearly (Jan 1)</button>
     </div>
 
     <span class="tool-label">EXPRESSION <span style="font-weight:400;opacity:0.6;">크론 표현식</span></span>
