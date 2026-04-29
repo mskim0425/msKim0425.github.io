@@ -1,0 +1,53 @@
+# SoThoughtful;
+
+> A personal blog by Minsub Kim — backend developer, food explorer, and cultural storyteller based in Seoul, Korea.
+
+## About This Site
+
+SoThoughtful; covers four main topics:
+
+- **Dev**: Backend development tutorials and real-world notes on Java, Spring, Ruby on Rails, SQL, design patterns, infrastructure, and system design.
+- **Korean Food**: Honest restaurant reviews in Seoul with photos, menu details, pricing, and practical tips for visitors.
+- **K-Culture**: Korean culture, YouTube trends, and lifestyle content — a window into modern Korean life.
+- **MBTI & Lifestyle**: Personality-based content exploring how MBTI types experience food, travel, and work.
+
+## Key Pages
+
+- Homepage: https://sothoughtful.dev/
+- About: https://sothoughtful.dev/about/
+- Categories: https://sothoughtful.dev/categories/
+- Tags: https://sothoughtful.dev/tags/
+- Archives: https://sothoughtful.dev/archives/
+- Privacy Policy: https://sothoughtful.dev/privacy-policy/
+- Tools: https://sothoughtful.dev/tools/
+
+## Free Developer Tools
+
+### JSON Formatter & Validator
+Free online JSON formatter, validator, and minifier. Runs 100% in the browser — no data sent to any server.
+URL: https://sothoughtful.dev/tools/json-formatter/
+
+### Diff Checker
+Free online text comparison tool. Compare two blocks of text and see differences highlighted. Runs entirely in the browser.
+URL: https://sothoughtful.dev/tools/diff-checker/
+
+## Content Highlights
+
+### Korean Food Reviews
+Restaurant reviews with course-by-course photos, pricing, reservation tips, and Google Maps links. Written from a local Korean perspective for an international audience.
+
+### Backend Development
+Practical notes on Java, Spring Boot, Ruby on Rails, SQL optimization, design patterns, caching strategies, Kafka, Docker, and CI/CD. Written by a working backend developer.
+
+## Author
+
+- Name: Minsub Kim
+- GitHub: https://github.com/msKim0425
+
+## Technical Details
+
+- Built with: Jekyll + Chirpy Theme
+- Hosted on: GitHub Pages
+- Language: English (primary), Korean (legacy posts)
+- Feed: https://sothoughtful.dev/feed.xml
+- Sitemap: https://sothoughtful.dev/sitemap.xml
