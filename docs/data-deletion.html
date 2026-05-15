@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쉬운 SNS · Data Deletion · 사용자 데이터 삭제 안내</title>
+<style>
+  :root {
+    --teal: #4DB6AC;
+    --ink: #111;
+    --muted: #555;
+    --line: #e5e5e5;
+    --bg: #fff;
+    --warn-bg: #FFF8E1;
+    --warn-line: #FFB300;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 17px;
+  }
+  header {
+    background: var(--teal);
+    color: #fff;
+    padding: 28px 20px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 4px; font-size: 22px; }
+  header p { margin: 0; opacity: 0.92; font-size: 14px; }
+  nav.lang {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  nav.lang a {
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.6);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+  }
+  nav.lang a:hover { background: rgba(255,255,255,0.15); }
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+  section + section { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+  h2 { font-size: 20px; margin: 32px 0 12px; }
+  h3 { font-size: 16px; margin: 24px 0 8px; color: var(--ink); }
+  p, li { color: var(--ink); }
+  small { color: var(--muted); display: block; margin-top: 4px; }
+  a { color: #00796B; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .notice {
+    background: var(--warn-bg);
+    border-left: 4px solid var(--warn-line);
+    padding: 12px 14px;
+    margin: 16px 0;
+    font-size: 15px;
+    border-radius: 4px;
+  }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px; }
+  code { background: #f4f4f4; padding: 1px 6px; border-radius: 4px; font-size: 14px; }
+  .breadcrumb {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 12px 20px 0;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .breadcrumb a { color: #00796B; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>쉬운 SNS / Easy SNS</h1>
+  <p>User Data Deletion Instructions · 사용자 데이터 삭제 안내</p>
+  <nav class="lang">
+    <a href="#ko">한국어</a>
+    <a href="#en">English</a>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <a href="./">← 개인정보처리방침으로 돌아가기 / Back to Privacy Policy</a>
+</div>
+
+<main>
+
+<!-- ============================ 한국어 ============================ -->
+<section id="ko">
+  <h2>사용자 데이터 삭제 안내 (한국어)</h2>
+  <small>최종 업데이트: 2026년 5월 13일</small>
+
+  <p>이 페이지는 "쉬운 SNS"(이하 "이 앱")에서 사용자가 본인의 데이터를 어떻게 삭제할 수 있는지 안내합니다. 이 앱은 사용자 데이터를 외부 서버에 저장하지 않으므로, 모든 데이터는 사용자가 직접 본인의 기기와 페이스북 계정에서 제거할 수 있습니다.</p>
+
+  <div class="notice">
+    <strong>요약:</strong> 이 앱은 자체 서버를 운영하지 않습니다. 모든 데이터는 (1) 사용자의 안드로이드 기기 내부 또는 (2) 사용자 본인의 페이스북 계정에만 존재합니다. 따라서 데이터 삭제를 위해 저희에게 별도 요청을 보내실 필요가 없습니다.
+  </div>
+
+  <h3>1. 이 앱이 다루는 데이터 (재확인)</h3>
+  <ul>
+    <li><strong>Facebook 액세스 토큰</strong> — 사용자의 안드로이드 기기 내부에 암호화되어 저장됨 (외부 전송 없음).</li>
+    <li><strong>Facebook 사용자/페이지 이름</strong> — 설정 화면 표시용. 기기 내부에만 저장.</li>
+    <li><strong>게시할 사진/글</strong> — 사용자가 직접 선택·입력. 게시가 끝나면 앱 메모리에서 즉시 폐기.</li>
+  </ul>
+  <p>자세한 내용은 <a href="./">개인정보처리방침</a>을 참고해 주세요.</p>
+
+  <h3>2. 앱 안에서 직접 삭제하기 (가장 간단한 방법)</h3>
+  <ol>
+    <li>"쉬운 SNS" 앱 실행</li>
+    <li>홈 화면 우상단 <strong>설정(⚙️)</strong> 아이콘 누르기</li>
+    <li><strong>페이스북 로그아웃</strong> 버튼 누르기</li>
+    <li>확인 다이얼로그에서 <strong>"네, 로그아웃"</strong> 누르기</li>
+  </ol>
+  <p>이 절차로 기기 내부에 저장된 Facebook 액세스 토큰과 사용자 이름이 즉시 삭제됩니다.</p>
+
+  <h3>3. 앱 자체를 삭제하기 (완전 제거)</h3>
+  <ol>
+    <li>안드로이드 홈 화면에서 "쉬운 SNS" 아이콘 길게 누르기</li>
+    <li><strong>앱 정보</strong> 또는 <strong>제거</strong> 선택</li>
+    <li>삭제 확인</li>
+  </ol>
+  <p>앱이 제거되면 안드로이드가 자동으로 앱이 저장한 모든 로컬 데이터(토큰, 캐시 등)를 함께 삭제합니다.</p>
+
+  <h3>4. 페이스북 측에서 앱 권한 해제하기</h3>
+  <p>위 1번·2번 절차만으로도 이 앱은 더 이상 페이스북 데이터에 접근할 수 없습니다. 다만 페이스북 계정 쪽에 남아 있는 "이 앱이 한 번이라도 연결됐었다"는 기록까지 지우시려면:</p>
+  <ol>
+    <li>페이스북 공식 앱 또는 <a href="https://www.facebook.com/settings?tab=business_tools" target="_blank" rel="noopener">facebook.com 설정 페이지</a> 접속</li>
+    <li><strong>설정 및 개인정보 보호 → 설정 → 비즈니스 통합</strong> (또는 <strong>앱 및 웹사이트</strong>) 이동</li>
+    <li>목록에서 <strong>"쉬운 SNS"</strong> 또는 해당 앱 찾기</li>
+    <li><strong>삭제(Remove)</strong> 클릭</li>
+  </ol>
+  <p>이 단계까지 마치시면 Meta(Facebook) 측에 남아 있던 본 앱의 권한 부여 기록도 완전히 제거됩니다.</p>
+
+  <h3>5. 페이스북에 이미 게시된 글</h3>
+  <p>이 앱을 통해 페이스북에 게시된 사진과 글은 사용자 본인의 페이스북 계정에 일반 게시물로 남아 있습니다. 이를 삭제하시려면 페이스북 공식 앱 또는 웹사이트에서 해당 게시물을 찾아 직접 삭제해 주세요. 이 앱은 게시 이후 해당 글에 더 이상 관여하지 않습니다.</p>
+
+  <h3>6. 추가 도움이 필요하신 경우</h3>
+  <p>위 절차로 해결되지 않는 데이터 삭제 요청이 있으시면 아래로 연락해 주십시오. 영업일 기준 30일 이내에 답변드립니다.<br>
+  이메일: <a href="mailto:sothoughtful@deali.net">sothoughtful@deali.net</a><br>
+  메일 제목 예시: <code>[쉬운 SNS] 데이터 삭제 요청</code></p>
+  <p>요청 메일에 다음 정보를 포함해 주시면 처리가 빠릅니다:</p>
+  <ul>
+    <li>본인 페이스북 계정 식별 정보 (이름 또는 이메일)</li>
+    <li>앱 사용 추정 시점</li>
+    <li>삭제를 원하시는 데이터의 종류</li>
+  </ul>
+</section>
+
+<!-- ============================ English ============================ -->
+<section id="en">
+  <h2>User Data Deletion Instructions (English)</h2>
+  <small>Last updated: May 13, 2026</small>
+
+  <p>This page explains how a user of "Easy SNS" (the "App") can delete their own data. The App does not store user data on any backend server, so all data can be removed directly by the user from their own device and Facebook account.</p>
+
+  <div class="notice">
+    <strong>Summary:</strong> The App operates no backend server. All data lives either (1) on the user's Android device or (2) inside the user's own Facebook account. You do not need to send us a request to have data deleted.
+  </div>
+
+  <h3>1. Data Handled by the App (Recap)</h3>
+  <ul>
+    <li><strong>Facebook access token</strong> — stored encrypted on the user's Android device (never uploaded).</li>
+    <li><strong>Facebook user / page name</strong> — used in the Settings screen, stored on-device only.</li>
+    <li><strong>Photos and text to post</strong> — selected/typed by the user, discarded from app memory right after the post attempt completes.</li>
+  </ul>
+  <p>For details see the <a href="./">Privacy Policy</a>.</p>
+
+  <h3>2. Delete from within the App (Easiest)</h3>
+  <ol>
+    <li>Launch the "Easy SNS" app.</li>
+    <li>Tap the <strong>Settings (⚙️)</strong> icon at the top-right of the home screen.</li>
+    <li>Tap <strong>Log out of Facebook</strong>.</li>
+    <li>Confirm <strong>"Yes, log out"</strong> in the dialog.</li>
+  </ol>
+  <p>This immediately removes the Facebook access token and user name stored on your device.</p>
+
+  <h3>3. Uninstall the App (Full Wipe)</h3>
+  <ol>
+    <li>Long-press the "Easy SNS" icon on your Android home screen.</li>
+    <li>Choose <strong>App info</strong> or <strong>Uninstall</strong>.</li>
+    <li>Confirm.</li>
+  </ol>
+  <p>Android will remove all local data the App stored (tokens, caches) along with the app.</p>
+
+  <h3>4. Revoke App Permission on Facebook</h3>
+  <p>Steps 2–3 are already enough to stop the App from accessing your Facebook. If you also want to remove the "this app was once connected" record kept on Facebook's side:</p>
+  <ol>
+    <li>Open the official Facebook app, or <a href="https://www.facebook.com/settings?tab=business_tools" target="_blank" rel="noopener">facebook.com settings</a>.</li>
+    <li>Go to <strong>Settings &amp; privacy → Settings → Business Integrations</strong> (or <strong>Apps and Websites</strong>).</li>
+    <li>Find <strong>"Easy SNS"</strong> in the list.</li>
+    <li>Click <strong>Remove</strong>.</li>
+  </ol>
+  <p>After this, the authorization record on Meta's side is fully cleared.</p>
+
+  <h3>5. Posts Already Published on Facebook</h3>
+  <p>Photos and text published via the App live in your Facebook account as regular posts. To delete them, go to the official Facebook app or website, find the post, and delete it there. The App has no further connection to those posts after publication.</p>
+
+  <h3>6. Need Further Help?</h3>
+  <p>If you have a deletion request that the steps above do not solve, please contact us. We respond within 30 business days.<br>
+  Email: <a href="mailto:sothoughtful@deali.net">sothoughtful@deali.net</a><br>
+  Suggested subject: <code>[Easy SNS] Data deletion request</code></p>
+  <p>Including the following information in your email speeds up the process:</p>
+  <ul>
+    <li>An identifier for your Facebook account (name or email)</li>
+    <li>Approximate dates when you used the App</li>
+    <li>The kinds of data you want deleted</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  &copy; 2026 Easy SNS Project · Hosted on GitHub Pages
+</footer>
+
+</body>
+</html>
