@@ -15,7 +15,7 @@ restaurant:
   station: "Hyehwa Station, Line 4"
   price_range: "₩10,000–13,000"
   must_order: "Traditional Sundaeguk Special (전통순대국밥 특) + chives & perilla powder"
-  rating: 4.5
+  rating: 4.6
   visited: "March 2026"
   verdict: "The richest sundaeguk in town — order the Special, hit the banchan bar, finish with frozen sikhye."
   maps: "https://maps.app.goo.gl/bAaoRwzXcFkqzVk97"

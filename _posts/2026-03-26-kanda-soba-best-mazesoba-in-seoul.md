@@ -15,7 +15,7 @@ restaurant:
   station: "Hyehwa Station, Line 4"
   price_range: "₩11,000–15,000"
   must_order: "Mazesoba (add the gyoza set)"
-  rating: 4.5
+  rating: 4.7
   visited: "March 2026"
   verdict: "Top-3 mazesoba in Seoul — worth a 10-minute walk in the cold, every time."
   maps: "https://maps.app.goo.gl/6mzxuD7DB8BAGLor6"

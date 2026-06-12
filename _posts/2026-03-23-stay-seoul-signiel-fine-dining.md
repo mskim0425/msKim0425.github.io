@@ -16,7 +16,7 @@ restaurant:
   station: "Jamsil Station, Line 2/8"
   price_range: "₩200,000–300,000+ per person"
   must_order: "'Must Try' dinner tasting course (+window seat at sunset)"
-  rating: 4.8
+  rating: 4.5
   visited: "February 2026"
   verdict: "Seoul's definitive view-dining splurge — and the city's best proposal venue."
   reservation: "Book 2+ weeks ahead via SIGNIEL Seoul"

@@ -15,9 +15,9 @@ restaurant:
   station: "Seoul Forest Station Exit 3, Suin-Bundang Line"
   price_range: "Mains ₩19,500–23,500 (~₩40,000–50,000/person)"
   must_order: "Seafood Basil Jjamppong, Bologna Tofu Cream Risotto"
-  rating: 4.5
+  rating: 4.2
   visited: "April 2026"
-  verdict: "Chef Choi Hyun-seok's hottest table in Seoul — book weeks ahead, it delivers."
+  verdict: "Chef Choi Hyun-seok's hottest table in Seoul — worth experiencing once, though the hype runs a bit ahead of the food."
   reservation: "Required — CatchTable, ₩30,000/person deposit"
   maps: "https://maps.app.goo.gl/pwkm4ETPgQyHr2sC9"
 faq:

@@ -15,7 +15,7 @@ restaurant:
   station: "Maebong Station Exit 1, Line 3"
   price_range: "Pasta/risotto ₩21,000–25,000"
   must_order: "Squid Ink Risotto, Hangover Pasta"
-  rating: 4.5
+  rating: 4.7
   visited: "April 2026"
   verdict: "Hotel-trained Italian by Yangjae Stream at neighborhood prices — the squid ink risotto is the reason you come."
   reservation: "Recommended — CatchTable (ask for a window seat)"
