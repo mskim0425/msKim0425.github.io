@@ -49,4 +49,15 @@ You have the right to:
 
 ## Contact
 
-If you have questions about this privacy policy, contact us at **[email removed]**.
+If you have questions about this privacy policy, contact us at <strong id="pp-email"><a href="https://github.com/msKim0425">via GitHub</a></strong>.
+
+<script type="text/javascript">
+  (function () {
+    var p = ['[removed]', 'gmail', 'com'];
+    var addr = p[0] + '@' + p[1] + '.' + p[2];
+    var el = document.getElementById('pp-email');
+    if (el) {
+      el.innerHTML = '<a href="mailto:' + addr + '">' + addr + '</a>';
+    }
+  })();
+</script>

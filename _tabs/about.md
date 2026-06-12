@@ -26,6 +26,17 @@ I've been writing in Korean for years, and I love it. But I want to share Korean
 ### Connect
 
 - **GitHub**: [msKim0425](https://github.com/msKim0425)
-- **Email**: [email removed]
+- **Email**: <span id="about-email"><a href="https://github.com/msKim0425">via GitHub</a></span>
+
+<script type="text/javascript">
+  (function () {
+    var p = ['[removed]', 'gmail', 'com'];
+    var addr = p[0] + '@' + p[1] + '.' + p[2];
+    var el = document.getElementById('about-email');
+    if (el) {
+      el.innerHTML = '<a href="mailto:' + addr + '">' + addr + '</a>';
+    }
+  })();
+</script>
 
 If you like what you read, stick around. If you don't, at least check out the food posts. They're objectively great. 😄
