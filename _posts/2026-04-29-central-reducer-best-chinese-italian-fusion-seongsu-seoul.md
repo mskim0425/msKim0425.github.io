@@ -7,7 +7,31 @@ description: "Central Reducer (중앙감속기) in Seongsu is Chef Choi Hyun-seo
 image:
   path: /images/central-reducer/basil-jjamppong.webp
   alt: Seafood basil jjamppong noodle bowl with crusty bread at Central Reducer Seongsu Seoul
+restaurant:
+  name: "Central Reducer (중앙감속기)"
+  cuisine: "Chinese-Italian Fusion"
+  area: "Seongsu-dong, Seoul (near Seoul Forest)"
+  address: "서울특별시 성동구 성수일로6길 7-1, 1F"
+  station: "Seoul Forest Station Exit 3, Suin-Bundang Line"
+  price_range: "Mains ₩19,500–23,500 (~₩40,000–50,000/person)"
+  must_order: "Seafood Basil Jjamppong, Bologna Tofu Cream Risotto"
+  rating: 4.5
+  visited: "April 2026"
+  verdict: "Chef Choi Hyun-seok's hottest table in Seoul — book weeks ahead, it delivers."
+  reservation: "Required — CatchTable, ₩30,000/person deposit"
+  maps: "https://maps.app.goo.gl/pwkm4ETPgQyHr2sC9"
+faq:
+  - q: "What is Central Reducer (중앙감속기)?"
+    a: "A Chinese-Italian fusion restaurant in Seongsu-dong run by celebrity chef Choi Hyun-seok of Netflix's Culinary Class Wars (흑백요리사). Chinese flavors, Italian technique."
+  - q: "Do I need a reservation for Central Reducer?"
+    a: "Yes — one of the hardest tables in Seoul. Book through CatchTable well in advance; a ₩30,000/person deposit applies to your bill."
+  - q: "How much does a meal at Central Reducer cost?"
+    a: "Mains run ₩19,500–23,500 (about $14–17 USD). With appetizers and dessert, expect ₩40,000–50,000 per person."
+  - q: "How do I get to Central Reducer in Seongsu?"
+    a: "Suin-Bundang Line to Seoul Forest Station, Exit 3, then a 10-minute walk into the Seongsu cafe district."
 ---
+
+{% include quick-facts.html %}
 
 ## The Netflix Chef's Hideout in Seongsu
 
