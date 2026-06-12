@@ -8,7 +8,29 @@ description: "Sundae Silrok (순대실록) in Seoul serves the richest sundaeguk
 image:
   path: /images/sundae-silrok/sundaeguk-chives.webp
   alt: Steaming bowl of sundaeguk topped with fresh chives at Sundae Silrok Seoul — best Korean blood sausage soup
+restaurant:
+  name: "Sundae Silrok (순대실록)"
+  cuisine: "Korean — Sundaeguk (blood sausage soup)"
+  area: "Hyehwa (Daehangno), Seoul"
+  station: "Hyehwa Station, Line 4"
+  price_range: "₩10,000–13,000"
+  must_order: "Traditional Sundaeguk Special (전통순대국밥 특) + chives & perilla powder"
+  rating: 4.5
+  visited: "March 2026"
+  verdict: "The richest sundaeguk in town — order the Special, hit the banchan bar, finish with frozen sikhye."
+  maps: "https://maps.app.goo.gl/bAaoRwzXcFkqzVk97"
+faq:
+  - q: "What is sundae (순대)?"
+    a: "Korean sundae is a blood sausage — pork intestine stuffed with glass noodles, barley, pork blood, and vegetables, then steamed. Soft, chewy, mildly savory — a completely different category from Western sausage."
+  - q: "What does \"Special (특)\" mean on the menu?"
+    a: "The upgraded portion — more sundae, more meat, bigger serving. Usually ₩2,000–3,000 more than regular and absolutely worth it."
+  - q: "How do Korean locals eat sundaeguk?"
+    a: "Add a generous amount of chives (부추) and perilla seed powder (들깨가루), then season with salt or shrimp paste (새우젓) to taste."
+  - q: "Is Sundae Silrok foreigner-friendly?"
+    a: "Tablet ordering at the table, photo menu, self-serve banchan — minimal language barrier. Point, tap, eat."
 ---
+
+{% include quick-facts.html %}
 
 ## The Real Korean Soul Food
 

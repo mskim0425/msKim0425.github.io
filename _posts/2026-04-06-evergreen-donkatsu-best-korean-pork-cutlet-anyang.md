@@ -7,7 +7,29 @@ description: "Evergreen (에버그린) in Indeogwon serves handmade Korean-style
 image:
   path: /images/evergreen-donkatsu/donkatsu-plate.webp
   alt: Korean-style donkatsu with rich demi-glace sauce, cream soup, and freshly baked bread at Evergreen in Indeogwon, Anyang
+restaurant:
+  name: "Evergreen (에버그린 수제돈까스)"
+  cuisine: "Korean-style Western — Gyeongsik Donkatsu"
+  area: "Indeogwon, Anyang (Gyeonggi)"
+  locality: "Anyang"
+  station: "Indeogwon Station, Line 4"
+  price_range: "₩14,000 (single menu)"
+  must_order: "Handmade Donkatsu — the only item, and that's the point"
+  rating: 4.5
+  visited: "April 2026"
+  verdict: "Old-school gyeongsik donkatsu done right — the fresh bread and cream soup alone justify the trip."
+  hours: "Weekdays 10:00–15:00, Sat/Holidays 10:00–16:00 · Closed Sun–Mon"
+  maps: "https://maps.app.goo.gl/P3U9gXxN9RYgL3KP6"
+faq:
+  - q: "What kind of donkatsu is this?"
+    a: "Gyeongsik donkatsu (경양식 돈까스) — Korean-style Western pork cutlet with thicker batter and rich demi-glace, served with bread and soup. Completely different from Japanese tonkatsu."
+  - q: "Is there only one menu item?"
+    a: "Yes. Handmade donkatsu for ₩14,000. Sides (coleslaw, rice, kimchi) are self-service and included."
+  - q: "Do I need a reservation?"
+    a: "No reservations. Order at the kiosk; weekday lunch gets busy — arrive before 11:30 to avoid waiting."
 ---
+
+{% include quick-facts.html %}
 
 ## Not Your Typical Donkatsu
 

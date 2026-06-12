@@ -7,7 +7,31 @@ description: "Miette (미에뜨) near Yangjae Stream serves hotel-quality Italia
 image:
   path: /images/miette/squid-ink-risotto.webp
   alt: Squid ink risotto with baby octopus and arugula at Miette Italian restaurant near Yangjae Stream Seoul
+restaurant:
+  name: "Miette (미에뜨)"
+  cuisine: "Italian"
+  area: "Dogok-dong, Gangnam (Yangjae Stream)"
+  address: "서울특별시 강남구 양재천로 195, 나노빌딩 2F"
+  station: "Maebong Station Exit 1, Line 3"
+  price_range: "Pasta/risotto ₩21,000–25,000"
+  must_order: "Squid Ink Risotto, Hangover Pasta"
+  rating: 4.5
+  visited: "April 2026"
+  verdict: "Hotel-trained Italian by Yangjae Stream at neighborhood prices — the squid ink risotto is the reason you come."
+  reservation: "Recommended — CatchTable (ask for a window seat)"
+  maps: "https://maps.app.goo.gl/m8PvQfq7i9x6EZUKA"
+faq:
+  - q: "What is Miette (미에뜨)?"
+    a: "An Italian restaurant in Gangnam's Dogok-dong along Yangjae Stream, run by a former Shilla Hotel chef — Italian dishes made without artificial seasonings."
+  - q: "What should I order at Miette?"
+    a: "The squid ink risotto (먹물 리조또) is the signature; the hangover pasta (해장파스타) is a unique Korean-Italian fusion with spicy seafood broth."
+  - q: "How much does a meal at Miette cost?"
+    a: "Pasta and risotto run ₩21,000–25,000 (about $15–18 USD); a full meal is around ₩40,000–50,000 per person."
+  - q: "Where exactly is Miette located?"
+    a: "2F of the Nano Building, 195 Yangjaecheon-ro, Dogok-dong, Gangnam-gu — a 10-minute walk from Maebong Station Exit 1 (Line 3)."
 ---
+
+{% include quick-facts.html %}
 
 ## A Hotel Chef Hiding by the Stream
 

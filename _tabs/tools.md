@@ -1,7 +1,7 @@
 ---
 layout: page
 icon: fas fa-wrench
-order: 4
+order: 6
 title: Dev Tools
 description: Free online developer tools — JSON Formatter, Diff Checker, Cron Generator, Timestamp Converter, Base64 Encoder/Decoder. No data sent to any server, runs entirely in your browser.
 ---

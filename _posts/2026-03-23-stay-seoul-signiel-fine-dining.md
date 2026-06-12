@@ -8,7 +8,31 @@ description: "STAY by Yannick Alléno at SIGNIEL Seoul — 11-course French tast
 image:
   path: /images/stay-seoul/han-river-sunset.webp
   alt: Sunset view of Han River from STAY restaurant by Yannick Alléno, 81st floor SIGNIEL Seoul Lotte World Tower
+restaurant:
+  name: "STAY by Yannick Alléno"
+  cuisine: "Modern French (Fine Dining)"
+  area: "81F Lotte World Tower (SIGNIEL Seoul), Jamsil, Seoul"
+  address: "81F, Lotte World Tower, 300 Olympic-ro, Songpa-gu"
+  station: "Jamsil Station, Line 2/8"
+  price_range: "₩200,000–300,000+ per person"
+  must_order: "'Must Try' dinner tasting course (+window seat at sunset)"
+  rating: 4.8
+  visited: "February 2026"
+  verdict: "Seoul's definitive view-dining splurge — and the city's best proposal venue."
+  reservation: "Book 2+ weeks ahead via SIGNIEL Seoul"
+  maps: "https://maps.app.goo.gl/vjJnpygy1tdbQNEL6"
+faq:
+  - q: "What is STAY restaurant in Seoul?"
+    a: "STAY (Simple Table Alléno Yannick) is a modern French fine dining restaurant on the 81st floor of Lotte World Tower, inside SIGNIEL Seoul. It's operated by Michelin-starred chef Yannick Alléno and listed in the MICHELIN Guide Seoul."
+  - q: "How much does dinner at STAY Seoul cost?"
+    a: "The Must Try dinner course costs about ₩200,000–300,000+ per person (roughly $150–230 USD), wine pairing additional. Expect around ₩500,000–700,000 for two with drinks."
+  - q: "Is STAY Seoul good for a proposal?"
+    a: "Yes — one of the best in Seoul. ₩50,000 extra guarantees a window seat and ₩30,000 adds a celebration cake with a custom message. Staff coordinate flowers, timing, and ring placement."
+  - q: "What is the dress code for STAY Seoul?"
+    a: "Smart casual to formal. Avoid sneakers, shorts, or T-shirts."
 ---
+
+{% include quick-facts.html %}
 
 ## Why STAY?
 

@@ -6,13 +6,13 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "{{ site.title }}",
-  "url": "{{ site.url }}",
-  "description": "{{ site.description }}",
+  "name": {{ site.title | jsonify }},
+  "url": {{ site.url | jsonify }},
+  "description": {{ site.description | jsonify }},
   "author": {
     "@type": "Person",
-    "name": "{{ site.social.name }}",
-    "url": "{{ site.social.links[0] }}"
+    "name": {{ site.social.name | jsonify }},
+    "url": {{ site.social.links[0] | jsonify }}
   },
   "potentialAction": {
     "@type": "SearchAction",
@@ -24,71 +24,119 @@
 {% endif %}
 
 {% if page.layout == 'post' %}
-<!-- Article Schema for Blog Posts -->
+<!-- Article Schema for all posts -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "{% if page.categories contains 'Korean Food' %}Restaurant{% else %}BlogPosting{% endif %}",
-  {% if page.categories contains 'Korean Food' %}
-  "headline": "{{ page.title | escape }}",
-  "description": "{{ page.content | strip_html | truncatewords: 50 | escape }}",
-  {% else %}
-  "headline": "{{ page.title | escape }}",
-  "description": "{{ page.content | strip_html | truncatewords: 50 | escape }}",
-  {% endif %}
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt | strip_html | truncatewords: 50 | jsonify }},
   "author": {
     "@type": "Person",
-    "name": "{{ site.social.name }}",
-    "url": "{{ site.social.links[0] }}"
+    "name": {{ site.social.name | jsonify }},
+    "url": {{ site.social.links[0] | jsonify }}
   },
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
   "publisher": {
     "@type": "Organization",
-    "name": "{{ site.title }}",
-    "url": "{{ site.url }}"
+    "name": {{ site.title | jsonify }},
+    "url": {{ site.url | jsonify }}
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ page.url | absolute_url }}"
+    "@id": {{ page.url | absolute_url | jsonify }}
   },
   {% if page.image.path %}
-  "image": "{{ page.image.path | absolute_url }}",
+  "image": {{ page.image.path | absolute_url | jsonify }},
   {% endif %}
-  "keywords": "{{ page.tags | join: ', ' }}",
-  "articleSection": "{{ page.categories | join: ' > ' }}",
+  "keywords": {{ page.tags | join: ', ' | jsonify }},
+  "articleSection": {{ page.categories | join: ' > ' | jsonify }},
   "inLanguage": "en"
 }
 </script>
 
-{% if page.categories contains 'Korean Food' %}
-<!-- Restaurant Review Schema -->
+{% if page.restaurant %}
+{% assign r = page.restaurant %}
+<!-- Restaurant Review Schema (structured front matter) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
   "itemReviewed": {
     "@type": "Restaurant",
-    "name": "{{ page.title | split: '—' | first | strip | escape }}"
+    "name": {{ r.name | jsonify }},
+    {% if r.cuisine %}"servesCuisine": {{ r.cuisine | jsonify }},{% endif %}
+    {% if r.price_range %}"priceRange": {{ r.price_range | jsonify }},{% endif %}
+    {% if r.maps %}"hasMap": {{ r.maps | jsonify }},{% endif %}
+    "address": {
+      "@type": "PostalAddress",
+      {% if r.address %}"streetAddress": {{ r.address | jsonify }},{% endif %}
+      "addressLocality": {{ r.locality | default: "Seoul" | jsonify }},
+      "addressCountry": "KR"
+    }
+  },
+  {% if r.rating %}
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": {{ r.rating | jsonify }},
+    "bestRating": "5"
+  },
+  {% endif %}
+  "name": {{ page.title | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ site.social.name | jsonify }},
+    "url": {{ site.social.links[0] | jsonify }}
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "reviewBody": {{ page.content | strip_html | truncatewords: 100 | jsonify }},
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.title | jsonify }},
+    "url": {{ site.url | jsonify }}
+  }
+}
+</script>
+{% elsif page.categories contains 'Korean Food' %}
+<!-- Fallback Review Schema for legacy food posts without structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Restaurant",
+    "name": {{ page.title | split: '—' | first | strip | jsonify }},
+    "address": { "@type": "PostalAddress", "addressLocality": "Seoul", "addressCountry": "KR" }
   },
   "author": {
     "@type": "Person",
-    "name": "{{ site.social.name }}"
+    "name": {{ site.social.name | jsonify }}
   },
   "datePublished": "{{ page.date | date_to_xmlschema }}",
-  "reviewBody": "{{ page.content | strip_html | truncatewords: 100 | escape }}"
+  "reviewBody": {{ page.content | strip_html | truncatewords: 100 | jsonify }}
 }
 </script>
 {% endif %}
 
-<!-- FAQ Schema if post has FAQ section -->
-{% assign faq_content = page.content | split: '## FAQ' %}
-{% if faq_content.size > 1 %}
+{% if page.faq %}
+<!-- FAQ Schema (from page.faq front matter; mirrors on-page FAQ section) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": []
+  "mainEntity": [
+    {% for item in page.faq %}
+    {
+      "@type": "Question",
+      "name": {{ item.q | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ item.a | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
 }
 </script>
 {% endif %}

@@ -8,7 +8,29 @@ description: "Kanda Soba (칸다소바) in Hyehwa serves the best mazesoba in Se
 image:
   path: /images/kanda-soba/mazesoba.webp
   alt: Mazesoba at Kanda Soba Seoul topped with raw egg yolk, green onions, seaweed, and rich meat sauce — best mazesoba in Hyehwa
+restaurant:
+  name: "Kanda Soba (칸다소바)"
+  cuisine: "Japanese — Mazesoba & Ramen"
+  area: "Hyehwa (Daehangno), Seoul"
+  station: "Hyehwa Station, Line 4"
+  price_range: "₩11,000–15,000"
+  must_order: "Mazesoba (add the gyoza set)"
+  rating: 4.5
+  visited: "March 2026"
+  verdict: "Top-3 mazesoba in Seoul — worth a 10-minute walk in the cold, every time."
+  maps: "https://maps.app.goo.gl/6mzxuD7DB8BAGLor6"
+faq:
+  - q: "What is mazesoba?"
+    a: "Mazesoba (まぜそば) is a Japanese noodle dish — brothless ramen. Thick noodles are served with a concentrated sauce and toppings, and you mix everything together before eating. It's bolder and more intense than regular ramen."
+  - q: "Is Kanda Soba good for non-Korean speakers?"
+    a: "Yes. Kiosk ordering with menus in Korean, English, Japanese, and Chinese — zero language barrier."
+  - q: "How much does a meal cost at Kanda Soba?"
+    a: "A single noodle dish is around ₩11,000 (~$8 USD); adding a gyoza set brings it to about ₩15,000 (~$11 USD)."
+  - q: "Is it crowded during lunch?"
+    a: "Yes, especially 12:00–13:00. Counter-only seating means quick turnover, but expect a short wait at peak hours."
 ---
+
+{% include quick-facts.html %}
 
 ## A 10-Minute Walk That's 100% Worth It
 
