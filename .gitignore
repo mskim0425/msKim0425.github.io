@@ -22,3 +22,6 @@ package-lock.json
 
 Gemfile.lock
 
+
+# local-only planning docs
+_drafts/
