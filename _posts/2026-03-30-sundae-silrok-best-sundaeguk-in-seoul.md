@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Sundae Silrok Seoul — Best Sundaeguk (Korean Blood Sausage Soup) Review"
+title: "Sundae Silrok Review — Best Sundaeguk in Seoul (2026)"
 date: 2026-03-30 12:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [sundae-silrok, sundaeguk, sundaeguk-seoul, korean-food, korean-soul-food, gukbap, sundae, korean-blood-sausage, korean-street-food, comfort-food, seoul-restaurant, local-food-seoul]
-description: "Sundae Silrok (순대실록) in Seoul serves the richest sundaeguk in town — milky broth, tender sundae, free banchan bar, and traditional sikhye. A must-try Korean comfort food for adventurous eaters."
+description: "★4.6 — Seoul's richest sundaeguk (Korean blood sausage soup). ₩10,000–13,000 with a self-serve banchan bar. What it is, how locals eat it, what to order."
 image:
   path: /images/sundae-silrok/sundaeguk-chives.webp
   alt: Steaming bowl of sundaeguk topped with fresh chives at Sundae Silrok Seoul — best Korean blood sausage soup
@@ -151,3 +151,7 @@ A: The ordering is done via a tablet at your table, and the banchan is self-serv
 
 **Q: When is the best time to visit?**
 A: Lunch rush (12:00–13:00) gets busy, but turnover is fast. Off-peak hours (14:00–16:00) are ideal if you want a relaxed meal. And yes — even in summer. Especially in summer.
+
+---
+
+**Also in Hyehwa**: Craving noodles instead? [Kanda Soba — the best mazesoba in Seoul](/posts/kanda-soba-best-mazesoba-in-seoul/) is just around the corner.

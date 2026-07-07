@@ -1,9 +1,9 @@
 ---
-title: "Central Reducer Seongsu — Chef Choi Hyun-seok's Chinese-Italian Fusion (중앙감속기 Menu & Review)"
+title: "Central Reducer Review — Chef Choi Hyun-seok, Seongsu"
 date: 2026-04-29 15:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [central-reducer, 중앙감속기, choi-hyun-seok, 최현석, black-white-chef, 흑백요리사, seongsu-restaurant, chinese-italian-fusion, seoul-food-guide, korea-travel, korean-food-culture, where-to-eat-in-seoul, seongsu, seongsu-dong, seoul-forest]
-description: "Central Reducer (중앙감속기) in Seongsu is Chef Choi Hyun-seok's Chinese-Italian fusion restaurant from Netflix's Black & White Chef — reservation-only, worth every effort."
+description: "★4.2 — Chef Choi Hyun-seok's Chinese-Italian fusion in Seongsu. Mains ₩19,500–23,500, CatchTable only. Is it worth the hype? An honest review."
 image:
   path: /images/central-reducer/basil-jjamppong.webp
   alt: Seafood basil jjamppong noodle bowl with crusty bread at Central Reducer Seongsu Seoul

@@ -1,9 +1,9 @@
 ---
-title: "Evergreen Donkatsu Anyang — The Best Korean-Style Pork Cutlet Near Indeogwon (에버그린 수제돈까스 Menu & Review)"
+title: "Evergreen Donkatsu Anyang: Menu, Prices & Review (2026)"
 date: 2026-04-06 12:00:00 +0900
 categories: [Korean Food, Anyang]
 tags: [evergreen-donkatsu, 에버그린, donkatsu, pork-cutlet, korean-food, anyang, indeogwon, gyeongsik-donkatsu, comfort-food, korean-restaurant, date-spot]
-description: "Evergreen (에버그린) in Indeogwon serves handmade Korean-style donkatsu with incredible demi-glace sauce, freshly baked bread, and the best cream soup. A hidden gem in Anyang."
+description: "★4.5 — Old-school Korean donkatsu near Indeogwon Station, Anyang. Single menu ₩14,000; the fresh bread and cream soup steal the show. Hours & review."
 image:
   path: /images/evergreen-donkatsu/donkatsu-plate.webp
   alt: Korean-style donkatsu with rich demi-glace sauce, cream soup, and freshly baked bread at Evergreen in Indeogwon, Anyang

@@ -1,9 +1,9 @@
 ---
-title: "Best Izakaya in Pyeongchon — Truffle Abalone Pasta at Enwoo (평촌 이자카야 '엔우' 맛집 리뷰)"
+title: "Enwoo Izakaya Pyeongchon: Truffle Abalone Pasta Review"
 date: 2026-06-20 20:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [enwoo, 엔우, pyeongchon-izakaya, 평촌맛집, 평촌이자카야, japanese-dining-anyang, abalone-pasta, 전복내장파스타, truffle-pasta, mackerel-sushi, 고등어초밥, mero-gui, 메로구이, anyang-restaurant, korean-food-guide, where-to-eat-pyeongchon, date-night-seoul]
-description: "Looking for the best izakaya in Pyeongchon? Enwoo (엔우) is a quiet Japanese dining bar near Pyeongchon Station, Anyang — home to the area's best truffle abalone-innard cream pasta. Menu, prices & honest review."
+description: "★4.8 — A quiet 2nd-floor izakaya near Pyeongchon Station. Truffle abalone-innard pasta, torched mackerel sushi, ₩25,000–30,000/person. Full review."
 image:
   path: /images/enwoo/abalone-pasta.webp
   alt: Truffle abalone innard cream pasta with parmesan at Enwoo izakaya Pyeongchon Anyang

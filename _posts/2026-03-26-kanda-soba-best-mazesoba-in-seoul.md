@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Kanda Soba Seoul — Best Mazesoba in Hyehwa (Menu, Price & Review)"
+title: "Kanda Soba Seoul Review (2026): Menu, Prices & Tips"
 date: 2026-03-26 12:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [kandasoba, kanda-soba, mazesoba, mazesoba-seoul, abura-soba, seoul-restaurant, hyehwa-food, hyehwa, japanese-food, noodles, ramen-seoul, daehangno, lunch-spot]
-description: "Kanda Soba (칸다소바) in Hyehwa serves the best mazesoba in Seoul. Rich meat sauce, raw egg yolk, chewy noodles, and free rice refills. Full menu, prices & honest review inside."
+description: "★4.7 — The best mazesoba in Seoul, hidden in Hyehwa. ₩11,000 a bowl, English kiosk, counter seats. Full menu, prices, and how to order like a local."
 image:
   path: /images/kanda-soba/mazesoba.webp
   alt: Mazesoba at Kanda Soba Seoul topped with raw egg yolk, green onions, seaweed, and rich meat sauce — best mazesoba in Hyehwa
@@ -28,6 +28,8 @@ faq:
     a: "A single noodle dish is around ₩11,000 (~$8 USD); adding a gyoza set brings it to about ₩15,000 (~$11 USD)."
   - q: "Is it crowded during lunch?"
     a: "Yes, especially 12:00–13:00. Counter-only seating means quick turnover, but expect a short wait at peak hours."
+  - q: "Is there a Kanda Soba in Hongdae?"
+    a: "No — Kanda Soba is in Hyehwa (Daehangno), not Hongdae. If a similarly named shop shows up in Hongdae, it's not this one. The real thing is a short walk from Hyehwa Station, Line 4."
 ---
 
 {% include quick-facts.html %}
@@ -136,3 +138,10 @@ A: Both are brothless noodles, but abura soba uses oil-based sauce while mazesob
 
 **Q: Can I get extra toppings or sides?**
 A: The condiment station is self-serve — pickled radish (takuan), chili oil, vinegar, pepper, and more. Help yourself to as much as you want.
+
+**Q: Is there a Kanda Soba in Hongdae?**
+A: No — Kanda Soba is in **Hyehwa (Daehangno)**, not Hongdae. If a similarly named shop shows up in Hongdae, it's not this one. The real thing is a short walk from Hyehwa Station on Line 4 — and worth the trip.
+
+---
+
+**Also in Hyehwa**: In the mood for soup instead of noodles? [Sundae Silrok — the best sundaeguk in Seoul](/posts/sundae-silrok-best-sundaeguk-in-seoul/) is just around the corner.
