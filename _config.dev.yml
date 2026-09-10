@@ -1,0 +1,27 @@
+# ─────────────────────────────────────────────────────────────
+# 로컬 개발 전용 오버라이드
+#   사용:  bundle exec jekyll serve --config _config.yml,_config.dev.yml
+#   배포(GitHub Actions)는 _config.yml 만 쓰므로 영향 없음
+# ─────────────────────────────────────────────────────────────
+
+# 1) 태그·카테고리 아카이브 생성 끄기
+#    태그 264개 + 카테고리 26개 ≈ 290 페이지를 매 저장마다 다시 렌더링하던 것을 제거 (가장 큰 절감)
+#    → 로컬에서 /tags/, /categories/ 링크는 404 (정상)
+jekyll-archives:
+  enabled: []
+
+# 2) PWA(service worker 생성) 끄기
+pwa:
+  enabled: false
+
+# 3) HTML 압축 Liquid(compress.html) 끄기 — 페이지마다 도는 정규식 부하 제거
+compress_html:
+  ignore:
+    envs: [development]
+
+# 4) Sass: 압축 대신 빠른 출력
+sass:
+  style: expanded
+
+# 5) 로컬 URL
+url: "http://127.0.0.1:4000"
