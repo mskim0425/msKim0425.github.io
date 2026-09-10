@@ -25,3 +25,6 @@ Gemfile.lock
 
 # local-only planning docs
 _drafts/
+
+# 네이버 붙여넣기 패키지 (생성물)
+naver-drafts/
