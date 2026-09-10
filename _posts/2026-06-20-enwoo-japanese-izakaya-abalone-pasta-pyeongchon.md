@@ -3,6 +3,7 @@ title: "Enwoo Izakaya Pyeongchon: Truffle Abalone Pasta Review"
 date: 2026-06-20 20:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [enwoo, izakaya, japanese-food, abalone-pasta, mackerel-sushi, pyeongchon, anyang, date-restaurant-seoul]
+klook: [esim, wowpass, arex]
 description: "★4.8 — A quiet 2nd-floor izakaya near Pyeongchon Station. Truffle abalone-innard pasta, torched mackerel sushi, ₩25,000–30,000/person. Full review."
 image:
   path: /images/enwoo/abalone-pasta.webp
@@ -74,6 +75,8 @@ _Glazed grilled mero with lotus root, shishito, and shredded leek. Punchy and sa
 Our tip: don't eat it on its own. **With a bowl of rice it's perfectly balanced** — the salt that feels strong solo becomes exactly right against plain rice.
 
 ---
+
+{% include affiliate-box.html %}
 
 ## Practical Info
 

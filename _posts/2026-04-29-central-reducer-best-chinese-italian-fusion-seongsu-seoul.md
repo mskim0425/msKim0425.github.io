@@ -3,6 +3,7 @@ title: "Central Reducer Review — Chef Choi Hyun-seok, Seongsu"
 date: 2026-04-29 15:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [central-reducer, choi-hyun-seok, black-white-chef, chinese-italian-fusion, seongsu, date-restaurant-seoul, korea-travel, seoul-food-guide]
+klook: [hangang-cruise, night-bus, esim, wowpass]
 description: "★4.2 — Chef Choi Hyun-seok's Chinese-Italian fusion in Seongsu. Mains ₩19,500–23,500, CatchTable only. Is it worth the hype? An honest review."
 image:
   path: /images/central-reducer/basil-jjamppong.webp
@@ -80,6 +81,8 @@ The **nitrogen tiramisu (질소 티라미수)** is Central Reducer's signature c
 _The nitrogen tiramisu with Central Reducer's gear character. Too cute to eat, too good not to._
 
 ---
+
+{% include affiliate-box.html %}
 
 ## Practical Info
 

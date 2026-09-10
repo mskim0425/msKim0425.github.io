@@ -4,6 +4,7 @@ title: "Sundaeguk (Korean Blood Sausage Soup) in Seoul — Sundae Silrok Review,
 date: 2026-03-30 12:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [sundae-silrok, sundaeguk, gukbap, korean-food, comfort-food, korean-street-food, seoul-food-guide]
+klook: [palace-market-tour, nanta, esim, wowpass]
 description: "★4.6 — Sundaeguk is Korean blood sausage soup, and Sundae Silrok in Hyehwa serves Seoul's richest bowl. ₩10,000–13,000 with a self-serve banchan bar. What it is, how locals eat it, what to order."
 image:
   path: /images/sundae-silrok/sundaeguk-chives.webp
@@ -111,6 +112,8 @@ There's a Korean saying: **이열치열 ("Beat the heat with hot food")** — fi
 There are plenty of famous sundaeguk joints in Seoul. But what makes Sundae Silrok special is the combination: **clean, modern interior** + **massive portions** + **right in the city center**. Finding a gukbap spot that ticks all three boxes is rarer than you'd think. Most legendary gukbap places are tucked away in old neighborhoods or require a trip to the outskirts. This one? It's right here, easy to get to, and the quality is consistently excellent.
 
 ---
+
+{% include affiliate-box.html %}
 
 ## Practical Info
 

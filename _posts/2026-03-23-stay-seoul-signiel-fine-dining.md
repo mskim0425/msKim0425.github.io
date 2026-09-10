@@ -4,6 +4,7 @@ title: "STAY by Yannick Alléno at Signiel Seoul — 81F Lotte World Tower Fine 
 date: 2026-02-22 20:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [stay-by-yannick-alleno, signiel-seoul, fine-dining, french-cuisine, michelin, jamsil, date-restaurant-seoul, seoul-food-guide]
+klook: [seoul-sky, lotte-world, esim, wowpass]
 description: "★4.5 — French tasting course on the 81st floor of Lotte World Tower inside Signiel Seoul. ₩200,000+/person, Han River sunset views, Seoul's best proposal restaurant. Full menu, prices, dress code & review."
 image:
   path: /images/stay-seoul/han-river-sunset.webp
@@ -167,6 +168,8 @@ _The bouquet was hidden until the perfect moment. The best dinner of my life, fo
 STAY's staff was incredible about the whole thing. They coordinated the flowers, the cake, the ring box placement, the timing — everything was seamless. They've clearly done this before, and it shows. If you're planning something special in Seoul, I can't recommend this place enough.
 
 ---
+
+{% include affiliate-box.html %}
 
 ## Practical Info
 

@@ -116,6 +116,9 @@ assets:
 pwa:
   enabled: true   # the option for PWA feature
 
+# Klook affiliate ID (affiliate.klook.com 링크의 ?aid=XXXX). 비우면 제휴 박스 미표시
+klook_aid: ""
+
 paginate: 10
 
 # ------------ The following options are not recommended to be modified ------------------

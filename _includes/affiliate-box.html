@@ -1,0 +1,24 @@
+<!-- Klook affiliate box. Renders only when site.klook_aid is set and page.klook lists catalog keys from _data/klook.yml -->
+{% if site.klook_aid and site.klook_aid != "" and page.klook %}
+{% assign aid = site.klook_aid %}
+<div class="affiliate-box" style="background:#1e1e2e;border:1px solid #444;border-radius:10px;padding:18px 20px;margin:28px 0;font-size:0.92rem;line-height:1.6;">
+  <div style="font-weight:700;font-size:1rem;margin-bottom:8px;color:#89b4fa;">🧭 Plan your visit</div>
+  <div style="color:#a6adc8;margin-bottom:12px;">Things that pair well with this spot — book ahead on Klook:</div>
+  <ul style="list-style:none;padding:0;margin:0 0 12px 0;">
+  {% for key in page.klook %}
+    {% assign item = site.data.klook[key] %}
+    {% if item %}
+    <li style="padding:6px 0;border-top:1px solid #313244;">
+      <a href="https://www.klook.com/activity/{{ item.id }}/?aid={{ aid }}&aff_label1={{ page.slug | default: page.title | slugify }}"
+         target="_blank" rel="nofollow sponsored noopener"
+         style="color:#cdd6f4;font-weight:600;text-decoration:none;">{{ item.title }} →</a>
+      {% if item.note %}<div style="color:#6c7086;font-size:0.85rem;">{{ item.note }}</div>{% endif %}
+    </li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+  <div style="color:#6c7086;font-size:0.78rem;border-top:1px solid #313244;padding-top:8px;">
+    Affiliate disclosure: links above are Klook affiliate links. If you book through them I earn a small commission at no extra cost to you. I only list things I'd recommend to a friend.
+  </div>
+</div>
+{% endif %}

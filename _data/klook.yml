@@ -1,0 +1,55 @@
+# Klook 제휴 상품 카탈로그 — 글에서는 키만 참조: klook: [esim, wowpass, coex-aquarium]
+# 링크는 _includes/affiliate-box.html 이 https://www.klook.com/activity/{id}/?aid={site.klook_aid} 로 생성
+# 공통(모든 맛집 글에 기본 포함)
+esim:
+  id: 109354
+  title: "Korea 5G eSIM (SKT) — unlimited data"
+  note: "Set up before you land; no SIM swap"
+wowpass:
+  id: 86208
+  title: "WOWPASS prepaid card + T-money"
+  note: "For restaurants that don't take foreign cards"
+arex:
+  id: 1163
+  title: "AREX Incheon Airport Express ticket"
+  note: "Airport → Seoul Station in 43 min"
+
+# COEX · 잠실
+coex-aquarium:
+  id: 8185
+  title: "SEA LIFE COEX Aquarium ticket"
+  note: "Same building as COEX Mall"
+seoul-sky:
+  id: 17678
+  title: "Seoul Sky observatory — Lotte World Tower"
+  note: "Floors 117–123, sunset slot recommended"
+lotte-world:
+  id: 251
+  title: "Lotte World theme park ticket"
+  note: "Jamsil, next to Lotte World Tower"
+
+# 성수 · 한강
+hangang-cruise:
+  id: 189333
+  title: "Han River night cruise with fireworks"
+  note: "Best after a Seongsu dinner"
+night-bus:
+  id: 111774
+  title: "Seoul City Tour Bus — night view course"
+  note: "Hop-on from Gwanghwamun"
+
+# 혜화 · 종로
+palace-market-tour:
+  id: 29780
+  title: "Gyeongbokgung, Hanok Village & Gwangjang Market tour"
+  note: "Street food finale at Gwangjang"
+nanta:
+  id: 240
+  title: "NANTA cooking-comedy show"
+  note: "No Korean needed, 100 min"
+
+# 서울 남부
+everland-shuttle:
+  id: 14421
+  title: "Everland shuttle bus from Seoul"
+  note: "Round trip, reserved seat"

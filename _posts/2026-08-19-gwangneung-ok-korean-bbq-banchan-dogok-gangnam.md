@@ -3,6 +3,7 @@ title: "Unlimited Banchan Korean BBQ in Dogok — Gwangneung Ok (도곡 광릉�
 date: 2026-08-19 19:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [gwangneung-ok, korean-bbq, banchan, charcoal-pork-bulgogi, korean-food, dogok, gangnam-food, seoul-food-guide]
+klook: [seoul-sky, esim, wowpass, arex]
 description: "Gwangneung Ok (광릉옥) in Dogok is a local-favorite Korean charcoal BBQ with an unlimited banchan self-bar. Charcoal pork & beef bulgogi, seasonal gangjeong, and dozens of side dishes near Maebong/Dogok Station. Menu, prices & honest review."
 image:
   path: /images/gwangneung-ok/pork-bulgogi.webp
@@ -75,6 +76,8 @@ _A fuller look at the spread — cheonsachae, dipping sauces, pickled radish, an
 At peak hours the place gets genuinely busy, and service can thin out — you're more on your own during the rush. There's also a free, sweet-cool **maesil (plum) drink** that helps digestion, but when it's slammed it sometimes runs out. Go a little off-peak and you'll get the best of it.
 
 ---
+
+{% include affiliate-box.html %}
 
 ## Practical Info
 

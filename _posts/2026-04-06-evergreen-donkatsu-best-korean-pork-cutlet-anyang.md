@@ -3,6 +3,7 @@ title: "Evergreen Donkatsu Anyang: Menu, Prices & Review (2026)"
 date: 2026-04-06 12:00:00 +0900
 categories: [Korean Food, Anyang]
 tags: [evergreen-donkatsu, donkatsu, pork-cutlet, korean-food, comfort-food, anyang, date-restaurant-seoul]
+klook: [everland-shuttle, esim, wowpass, arex]
 description: "★4.5 — Old-school Korean donkatsu near Indeogwon Station, Anyang. Single menu ₩14,000; the fresh bread and cream soup steal the show. Hours & review."
 image:
   path: /images/evergreen-donkatsu/donkatsu-plate.webp
@@ -74,6 +75,8 @@ _Date-worthy? Absolutely. Just don't expect candlelight — expect great food._
 ## How It Compares
 
 If you know **Gyokaizen (교카이젠)** nearby, that's proper Japanese-style tonkatsu — clean cuts, delicate flavor, tonkatsu sauce on the side. Evergreen is the **complete opposite**: hearty, saucy, and unapologetically Korean. Think of it as your Korean grandmother's idea of "Western food." Both are excellent, but for completely different moods.
+
+{% include affiliate-box.html %}
 
 ## Practical Info
 

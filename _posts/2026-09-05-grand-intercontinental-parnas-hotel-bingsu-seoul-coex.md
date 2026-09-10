@@ -3,6 +3,7 @@ title: "Best Hotel Bingsu in Seoul — All 3 Summer Premium Bingsu at Grand Inte
 date: 2026-09-05 15:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [hotel-bingsu, bingsu, grand-intercontinental-parnas, mango-bingsu, dessert, coex, gangnam-food, seoul-food-guide]
+klook: [coex-aquarium, seoul-sky, esim, wowpass]
 description: "Tried all three Summer Premium Bingsu at the Grand InterContinental Seoul Parnas Lobby Lounge & Bar — jewel tomato in a mother-of-pearl box, Jeju apple mango, and signature red bean with mugwort ice cream — plus the limited moon jar cake. Prices, period, live jazz, parking, and an honest review of Seoul's best hotel bingsu."
 image:
   path: /images/parnas-bingsu/tomato-bingsu.webp
@@ -117,6 +118,8 @@ _The 2026 Summer Premium Bingsu menu. Each serves two; prices include 10% servic
 The Lobby Lounge & Bar is the hotel's signature space. Overhead hangs artist **Park Seon-gi's "Column of Lights"** — ten huge columns made of some 60,000 crystals, like a galaxy pouring from the ceiling. From **Monday to Saturday** there's a **live jazz and pop ensemble** (piano, saxophone, double bass, clarinet, trumpet, flute) in four evening sessions: 19:20–20:00, 20:20–21:00, 21:20–22:00, and 22:20–23:00 (no performances on Sundays; lineup may change). If you can, time a bingsu for the early-evening set.
 
 ---
+
+{% include affiliate-box.html %}
 
 ## Practical Info
 
