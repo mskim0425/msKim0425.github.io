@@ -1,6 +1,6 @@
 ---
 title: "질문에서 답까지 — RAG 서빙 경로 8단계와 LLM이 답을 '생성'하는 방식 (Java/Ruby 구현)"
-date: 2026-09-11 09:00:00 +0900
+date: 2026-09-14 09:00:00 +0900
 categories: [Dev, AI]
 tags: [rag, llm, transformer, attention, tokenization, hybrid-search, reranking, spring-ai]
 description: "LLM은 답을 찾아오지 않는다 — 한 토큰씩 만들어낸다. 질문이 들어와 답이 나가기까지 8단계(질문 다듬기 → 임베딩 → 하이브리드 검색 → 리랭킹 → 프롬프트 조립 → 생성 → 후처리)를 Java/Ruby로 구현하고, 그 중 '생성' 단계 안에서 토큰화·어텐션·다음 토큰 확률·샘플링·자기회귀가 어떻게 돌아가는지, 왜 검색된 근거가 답을 바꾸는지를 SQL 개발자 감각으로 뜯어본다."
