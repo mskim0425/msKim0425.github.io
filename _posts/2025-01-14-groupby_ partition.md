@@ -2,7 +2,8 @@
 layout: post
 
 
-title: "비슷하면서 다른 SQL 정리"
+title: "헷갈리는 SQL 짝꿍 5쌍 정리 — GROUP BY vs PARTITION BY, UNION vs UNION ALL, WHERE vs HAVING, JOIN vs 서브쿼리"
+description: "비슷해 보여서 헷갈리는 SQL 구문 5쌍을 차이·결과·성능 관점으로 비교한다: GROUP BY/PARTITION BY, UNION/UNION ALL, JOIN/서브쿼리, WHERE/HAVING, INNER/OUTER JOIN."
 
 
 date: 2025-01-14 19:40:00 +0900
