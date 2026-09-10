@@ -2,7 +2,7 @@
 title: "DAG · Airflow · StarRocks 총정리"
 date: 2026-09-10 10:00:00 +0900
 categories: [Dev, Data]
-tags: [airflow, dag, starrocks, data-pipeline, olap, etl, orchestration, rag]
+tags: [airflow, dag, starrocks, iceberg, data-pipeline, olap, orchestration, rag]
 description: "DAG를 '순환 없는 작업 순서도'로, Airflow를 'cron + 의존성 + 재시도 + 대시보드'로, StarRocks를 '집계 전용 MySQL 호환 DB'로 이해한다. 이전 글의 RAG 인덱싱 파이프라인을 Airflow DAG로 옮기고 검색 로그를 StarRocks에 쌓아 Recall@5를 집계하는 실습, 그리고 데이터 파이프라인 용어 사전까지."
 ---
 
@@ -241,7 +241,95 @@ StarRocks를 고른 이유는 하나 더 있다. **MySQL 프로토콜을 그대�
 그래서 파티션 키는 **필터에 자주 쓰는 범위 컬럼**(거의 항상 날짜), 버킷 키는 **값이 골고루 퍼지는 컬럼**(`query_id`, `user_id` 같은 고카디널리티)이어야 한다. 날짜를 버킷 키로 잡으면 하루치가 한 노드에 몰려(**data skew**) 병렬이 무의미해진다.
 - **적재 방식**: `INSERT`(소량), **Stream Load**(HTTP로 CSV/JSON 밀어넣기, 배치), **Routine Load**(Kafka 토픽 구독, 스트리밍), **Broker Load**(S3/HDFS 파일).
 - **Materialized View**: 자주 치는 집계 쿼리를 미리 계산해두고 주기적으로 갱신. 쿼리가 원본 테이블을 쳐도 옵티마이저가 알아서 MV로 바꿔 탄다(**query rewrite**).
-- **External Catalog**: Hive / Iceberg / Hudi / Delta Lake 테이블을 복사 없이 바로 쿼리. 데이터 레이크 위에 StarRocks를 얹는 패턴.
+- **External Catalog**: Hive / Iceberg / Hudi / Delta Lake 테이블을 복사 없이 바로 쿼리. 데이터 레이크 위에 StarRocks를 얹는 패턴. 이 중 Iceberg는 따로 볼 가치가 있어서 아래 4-1-1에서 다룬다.
+
+#### 4-1-1. Iceberg: S3 위의 파일 더미를 "테이블"로
+
+StarRocks에 모든 로그를 영원히 넣어둘 수는 없다. 비싸고, 노드 디스크는 유한하다. 그래서 실무에서는 **원본은 S3 같은 오브젝트 스토리지에 Parquet 파일로 싸게 쌓고, StarRocks는 최근 데이터만 들고 있거나 S3를 직접 읽는** 구성이 흔하다. 그런데 S3에 파일만 던져두면 DB가 당연히 해주던 것들이 사라진다.
+
+| DB에선 당연한 것 | S3에 Parquet만 있으면 |
+|---|---|
+| `INSERT` 중간에 죽어도 반쪽 데이터가 안 보임 (원자성) | 파일 절반만 올라간 상태를 읽는 쿼리가 생김 |
+| `ALTER TABLE ADD COLUMN` | 옛 파일엔 컬럼이 없어서 읽는 쪽이 각자 처리 |
+| "어제 이 시각의 데이터" | 없음. 덮어쓰면 끝 |
+| 파티션 기준 바꾸기 | 전체 파일 재배치 |
+| `WHERE dt = ?`만 읽기 | 디렉토리 이름 규칙에 의존, 쿼리가 규칙을 알아야 함 |
+
+**Apache Iceberg**는 이 빈칸을 채우는 **테이블 포맷**이다. DB도 엔진도 아니다 — Parquet 파일들 위에 얹는 **메타데이터 계층**이고, "어떤 파일들이 현재 이 테이블을 구성하는가"를 버전별로 기록한다.
+
+```
+s3://lake/rag/search_log_raw/
+├── metadata/
+│   ├── v1.metadata.json      ← 스키마, 파티션 규칙, 현재 스냅샷 포인터
+│   ├── v2.metadata.json
+│   ├── snap-8812…avro        ← 스냅샷: "이 시점의 테이블 = 아래 manifest들"
+│   └── manifest-…avro        ← 데이터 파일 목록 + 각 파일의 컬럼별 min/max 통계
+└── data/
+    ├── dt=2026-09-09/part-00.parquet
+    └── dt=2026-09-10/part-00.parquet
+```
+
+개발자 감각으로 대응시키면:
+
+| Iceberg 개념 | 익숙한 것 |
+|---|---|
+| **스냅샷(snapshot)** | Git 커밋. 쓰기가 끝나면 새 스냅샷을 만들고 포인터를 원자적으로 옮긴다. 실패하면 포인터가 안 움직여서 반쪽 데이터가 안 보인다 |
+| **타임 트래블** | `git checkout <commit>`. `FOR VERSION AS OF <snapshot_id>` 로 어제 상태를 그대로 쿼리. 잘못 적재해도 롤백 가능 |
+| **스키마 진화** | 파일을 다시 쓰지 않는 `ALTER TABLE`. 컬럼 ID로 추적해서 이름 변경·추가·삭제가 옛 파일과 호환 |
+| **숨은 파티셔닝(hidden partitioning)** | `PARTITION BY day(ts)` 로 선언하면 쿼리는 `WHERE ts > '…'` 만 써도 알아서 파티션을 건너뜀. 디렉토리 이름을 쿼리가 몰라도 됨 |
+| **파티션 진화** | 파티션 기준을 바꿔도 옛 데이터를 재배치하지 않음. 새 스냅샷부터 새 규칙 |
+| **manifest의 min/max 통계** | 인덱스 대신 "이 파일엔 `latency_ms` 최대가 300이니 `> 500` 조건엔 열 필요 없다"로 파일 단위 프루닝 |
+
+같은 계열로 **Hudi**(Uber, 스트리밍 upsert에 강함)와 **Delta Lake**(Databricks)가 있는데, 2024년 이후 Snowflake·Databricks·AWS·Google이 모두 Iceberg를 지원하면서 **사실상 표준**이 됐다. 새로 시작한다면 Iceberg다.
+
+**StarRocks와의 관계.** StarRocks는 Iceberg 테이블을 **복사 없이** 읽고 쓴다. 카탈로그를 한 번 등록하면 내부 테이블과 같은 문법으로 조인까지 된다.
+
+```sql
+-- Iceberg 카탈로그 등록 (REST 카탈로그 예시. Glue / Hive Metastore 도 가능)
+CREATE EXTERNAL CATALOG lake
+PROPERTIES (
+  "type"                  = "iceberg",
+  "iceberg.catalog.type"  = "rest",
+  "iceberg.catalog.uri"   = "http://iceberg-rest:8181",
+  "aws.s3.region"         = "ap-northeast-2"
+);
+
+-- S3의 원본 로그를 그대로 쿼리 (파일 다운로드·복사 없음)
+SELECT dt, COUNT(*) FROM lake.rag.search_log_raw
+WHERE dt >= '2026-01-01' GROUP BY dt;
+
+-- 내부 테이블(최근 30일, 빠름)과 레이크(전체 이력, 쌈)를 한 쿼리에서
+SELECT r.dt, r.queries, l.queries AS last_year
+FROM daily_search_quality r
+JOIN (SELECT dt, COUNT(*) queries FROM lake.rag.search_log_raw
+      WHERE dt BETWEEN '2025-09-01' AND '2025-09-30' GROUP BY dt) l
+  ON DATE_ADD(l.dt, INTERVAL 1 YEAR) = r.dt;
+
+-- 어제 시점의 테이블로 돌아가서 확인 (타임 트래블)
+SELECT COUNT(*) FROM lake.rag.search_log_raw FOR VERSION AS OF 8812345678901234567;
+```
+
+**Airflow와의 관계.** 2편의 DAG에 Task 하나가 늘어난다: 검색 API가 쌓은 하루치 로그를 Parquet로 써서 Iceberg에 **커밋**하는 단계. 커밋이 원자적이라 재시도·Backfill과 궁합이 좋다 — 같은 날짜를 두 번 돌려도 "그 날짜 파티션을 덮어쓰는 스냅샷"이 하나 더 생길 뿐, 중복도 반쪽도 없다.
+
+```python
+@task
+def commit_to_iceberg(**ctx):
+    """하루치 로그 → Parquet → Iceberg 커밋 (pyiceberg). 멱등: 같은 dt 재실행 시 overwrite"""
+    from pyiceberg.catalog import load_catalog
+    import pyarrow.parquet as pq
+    table = load_catalog("lake").load_table("rag.search_log_raw")
+    df = pq.read_table(f"/data/search_log_{ctx['ds']}.parquet")
+    table.overwrite(df, overwrite_filter=f"dt = '{ctx['ds']}'")   # 새 스냅샷 1개 = 커밋 1개
+```
+
+역할을 정리하면 이렇게 된다.
+
+| 계층 | 저장소 | 데이터 | 이유 |
+|---|---|---|---|
+| **핫** | StarRocks 내부 테이블 | 최근 30~90일 `search_log`, MV | ms 단위 대시보드 |
+| **콜드 / 원본** | S3 + Iceberg | 전체 이력 `search_log_raw` | 저렴, 무한, 다른 엔진(Spark·Trino·DuckDB)도 같은 테이블을 읽음 |
+
+이 구성이 6장 용어 사전의 **레이크하우스**다 — 레이크(S3 파일)의 비용으로 웨어하우스(테이블·트랜잭션·스키마)의 편의를 얻는다. 그리고 Iceberg가 표준이라 StarRocks를 나중에 다른 엔진으로 바꿔도 데이터는 그대로다. **데이터를 특정 DB에 가두지 않는 것**, 그게 테이블 포맷을 따로 두는 가장 큰 이유다.
 
 ### 4-2. 검색 로그 테이블
 
@@ -416,6 +504,7 @@ GROUP BY dt;
 | 청크 + 임베딩 벡터 (데이터 본체) | **pgvector** `post_chunks` | 인덱싱 시 (매일 03:00, 바뀐 글만) | `index_posts.rb` |
 | "오늘 N개 글 처리함" 실행 기록 | **StarRocks** `index_run` | 인덱싱 끝난 직후, 하루 1행 | Airflow `report` Task |
 | 질문·상위 결과·유사도·응답시간·토큰 | **StarRocks** `search_log` | 검색 요청 1건마다 1행 | 검색 API (또는 배치 Stream Load) |
+| 위 로그의 전체 이력 (원본, 장기 보관) | **S3 + Iceberg** `search_log_raw` | 하루 1회 Parquet 커밋 | Airflow `commit_to_iceberg` Task |
 
 **청크는 StarRocks에 가지 않는다.** pgvector가 데이터 본체이고, StarRocks는 "그 데이터가 어떻게 만들어지고 어떻게 쓰이는지"에 대한 **장부**다. "DB에 적재될 때마다 StarRocks로 쏜다"가 아니라, "인덱싱은 하루 1행, 검색은 요청당 1행의 **로그**를 StarRocks에 남긴다"가 정확하다.
 
@@ -486,7 +575,9 @@ Recall@5는 그대로인데 `avg_prompt_tokens`만 30% 줄었다면, 그 청킹 
 | **Data Lake** | 원본 파일을 그대로 쌓는 저장소 (S3 + Parquet) | 스키마 나중에 |
 | **Lakehouse** | 레이크 위에 테이블 포맷을 얹어 웨어하우스처럼 쿼리 | Iceberg + StarRocks |
 | **Parquet** | 열 저장 파일 포맷. 레이크의 표준 | 압축 잘 되는 CSV |
-| **Iceberg / Hudi / Delta Lake** | Parquet 파일 묶음을 "테이블"로 다루게 해주는 메타데이터 포맷 (스냅샷, 스키마 변경, 타임트래블) | 파일 더미에 트랜잭션 로그 |
+| **Iceberg / Hudi / Delta Lake** | Parquet 파일 묶음을 "테이블"로 다루게 해주는 메타데이터 포맷 (스냅샷, 스키마 변경, 타임트래블). 4-1-1 참고 | 파일 더미에 Git 커밋 로그 |
+| **Table format vs File format** | Parquet은 **파일** 포맷(한 파일 안의 열 저장), Iceberg는 **테이블** 포맷(어떤 파일들이 테이블인지) | 파일 = 페이지, 테이블 포맷 = 목차와 버전 이력 |
+| **Catalog (Iceberg)** | "이 테이블의 최신 metadata.json이 어디인가"를 아는 곳. REST / Glue / Hive Metastore / Nessie | 테이블 이름 → 위치 매핑 |
 | **Star schema** | 중앙 Fact 테이블 + 주변 Dimension 테이블 | `orders` + `users`, `products`, `dates` |
 | **Fact / Dimension** | 측정값(매출, 건수) / 축(날짜, 지역, 상품) | `GROUP BY` 대상이 Dimension |
 | **Materialized View** | 집계 결과를 물리적으로 저장하고 주기 갱신 | 캐시된 `GROUP BY` |
