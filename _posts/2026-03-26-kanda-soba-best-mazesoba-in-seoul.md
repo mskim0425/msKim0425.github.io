@@ -3,7 +3,7 @@ layout: post
 title: "Kanda Soba Seoul Review (2026): Menu, Prices & Tips"
 date: 2026-03-26 12:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [kandasoba, kanda-soba, mazesoba, mazesoba-seoul, abura-soba, seoul-restaurant, hyehwa-food, hyehwa, japanese-food, noodles, ramen-seoul, daehangno, lunch-spot]
+tags: [kanda-soba, mazesoba, japanese-food, noodles, hyehwa, lunch-spot, seoul-food-guide]
 description: "★4.7 — The best mazesoba in Seoul, hidden in Hyehwa. ₩11,000 a bowl, English kiosk, counter seats. Full menu, prices, and how to order like a local."
 image:
   path: /images/kanda-soba/mazesoba.webp

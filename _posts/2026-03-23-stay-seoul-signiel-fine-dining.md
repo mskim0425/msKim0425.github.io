@@ -3,7 +3,7 @@ layout: post
 title: "STAY by Yannick Alléno Seoul: Menu, Prices & Review"
 date: 2026-02-22 20:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [stay-restaurant, stay-by-yannick-alleno, signiel-seoul, lotte-world-tower, fine-dining-seoul, french-cuisine, michelin, seoul-restaurant, proposal-restaurant, date-restaurant-seoul, jamsil]
+tags: [stay-by-yannick-alleno, signiel-seoul, fine-dining, french-cuisine, michelin, jamsil, date-restaurant-seoul, seoul-food-guide]
 description: "★4.5 — French tasting course on the 81st floor of Lotte World Tower. ₩200,000+/person, Han River sunset views, Seoul's best proposal spot. Menu & prices."
 image:
   path: /images/stay-seoul/han-river-sunset.webp

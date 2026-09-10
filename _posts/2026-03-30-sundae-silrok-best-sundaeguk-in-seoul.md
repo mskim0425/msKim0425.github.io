@@ -3,7 +3,7 @@ layout: post
 title: "Sundae Silrok Review — Best Sundaeguk in Seoul (2026)"
 date: 2026-03-30 12:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [sundae-silrok, sundaeguk, sundaeguk-seoul, korean-food, korean-soul-food, gukbap, sundae, korean-blood-sausage, korean-street-food, comfort-food, seoul-restaurant, local-food-seoul]
+tags: [sundae-silrok, sundaeguk, gukbap, korean-food, comfort-food, korean-street-food, seoul-food-guide]
 description: "★4.6 — Seoul's richest sundaeguk (Korean blood sausage soup). ₩10,000–13,000 with a self-serve banchan bar. What it is, how locals eat it, what to order."
 image:
   path: /images/sundae-silrok/sundaeguk-chives.webp

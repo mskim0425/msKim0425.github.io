@@ -2,7 +2,7 @@
 title: "Miette Seoul Review: Italian by Yangjae Stream (2026)"
 date: 2026-04-29 14:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [miette, 미에뜨, italian-restaurant-seoul, yangjae-stream, gangnam-food, squid-ink-risotto, seafood-pasta, korean-italian-fusion, seoul-food-guide, korea-travel, korean-food-culture, where-to-eat-in-seoul, gangnam, date-restaurant-seoul, yangjae]
+tags: [miette, italian, seafood-pasta, yangjae, gangnam-food, date-restaurant-seoul, korea-travel, seoul-food-guide]
 description: "★4.7 — Hotel-trained Italian by Yangjae Stream, Gangnam. Squid ink risotto, hangover pasta, ₩21,000–25,000. Menu, prices & why locals keep coming back."
 image:
   path: /images/miette/squid-ink-risotto.webp

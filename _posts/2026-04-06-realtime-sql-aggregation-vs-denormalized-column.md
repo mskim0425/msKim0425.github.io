@@ -2,7 +2,7 @@
 title: "실시간 SQL 집계 vs 비정규화 카운터 컬럼 — 언제 뭘 써야 할까"
 date: 2026-04-06 20:00:00 +0900
 categories: [Database, Backend]
-tags: [sql, database-design, denormalization, query-optimization, rails, mysql, counter-column, aggregation, performance, backend-architecture]
+tags: [sql, mysql, rails, database-design, denormalization, query-optimization, performance-tuning]
 description: "매번 JOIN 서브쿼리로 계산할까, 미리 카운터 컬럼에 넣어둘까? 실무 Rails + MySQL 환경에서 두 접근법을 비교합니다."
 ---
 

@@ -2,7 +2,7 @@
 title: "PROTEINER Seoul Review: High-Protein Boxes, Sinnonhyeon"
 date: 2026-06-23 09:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [proteiner, 프로티너, sinnonhyeon-lunch, 신논현맛집, 신논현다이어트, gangnam-healthy-food, high-protein-meal, 단백질도시락, diet-restaurant-seoul, protein-box, chicken-breast-box, healthy-fast-food, gangnam-lunch, where-to-eat-sinnonhyeon, korea-travel, seoul-food-guide]
+tags: [proteiner, healthy-food, high-protein-meal, protein-box, diet-restaurant-seoul, gangnam-food, lunch-spot, seoul-food-guide]
 description: "★4.0 — High-protein, low-sugar boxes 40m from Sinnonhyeon Station. ₩11,000–18,000, build-your-own with chicken, pork or beef. Menu, hours & review."
 image:
   path: /images/proteiner/protein-box.webp

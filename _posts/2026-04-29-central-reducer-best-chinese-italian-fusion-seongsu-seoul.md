@@ -2,7 +2,7 @@
 title: "Central Reducer Review — Chef Choi Hyun-seok, Seongsu"
 date: 2026-04-29 15:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [central-reducer, 중앙감속기, choi-hyun-seok, 최현석, black-white-chef, 흑백요리사, seongsu-restaurant, chinese-italian-fusion, seoul-food-guide, korea-travel, korean-food-culture, where-to-eat-in-seoul, seongsu, seongsu-dong, seoul-forest]
+tags: [central-reducer, choi-hyun-seok, black-white-chef, chinese-italian-fusion, seongsu, date-restaurant-seoul, korea-travel, seoul-food-guide]
 description: "★4.2 — Chef Choi Hyun-seok's Chinese-Italian fusion in Seongsu. Mains ₩19,500–23,500, CatchTable only. Is it worth the hype? An honest review."
 image:
   path: /images/central-reducer/basil-jjamppong.webp

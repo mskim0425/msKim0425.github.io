@@ -2,7 +2,7 @@
 title: "이미지 리사이징 & 최적화 전략 총정리 — 실무에서 쓰는 7가지 기법"
 date: 2026-04-07 10:00:00 +0900
 categories: [Backend, Infrastructure]
-tags: [image-resizing, webp, avif, sharp, imagick, cloudinary, s3-presigned-url, responsive-image, lazy-loading, image-optimization, cdn, tus-upload]
+tags: [image-resizing, image-optimization, webp, avif, cdn, responsive-image, lazy-loading, sharp]
 description: "WebP 변환, CDN 리사이징, Pre-signed URL 업로드, 반응형 이미지까지 — 실무에서 자주 쓰이는 이미지 최적화 전략을 코드 예시와 함께 정리합니다."
 ---
 

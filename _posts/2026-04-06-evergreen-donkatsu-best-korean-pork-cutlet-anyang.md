@@ -2,7 +2,7 @@
 title: "Evergreen Donkatsu Anyang: Menu, Prices & Review (2026)"
 date: 2026-04-06 12:00:00 +0900
 categories: [Korean Food, Anyang]
-tags: [evergreen-donkatsu, 에버그린, donkatsu, pork-cutlet, korean-food, anyang, indeogwon, gyeongsik-donkatsu, comfort-food, korean-restaurant, date-spot]
+tags: [evergreen-donkatsu, donkatsu, pork-cutlet, korean-food, comfort-food, anyang, date-restaurant-seoul]
 description: "★4.5 — Old-school Korean donkatsu near Indeogwon Station, Anyang. Single menu ₩14,000; the fresh bread and cream soup steal the show. Hours & review."
 image:
   path: /images/evergreen-donkatsu/donkatsu-plate.webp

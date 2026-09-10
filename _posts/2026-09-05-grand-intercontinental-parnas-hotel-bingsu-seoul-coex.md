@@ -2,7 +2,7 @@
 title: "Best Hotel Bingsu in Seoul — All 3 Summer Premium Bingsu at Grand InterContinental Parnas (그랜드 인터컨티넨탈 파르나스 호텔 빙수 리뷰)"
 date: 2026-09-05 15:00:00 +0900
 categories: [Korean Food, Seoul]
-tags: [hotel-bingsu, 호텔빙수, grand-intercontinental-parnas, 파르나스빙수, 인터컨티넨탈빙수, bingsu, 빙수, korean-shaved-ice, tomato-bingsu, 토마토빙수, mango-bingsu, 애플망고빙수, red-bean-bingsu, 팥빙수, moon-jar-cake, 달항아리케이크, coex, samseong-station, gangnam-dessert, seoul-summer, luxury-dessert-seoul, korea-travel, seoul-food-guide]
+tags: [hotel-bingsu, bingsu, grand-intercontinental-parnas, mango-bingsu, dessert, coex, gangnam-food, seoul-food-guide]
 description: "Tried all three Summer Premium Bingsu at the Grand InterContinental Seoul Parnas Lobby Lounge & Bar — jewel tomato in a mother-of-pearl box, Jeju apple mango, and signature red bean with mugwort ice cream — plus the limited moon jar cake. Prices, period, live jazz, parking, and an honest review of Seoul's best hotel bingsu."
 image:
   path: /images/parnas-bingsu/tomato-bingsu.webp
