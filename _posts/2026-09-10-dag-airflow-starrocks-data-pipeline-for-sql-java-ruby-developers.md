@@ -1,5 +1,5 @@
 ---
-title: "DAG · Airflow · StarRocks 총정리 — SQL/Java/Ruby 개발자를 위한 데이터 파이프라인 입문 (RAG 인덱싱 자동화 실습)"
+title: "DAG · Airflow · StarRocks 총정리"
 date: 2026-09-10 10:00:00 +0900
 categories: [Dev, Data]
 tags: [airflow, dag, starrocks, data-pipeline, olap, etl, orchestration, rag]
@@ -8,10 +8,15 @@ description: "DAG를 '순환 없는 작업 순서도'로, Airflow를 'cron + 의
 
 ## 한 줄 요약
 
-> **DAG**는 "순환 없는 작업 순서도", **Airflow**는 "그 순서도를 cron처럼 돌리되 의존성·재시도·부분 재실행·대시보드까지 챙겨주는 스케줄러", **StarRocks**는 "`GROUP BY`를 억 단위 행에서도 초 단위로 끝내는, MySQL 프로토콜 호환 집계 전용 DB"다.
+> **DAG**는 "순환 없는 작업 순서도".  
+**Airflow**는 "그 순서도를 cron처럼 돌리되 의존성·재시도·부분 재실행·대시보드까지 챙겨주는 스케줄러",  
+**StarRocks**는 "`GROUP BY`를 억 단위 행에서도 초 단위로 끝내는, MySQL 프로토콜 호환 집계 전용 DB"
 {: .prompt-tip }
 
-[이전 글](/posts/rag-vector-db-frontmatter-for-sql-java-ruby-developers/)에서 블로그 글을 pgvector에 넣는 RAG 인덱싱 파이프라인을 만들었다. `파일 읽기 → Frontmatter 파싱 → 청킹 → 임베딩 → INSERT`. 이걸 매일 자동으로 돌리고, 검색이 얼마나 잘 되는지 숫자로 보고 싶다는 게 이 글의 출발점이다. 그러려면 두 가지가 필요하다 — **작업을 순서대로 안정적으로 돌리는 것**(DAG, Airflow)과 **쌓인 로그를 빠르게 집계하는 것**(StarRocks).
+[이전 글](/posts/rag-vector-db-frontmatter-for-sql-java-ruby-developers/)에서 블로그 글을 pgvector에 넣는 RAG 인덱싱 파이프라인을 만들었다.  
+ `파일 읽기 → Frontmatter 파싱 → 청킹 → 임베딩 → INSERT`. 이걸 매일 자동으로 돌리고,   
+ 검색이 얼마나 잘 되는지 숫자로 보고 싶다는 게 이 글의 출발점이다. 그러려면 두 가지가 필요한데   
+ **작업을 순서대로 안정적으로 돌리는 것**(DAG, Airflow)과 **쌓인 로그를 빠르게 집계하는 것**(StarRocks).
 
 ---
 
@@ -54,7 +59,10 @@ git_pull ──▶ changed_posts ──▶ chunk ──▶ embed ──▶ upser
                                   └──────────▶ validate_frontmatter ───────┘
 ```
 
-`chunk`가 끝나면 `embed`와 `validate_frontmatter`가 **병렬**로 돌고, `report`는 둘 다 끝나야 시작한다. cron으론 못 쓰는 문장을 그림 하나로 표현했다.
+`chunk`가 끝나면 `embed`와 `validate_frontmatter`가 **병렬**로 돌고, `report`는 둘 다 끝나야 시작한다. 이 한 문장 — "A 끝나면 B와 C를 동시에, 둘 다 끝나야 D" — 는 cron 문법으로는 **표현할 방법 자체가 없다.** cron은 "몇 시에 무엇을"만 알지 "무엇 다음에 무엇"을 모른다. DAG는 그 의존 관계를 선 몇 개로 표현한다.
+
+> **DAG는 파이프라인 그 자체가 아니라 파이프라인의 "순서도"다.** "A → B, C 병렬 → D"라는 **모양**이 DAG이고, 각 노드에 무엇을 넣느냐(수집·변환·적재·배포·모델 학습·리포트 발송…)는 자유다. 데이터 수집 파이프라인은 DAG로 그릴 수 있는 것 중 하나일 뿐이다.
+{: .prompt-info }
 
 **왜 순환이 없어야 하나.** 순환이 있으면 "어디서 시작해서 언제 끝나는지"를 정할 수 없다. A가 B를 기다리고 B가 A를 기다리면 데드락이다. 순환이 없으면 **위상 정렬(topological sort)**이 가능해서, "의존성을 만족하는 실행 순서"가 항상 하나 이상 존재한다. 오케스트레이터는 이 순서대로 노드를 실행하고, 의존성이 없는 노드들은 동시에 돌린다.
 
@@ -76,6 +84,17 @@ git_pull ──▶ changed_posts ──▶ chunk ──▶ embed ──▶ upser
 ## 3. Airflow: cron + 의존성 + 재시도 + 대시보드
 
 Apache Airflow는 **"Python 코드로 DAG를 정의하면, 스케줄에 맞춰 실행하고 상태를 관리해주는 서버"**다. 2014년 Airbnb에서 만들었고, 지금은 데이터 파이프라인 오케스트레이터의 사실상 표준이다.
+
+여기서 흔한 오해 하나를 먼저 잘라두자.
+
+| Airflow가 **하는** 것 | Airflow가 **하지 않는** 것 |
+|---|---|
+| 정해진 시각에 Task를 **트리거** | 청킹·임베딩·벡터DB 저장 (그건 **내 코드** `index_posts.rb`가 함) |
+| Task 간 **순서·의존성** 보장, 병렬 실행 | 사용자 질문에 실시간으로 답하기 (그건 **검색 API**가 pgvector를 직접 조회) |
+| 실패 시 **재시도**, 부분 재실행, Backfill | 검색 품질 지표(Recall@5 등) 집계 (그건 **StarRocks**) |
+| Task 실행 **상태**(성공/실패/소요시간)를 UI에 표시 | 비즈니스 대시보드 (그건 **Grafana + StarRocks**) |
+
+즉 Airflow는 **지휘자**다. 악기(Ruby/Java 스크립트, SQL)를 직접 연주하지 않고, 언제 누가 연주할지만 정한다. 그리고 Airflow는 이 글에서 **인덱싱(배치) 흐름에만** 등장한다. 사용자가 질문을 던지는 서빙(실시간) 흐름에는 Airflow가 전혀 끼지 않는다 — 5장의 전체 그림에서 이 둘을 분리해서 다시 본다.
 
 ### 3-1. 핵심 용어 6개
 
@@ -211,6 +230,15 @@ StarRocks를 고른 이유는 하나 더 있다. **MySQL 프로토콜을 그대�
 
 - **Partition**: 큰 범위 분할, 보통 날짜. `WHERE dt = '2026-09-10'`이면 그 파티션만 읽는다(**partition pruning**). Postgres 파티셔닝과 같은 개념.
 - **Bucket (Distribution)**: 파티션 안에서 해시로 잘게 나눠 여러 BE에 분산. 샤딩과 같은 개념.
+
+이 둘은 목적이 다르다. 서랍장으로 비유하면:
+
+| | 비유 | 나누는 기준 | 목적 |
+|---|---|---|---|
+| **Partition** | 날짜별 **서랍** | 범위 (`dt`) | **안 읽기**. `WHERE dt = ?`면 그 서랍만 열고, 90일 지난 서랍은 통째로 버림(`DROP PARTITION`) |
+| **Bucket** | 서랍 안의 **폴더 8개** | 해시 (`query_id`) | **나눠서 읽기**. 폴더를 여러 BE 노드에 흩뿌려 8개 노드가 동시에 훑음 |
+
+그래서 파티션 키는 **필터에 자주 쓰는 범위 컬럼**(거의 항상 날짜), 버킷 키는 **값이 골고루 퍼지는 컬럼**(`query_id`, `user_id` 같은 고카디널리티)이어야 한다. 날짜를 버킷 키로 잡으면 하루치가 한 노드에 몰려(**data skew**) 병렬이 무의미해진다.
 - **적재 방식**: `INSERT`(소량), **Stream Load**(HTTP로 CSV/JSON 밀어넣기, 배치), **Routine Load**(Kafka 토픽 구독, 스트리밍), **Broker Load**(S3/HDFS 파일).
 - **Materialized View**: 자주 치는 집계 쿼리를 미리 계산해두고 주기적으로 갱신. 쿼리가 원본 테이블을 쳐도 옵티마이저가 알아서 MV로 바꿔 탄다(**query rewrite**).
 - **External Catalog**: Hive / Iceberg / Hudi / Delta Lake 테이블을 복사 없이 바로 쿼리. 데이터 레이크 위에 StarRocks를 얹는 패턴.
@@ -231,7 +259,10 @@ CREATE TABLE search_log (
   top_similarity DOUBLE,
   expected_slug  VARCHAR(255),                    -- 정답셋이 있을 때만
   hit_at_5       BOOLEAN,                         -- 상위 5건에 expected_slug 포함?
-  latency_ms     INT
+  latency_ms     INT,
+  prompt_tokens     INT,                         -- LLM에 보낸 토큰 (청크 5개 + 질문)
+  completion_tokens INT,                         -- LLM이 생성한 토큰
+  cost_usd          DECIMAL(10,6)                -- 이 요청의 비용 (모델 단가 × 토큰)
 )
 PRIMARY KEY (dt, query_id)
 PARTITION BY date_trunc('day', dt)               -- 날짜별 자동 파티션
@@ -375,6 +406,45 @@ GROUP BY dt;
 | **분석**: 한 달 로그를 `GROUP BY` | StarRocks | 열 저장 + MPP, MySQL 호환 |
 
 세 가지를 한 DB로 하려고 하면(예: Postgres에 로그도 쌓고 집계도) 어느 순간 서빙 쿼리가 집계 쿼리에 밀려 느려진다. **OLTP와 OLAP를 물리적으로 분리**하는 게 데이터 파이프라인의 첫 번째 원칙이고, 그 사이를 잇는 게 오케스트레이터다.
+
+### 5-1. 무엇이 어디로 가나
+
+그림에서 화살표가 여러 개라 헷갈리기 쉬운데, **데이터와 로그는 목적지가 다르다.**
+
+| 무엇 | 어디로 | 언제 | 누가 보냄 |
+|---|---|---|---|
+| 청크 + 임베딩 벡터 (데이터 본체) | **pgvector** `post_chunks` | 인덱싱 시 (매일 03:00, 바뀐 글만) | `index_posts.rb` |
+| "오늘 N개 글 처리함" 실행 기록 | **StarRocks** `index_run` | 인덱싱 끝난 직후, 하루 1행 | Airflow `report` Task |
+| 질문·상위 결과·유사도·응답시간·토큰 | **StarRocks** `search_log` | 검색 요청 1건마다 1행 | 검색 API (또는 배치 Stream Load) |
+
+**청크는 StarRocks에 가지 않는다.** pgvector가 데이터 본체이고, StarRocks는 "그 데이터가 어떻게 만들어지고 어떻게 쓰이는지"에 대한 **장부**다. "DB에 적재될 때마다 StarRocks로 쏜다"가 아니라, "인덱싱은 하루 1행, 검색은 요청당 1행의 **로그**를 StarRocks에 남긴다"가 정확하다.
+
+### 5-2. 토큰 비용은 어디서 드나
+
+그림에 안 그려진 게 하나 있다 — 돈. 외부 API 호출은 딱 두 곳이고, 성격이 다르다.
+
+| 어디 | 무엇을 호출 | 비용 규모 | 언제 |
+|---|---|---|---|
+| **인덱싱** `index` Task | 임베딩 API (청크마다 1회) | 청크 수 × 청크 토큰. `text-embedding-3-small` 기준 매우 저렴 | 글이 추가·수정될 때만. `changed_posts`가 바뀐 글만 골라서 재임베딩 비용을 줄임 |
+| **서빙** 검색 API | ① 질문 임베딩 1회 (수십 토큰)<br>② **LLM 호출 1회** (청크 5개 + 질문 + 답변) | ②가 **운영 비용의 대부분**. 요청당 수천 토큰 | 사용자 질문 1건마다 |
+
+인덱싱 비용은 "글당 한 번"이라 사실상 고정비고, 서빙 비용은 "질문당"이라 변동비다. 줄이려면 서빙 쪽을 봐야 한다 — 청크를 5개에서 3개로, 청크 크기를 800자에서 500자로, 답변 길이 제한 등. 그래서 `search_log`에 `prompt_tokens`, `completion_tokens`, `cost_usd`를 넣었다. 이제 비용도 품질과 같은 자리에서 본다.
+
+```sql
+-- 일별 비용과 요청당 평균 비용 — 청킹 설정 바꾼 날 전후로 비교
+SELECT dt,
+       COUNT(*)                          AS queries,
+       SUM(cost_usd)                     AS cost_usd,
+       AVG(cost_usd)                     AS cost_per_query,
+       AVG(prompt_tokens)                AS avg_prompt_tokens,
+       AVG(CAST(hit_at_5 AS INT))        AS recall_at_5
+FROM search_log
+WHERE dt >= CURRENT_DATE - INTERVAL 30 DAY
+GROUP BY dt
+ORDER BY dt;
+```
+
+Recall@5는 그대로인데 `avg_prompt_tokens`만 30% 줄었다면, 그 청킹 변경은 성공이다. 품질과 비용을 한 쿼리에서 같이 보는 것 — 이게 로그를 OLAP에 쌓는 이유다.
 
 ---
 
