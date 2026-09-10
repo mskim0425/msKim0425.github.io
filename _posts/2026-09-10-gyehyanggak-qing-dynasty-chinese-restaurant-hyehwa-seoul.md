@@ -134,6 +134,7 @@ It's expensive, and a couple of dishes lean hard on salt — whether that's the 
 | **Reservation** | Required — CatchTable · 02-3672-6004. Pre-order pagoda pork & eight-treasure duck |
 | **Must order** | Pagoda pork · Seafood nurungji soup · Eight-treasure duck · Lamb with scallions |
 | **Naver Map (KR)** | [naver.me/I55akS7M](https://naver.me/I55akS7M) |
+| **Korean review (한국어 후기)** | [blog.naver.com/review_worrier](https://blog.naver.com/review_worrier/224407655107) |
 
 > From **Hyehwa Station (혜화역, Line 4)** walk about 8 minutes up the hill toward Naksan Park; the round moon gate on Dongsung-gil is the entrance. Book a few days ahead and **request the pre-order dishes when reserving** — they can't be added on the day.
 {: .prompt-tip}
