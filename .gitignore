@@ -28,3 +28,6 @@ _drafts/
 
 # 네이버 붙여넣기 패키지 (생성물)
 naver-drafts/
+
+# 로컬 전용 글 (사내 자료 등) — localhost에서만 보이고 커밋·배포 안 됨
+_posts/*-local-*.md
