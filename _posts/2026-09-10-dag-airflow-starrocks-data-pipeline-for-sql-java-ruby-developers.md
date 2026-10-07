@@ -14,8 +14,10 @@ description: "DAG를 '순환 없는 작업 순서도'로, Airflow를 'cron + 의
 {: .prompt-tip }
 
 [이전 글](/posts/rag-vector-db-frontmatter-for-sql-java-ruby-developers/)에서 블로그 글을 pgvector에 넣는 RAG 인덱싱 파이프라인을 만들었다.  
- `파일 읽기 → Frontmatter 파싱 → 청킹 → 임베딩 → INSERT`. 이걸 매일 자동으로 돌리고,   
- 검색이 얼마나 잘 되는지 숫자로 보고 싶다는 게 이 글의 출발점이다. 그러려면 두 가지가 필요한데   
+ `파일 읽기 → Frontmatter 파싱 → 청킹 → 임베딩 → INSERT`.   
+ 이걸 매일 자동으로 돌리고,   
+ 검색이 얼마나 잘 되는지 숫자로 보고 싶다는 게 이 글의 출발점이다.   
+ 그러려면 두 가지가 필요한데   
  **작업을 순서대로 안정적으로 돌리는 것**(DAG, Airflow)과 **쌓인 로그를 빠르게 집계하는 것**(StarRocks).
 
 ---
@@ -39,13 +41,17 @@ description: "DAG를 '순환 없는 작업 순서도'로, Airflow를 'cron + 의
 | 어젯밤 잘 돌았나? | 서버 접속해서 로그 파일 열어봄 |
 | 두 작업을 병렬로 돌리고 셋째 작업은 둘 다 끝난 뒤에 | cron으론 표현 불가. `&`와 `wait`로 셸 스크립트 곡예 |
 
-cron은 "언제 실행할지"만 안다. **"무엇을 어떤 순서로, 실패하면 어떻게"**는 전부 내 몫이다. 이 빈칸을 채우는 게 오케스트레이터(orchestrator)고, Airflow가 그 대표다. 그리고 오케스트레이터가 작업 순서를 표현하는 데 쓰는 자료구조가 DAG다.
+cron은 "언제 실행할지"만 안다.   
+**"무엇을 어떤 순서로, 실패하면 어떻게"**는 전부 내 몫이다.   
+이 빈칸을 채우는 게 오케스트레이터(orchestrator)고, Airflow가 그 대표다.   
+그리고 오케스트레이터가 작업 순서를 표현하는 데 쓰는 자료구조가 DAG다.
 
 ---
 
 ## 2. DAG: 순환 없는 작업 순서도
 
-**DAG = Directed Acyclic Graph.** 단어를 뜯으면 끝이다.
+**DAG = Directed Acyclic Graph.**   
+단어를 뜯으면 끝이다.
 
 - **Graph**: 점(노드)과 선(엣지)
 - **Directed**: 선에 방향이 있다 → "A 다음에 B"
@@ -59,12 +65,20 @@ git_pull ──▶ changed_posts ──▶ chunk ──▶ embed ──▶ upser
                                   └──────────▶ validate_frontmatter ───────┘
 ```
 
-`chunk`가 끝나면 `embed`와 `validate_frontmatter`가 **병렬**로 돌고, `report`는 둘 다 끝나야 시작한다. 이 한 문장 — "A 끝나면 B와 C를 동시에, 둘 다 끝나야 D" — 는 cron 문법으로는 **표현할 방법 자체가 없다.** cron은 "몇 시에 무엇을"만 알지 "무엇 다음에 무엇"을 모른다. DAG는 그 의존 관계를 선 몇 개로 표현한다.
+`chunk`가 끝나면 `embed`와 `validate_frontmatter`가 **병렬**로 돌고, `report`는 둘 다 끝나야 시작한다.   
+이 한 문장 — "A 끝나면 B와 C를 동시에, 둘 다 끝나야 D" — 는 cron 문법으로는 **표현할 방법 자체가 없다.** cron은 "몇 시에 무엇을"만 알지 "무엇 다음에 무엇"을 모른다.   
+DAG는 그 의존 관계를 선 몇 개로 표현한다.
 
-> **DAG는 파이프라인 그 자체가 아니라 파이프라인의 "순서도"다.** "A → B, C 병렬 → D"라는 **모양**이 DAG이고, 각 노드에 무엇을 넣느냐(수집·변환·적재·배포·모델 학습·리포트 발송…)는 자유다. 데이터 수집 파이프라인은 DAG로 그릴 수 있는 것 중 하나일 뿐이다.
+> **DAG는 파이프라인 그 자체가 아니라 파이프라인의 "순서도"다.**   
+> "A → B, C 병렬 → D"라는 **모양**이 DAG이고, 각 노드에 무엇을 넣느냐(수집·변환·적재·배포·모델 학습·리포트 발송…)는 자유다.   
+> 데이터 수집 파이프라인은 DAG로 그릴 수 있는 것 중 하나일 뿐이다.
 {: .prompt-info }
 
-**왜 순환이 없어야 하나.** 순환이 있으면 "어디서 시작해서 언제 끝나는지"를 정할 수 없다. A가 B를 기다리고 B가 A를 기다리면 데드락이다. 순환이 없으면 **위상 정렬(topological sort)**이 가능해서, "의존성을 만족하는 실행 순서"가 항상 하나 이상 존재한다. 오케스트레이터는 이 순서대로 노드를 실행하고, 의존성이 없는 노드들은 동시에 돌린다.
+**왜 순환이 없어야 하나.**   
+순환이 있으면 "어디서 시작해서 언제 끝나는지"를 정할 수 없다.   
+A가 B를 기다리고 B가 A를 기다리면 데드락이다.   
+순환이 없으면 **위상 정렬(topological sort)**이 가능해서, "의존성을 만족하는 실행 순서"가 항상 하나 이상 존재한다.   
+오케스트레이터는 이 순서대로 노드를 실행하고, 의존성이 없는 노드들은 동시에 돌린다.
 
 이미 아는 것들이 전부 DAG다.
 
@@ -77,13 +91,16 @@ git_pull ──▶ changed_posts ──▶ chunk ──▶ embed ──▶ upser
 | Rails `before_action` 체인 | 필터 | 선언 순서 |
 | DB 외래키 관계도 (순환 없을 때) | 테이블 | FK |
 
-**DAG는 자료구조이지 도구가 아니다.** Airflow, Prefect, Dagster, Argo Workflows, GitHub Actions의 `needs:` 전부 DAG로 작업을 표현한다. 이름이 비슷한 **RAG**(Retrieval-Augmented Generation)는 LLM 답변 패턴이고 전혀 다른 개념이다 — 다만 RAG의 인덱싱 파이프라인은 그 자체로 DAG라서, 이 글에서 둘이 만난다.
+**DAG는 자료구조이지 도구가 아니다.**   
+Airflow, Prefect, Dagster, Argo Workflows, GitHub Actions의 `needs:` 전부 DAG로 작업을 표현한다.   
+이름이 비슷한 **RAG**(Retrieval-Augmented Generation)는 LLM 답변 패턴이고 전혀 다른 개념이다 — 다만 RAG의 인덱싱 파이프라인은 그 자체로 DAG라서, 이 글에서 둘이 만난다.
 
 ---
 
 ## 3. Airflow: cron + 의존성 + 재시도 + 대시보드
 
-Apache Airflow는 **"Python 코드로 DAG를 정의하면, 스케줄에 맞춰 실행하고 상태를 관리해주는 서버"**다. 2014년 Airbnb에서 만들었고, 지금은 데이터 파이프라인 오케스트레이터의 사실상 표준이다.
+Apache Airflow는 **"Python 코드로 DAG를 정의하면, 스케줄에 맞춰 실행하고 상태를 관리해주는 서버"**다.   
+2014년 Airbnb에서 만들었고, 지금은 데이터 파이프라인 오케스트레이터의 사실상 표준이다.
 
 여기서 흔한 오해 하나를 먼저 잘라두자.
 
@@ -94,7 +111,10 @@ Apache Airflow는 **"Python 코드로 DAG를 정의하면, 스케줄에 맞춰 �
 | 실패 시 **재시도**, 부분 재실행, Backfill | 검색 품질 지표(Recall@5 등) 집계 (그건 **StarRocks**) |
 | Task 실행 **상태**(성공/실패/소요시간)를 UI에 표시 | 비즈니스 대시보드 (그건 **Grafana + StarRocks**) |
 
-즉 Airflow는 **지휘자**다. 악기(Ruby/Java 스크립트, SQL)를 직접 연주하지 않고, 언제 누가 연주할지만 정한다. 그리고 Airflow는 이 글에서 **인덱싱(배치) 흐름에만** 등장한다. 사용자가 질문을 던지는 서빙(실시간) 흐름에는 Airflow가 전혀 끼지 않는다 — 5장의 전체 그림에서 이 둘을 분리해서 다시 본다.
+즉 Airflow는 **지휘자**다.   
+악기(Ruby/Java 스크립트, SQL)를 직접 연주하지 않고, 언제 누가 연주할지만 정한다.   
+그리고 Airflow는 이 글에서 **인덱싱(배치) 흐름에만** 등장한다.   
+사용자가 질문을 던지는 서빙(실시간) 흐름에는 Airflow가 전혀 끼지 않는다 — 5장의 전체 그림에서 이 둘을 분리해서 다시 본다.
 
 ### 3-1. 핵심 용어 6개
 
@@ -109,22 +129,36 @@ Apache Airflow는 **"Python 코드로 DAG를 정의하면, 스케줄에 맞춰 �
 
 ### 3-2. 알아두면 삽질을 줄이는 용어
 
-- **schedule / start_date / catchup**: `schedule="@daily"`와 `start_date=2026-09-01`을 주고 오늘이 9월 10일이면, Airflow는 기본적으로 **9/1~9/9 분을 전부 소급 실행**한다(catchup). 처음엔 거의 항상 `catchup=False`.
-- **Backfill**: 과거 기간을 의도적으로 다시 돌리는 것. `airflow dags backfill -s 2026-09-01 -e 2026-09-07 rag_index_blog`. cron 시절 "날짜 인자 받게 고쳐서 7번 실행"이 명령어 하나가 된다.
-- **Idempotent(멱등)**: 같은 날짜로 두 번 돌려도 결과가 같아야 한다. Backfill과 재시도가 안전하려면 필수. SQL로 치면 `INSERT` 대신 `INSERT … ON CONFLICT DO UPDATE`, `DELETE WHERE dt = ? 후 INSERT`.
-- **Sensor**: "파일이 생길 때까지 / 다른 DAG가 끝날 때까지" 기다리는 Task. `FileSensor`, `ExternalTaskSensor`.
+- **schedule / start_date / catchup**: `schedule="@daily"`와 `start_date=2026-09-01`을 주고 오늘이 9월 10일이면, Airflow는 기본적으로 **9/1~9/9 분을 전부 소급 실행**한다(catchup).   
+  처음엔 거의 항상 `catchup=False`.
+- **Backfill**: 과거 기간을 의도적으로 다시 돌리는 것.   
+  `airflow dags backfill -s 2026-09-01 -e 2026-09-07 rag_index_blog`. cron 시절 "날짜 인자 받게 고쳐서 7번 실행"이 명령어 하나가 된다.
+- **Idempotent(멱등)**: 같은 날짜로 두 번 돌려도 결과가 같아야 한다.   
+  Backfill과 재시도가 안전하려면 필수.   
+  SQL로 치면 `INSERT` 대신 `INSERT … ON CONFLICT DO UPDATE`, `DELETE WHERE dt = ? 후 INSERT`.
+- **Sensor**: "파일이 생길 때까지 / 다른 DAG가 끝날 때까지" 기다리는 Task.   
+  `FileSensor`, `ExternalTaskSensor`.
 - **Retry / retry_delay**: Task 단위 재시도. cron 시절의 `while` 루프가 인자 두 개로 끝난다.
-- **SLA**: "이 Task는 03:30까지 끝나야 함". 넘기면 알림.
-- **Pool**: 동시 실행 개수 제한. 임베딩 API 레이트 리밋이 있으면 `pool="openai", pool_slots=1`.
-- **Connection / Variable**: DB 접속 정보·API 키를 코드 밖(UI 또는 환경변수)에 두는 곳. `.env`의 Airflow 버전.
-- **TaskFlow API**: `@task` 데코레이터로 함수를 Task로 만드는 문법. 리턴값이 자동으로 XCom을 탄다. 2.x 이후 표준.
+- **SLA**: "이 Task는 03:30까지 끝나야 함".   
+  넘기면 알림.
+- **Pool**: 동시 실행 개수 제한.   
+  임베딩 API 레이트 리밋이 있으면 `pool="openai", pool_slots=1`.
+- **Connection / Variable**: DB 접속 정보·API 키를 코드 밖(UI 또는 환경변수)에 두는 곳.   
+  `.env`의 Airflow 버전.
+- **TaskFlow API**: `@task` 데코레이터로 함수를 Task로 만드는 문법.   
+  리턴값이 자동으로 XCom을 탄다.   
+  2.x 이후 표준.
 
-> **Airflow는 Python이지만 Task는 아무 언어나 된다.** `BashOperator`로 `ruby index_posts.rb`나 `java -jar indexer.jar`를 부르면 되고, 컨테이너로 격리하고 싶으면 `DockerOperator`/`KubernetesPodOperator`를 쓴다. Airflow는 **지휘자**지 연주자가 아니다. Java/Ruby 코드를 Python으로 다시 쓸 필요가 없다.
+> **Airflow는 Python이지만 Task는 아무 언어나 된다.**   
+> `BashOperator`로 `ruby index_posts.rb`나 `java -jar indexer.jar`를 부르면 되고, 컨테이너로 격리하고 싶으면 `DockerOperator`/`KubernetesPodOperator`를 쓴다.   
+> Airflow는 **지휘자**지 연주자가 아니다.   
+> Java/Ruby 코드를 Python으로 다시 쓸 필요가 없다.
 {: .prompt-info }
 
 ### 3-3. RAG 인덱싱 DAG
 
-이전 글의 Ruby 인덱서(`index_posts.rb`)를 그대로 재사용한다. 바뀐 글만 골라 임베딩하고, 실행 결과를 StarRocks에 남긴다.
+이전 글의 Ruby 인덱서(`index_posts.rb`)를 그대로 재사용한다.   
+바뀐 글만 골라 임베딩하고, 실행 결과를 StarRocks에 남긴다.
 
 ```python
 # dags/rag_index_blog.py
@@ -189,22 +223,37 @@ rag_index_blog()
 
 읽는 법:
 
-- `@dag(...)`가 cron 한 줄에 해당한다. 다만 `retries`, `catchup`, `tags`가 같이 온다.
-- `git_pull >> paths`가 **엣지**다. `>>`는 "왼쪽 끝나면 오른쪽".
-- `report(index(paths))`처럼 **함수 호출로 인자를 넘기면 그게 곧 의존성**이다. TaskFlow API의 핵심.
-- `ctx["ds"]`는 "이 실행이 담당하는 날짜"(`2026-09-10`). Backfill로 과거를 돌리면 이 값이 그 날짜가 된다. 그래서 Task는 "오늘"이 아니라 **`ds`를 기준으로** 짜야 멱등이 된다.
+- `@dag(...)`가 cron 한 줄에 해당한다.   
+  다만 `retries`, `catchup`, `tags`가 같이 온다.
+- `git_pull >> paths`가 **엣지**다.   
+  `>>`는 "왼쪽 끝나면 오른쪽".
+- `report(index(paths))`처럼 **함수 호출로 인자를 넘기면 그게 곧 의존성**이다.   
+  TaskFlow API의 핵심.
+- `ctx["ds"]`는 "이 실행이 담당하는 날짜"(`2026-09-10`).   
+  Backfill로 과거를 돌리면 이 값이 그 날짜가 된다.   
+  그래서 Task는 "오늘"이 아니라 **`ds`를 기준으로** 짜야 멱등이 된다.
 
-Task 하나가 실패하면 그 Task만 2번 재시도하고, 그래도 실패하면 DAG가 빨간불이 된다. UI에서 실패한 Task만 클릭해서 **Clear**하면 그 지점부터 다시 돈다. cron 시절 "로그 `grep` 해서 수동 재실행"이 클릭 한 번이다.
+Task 하나가 실패하면 그 Task만 2번 재시도하고, 그래도 실패하면 DAG가 빨간불이 된다.   
+UI에서 실패한 Task만 클릭해서 **Clear**하면 그 지점부터 다시 돈다. cron 시절 "로그 `grep` 해서 수동 재실행"이 클릭 한 번이다.
 
 ---
 
 ## 4. StarRocks: 집계 전용 MySQL 호환 DB
 
-파이프라인이 매일 돌면 로그가 쌓인다. 검색 요청마다 "질문, 상위 5개 slug, 최고 유사도, 기대 slug가 포함됐는지, 응답 시간"을 남기면 하루 수만 행, 1년이면 수천만 행이다. 이걸 MySQL에 넣고 `GROUP BY dt`를 치면 어느 순간 수십 초가 걸린다.
+파이프라인이 매일 돌면 로그가 쌓인다.   
+검색 요청마다 "질문, 상위 5개 slug, 최고 유사도, 기대 slug가 포함됐는지, 응답 시간"을 남기면 하루 수만 행, 1년이면 수천만 행이다.   
+이걸 MySQL에 넣고 `GROUP BY dt`를 치면 어느 순간 수십 초가 걸린다.
 
-**이유는 저장 방식이다.** MySQL/Postgres는 **행 저장(row store)**이다. 한 행의 모든 컬럼이 디스크에 붙어 있다. `SELECT * WHERE id = 42` 같은 OLTP 조회에 최적이다. 반면 `SELECT dt, AVG(latency_ms) GROUP BY dt`는 `latency_ms` 컬럼 하나만 필요한데, 행 저장은 모든 컬럼을 디스크에서 읽어야 한다.
+**이유는 저장 방식이다.**   
+MySQL/Postgres는 **행 저장(row store)**이다.   
+한 행의 모든 컬럼이 디스크에 붙어 있다.   
+`SELECT * WHERE id = 42` 같은 OLTP 조회에 최적이다.   
+반면 `SELECT dt, AVG(latency_ms) GROUP BY dt`는 `latency_ms` 컬럼 하나만 필요한데, 행 저장은 모든 컬럼을 디스크에서 읽어야 한다.
 
-StarRocks 같은 **OLAP DB는 열 저장(columnar)**이다. 컬럼마다 파일이 따로 있어서 필요한 컬럼만 읽고, 같은 타입이 연속으로 있으니 압축률이 높고, CPU가 벡터 단위로 한 번에 처리한다(**vectorized execution**). 거기에 여러 노드가 나눠서 병렬로 계산한다(**MPP**, Massively Parallel Processing). 억 단위 행의 `GROUP BY`가 초 단위로 끝나는 이유다.
+StarRocks 같은 **OLAP DB는 열 저장(columnar)**이다.   
+컬럼마다 파일이 따로 있어서 필요한 컬럼만 읽고, 같은 타입이 연속으로 있으니 압축률이 높고, CPU가 벡터 단위로 한 번에 처리한다(**vectorized execution**).   
+거기에 여러 노드가 나눠서 병렬로 계산한다(**MPP**, Massively Parallel Processing).   
+억 단위 행의 `GROUP BY`가 초 단위로 끝나는 이유다.
 
 | | MySQL / Postgres (OLTP) | StarRocks / ClickHouse / BigQuery (OLAP) |
 |---|---|---|
@@ -214,11 +263,15 @@ StarRocks 같은 **OLAP DB는 열 저장(columnar)**이다. 컬럼마다 파일�
 | 트랜잭션 | 완전한 ACID | 제한적 (적재 단위 원자성) |
 | 인덱스 | B-Tree | 정렬 키 + 파티션 + 프루닝 |
 
-StarRocks를 고른 이유는 하나 더 있다. **MySQL 프로토콜을 그대로 쓴다.** Java는 MySQL JDBC 드라이버, Ruby는 `mysql2` gem으로 붙는다. 새 클라이언트를 배울 필요가 없다.
+StarRocks를 고른 이유는 하나 더 있다.   
+**MySQL 프로토콜을 그대로 쓴다.**   
+Java는 MySQL JDBC 드라이버, Ruby는 `mysql2` gem으로 붙는다.   
+새 클라이언트를 배울 필요가 없다.
 
 ### 4-1. 핵심 개념
 
-- **FE / BE**: Frontend(쿼리 파싱·계획·메타데이터, 포트 9030)와 Backend(저장·실행). FE에 MySQL 클라이언트로 붙는다.
+- **FE / BE**: Frontend(쿼리 파싱·계획·메타데이터, 포트 9030)와 Backend(저장·실행).   
+  FE에 MySQL 클라이언트로 붙는다.
 - **테이블 타입 4종**: 데이터 성격에 따라 고른다.
 
 | 타입 | 언제 | SQL로 치면 |
@@ -228,34 +281,46 @@ StarRocks를 고른 이유는 하나 더 있다. **MySQL 프로토콜을 그대�
 | **Unique Key** | 같은 키면 최신값으로 덮어쓰기 | Upsert (읽을 때 병합) |
 | **Primary Key** | Unique와 같지만 쓰기 시점에 병합 → 조회가 빠름. **요즘 기본 선택** | Upsert (쓸 때 병합) |
 
-- **Partition**: 큰 범위 분할, 보통 날짜. `WHERE dt = '2026-09-10'`이면 그 파티션만 읽는다(**partition pruning**). Postgres 파티셔닝과 같은 개념.
-- **Bucket (Distribution)**: 파티션 안에서 해시로 잘게 나눠 여러 BE에 분산. 샤딩과 같은 개념.
+- **Partition**: 큰 범위 분할, 보통 날짜.   
+  `WHERE dt = '2026-09-10'`이면 그 파티션만 읽는다(**partition pruning**).   
+  Postgres 파티셔닝과 같은 개념.
+- **Bucket (Distribution)**: 파티션 안에서 해시로 잘게 나눠 여러 BE에 분산.   
+  샤딩과 같은 개념.
 
-이 둘은 목적이 다르다. 서랍장으로 비유하면:
+이 둘은 목적이 다르다.   
+서랍장으로 비유하면:
 
 | | 비유 | 나누는 기준 | 목적 |
 |---|---|---|---|
 | **Partition** | 날짜별 **서랍** | 범위 (`dt`) | **안 읽기**. `WHERE dt = ?`면 그 서랍만 열고, 90일 지난 서랍은 통째로 버림(`DROP PARTITION`) |
 | **Bucket** | 서랍 안의 **폴더 8개** | 해시 (`query_id`) | **나눠서 읽기**. 폴더를 여러 BE 노드에 흩뿌려 8개 노드가 동시에 훑음 |
 
-그래서 파티션 키는 **필터에 자주 쓰는 범위 컬럼**(거의 항상 날짜), 버킷 키는 **값이 골고루 퍼지는 컬럼**(`query_id`, `user_id` 같은 고카디널리티)이어야 한다. 날짜를 버킷 키로 잡으면 하루치가 한 노드에 몰려(**data skew**) 병렬이 무의미해진다.
+그래서 파티션 키는 **필터에 자주 쓰는 범위 컬럼**(거의 항상 날짜), 버킷 키는 **값이 골고루 퍼지는 컬럼**(`query_id`, `user_id` 같은 고카디널리티)이어야 한다.   
+날짜를 버킷 키로 잡으면 하루치가 한 노드에 몰려(**data skew**) 병렬이 무의미해진다.
 - **적재 방식**: `INSERT`(소량), **Stream Load**(HTTP로 CSV/JSON 밀어넣기, 배치), **Routine Load**(Kafka 토픽 구독, 스트리밍), **Broker Load**(S3/HDFS 파일).
-- **Materialized View**: 자주 치는 집계 쿼리를 미리 계산해두고 주기적으로 갱신. 쿼리가 원본 테이블을 쳐도 옵티마이저가 알아서 MV로 바꿔 탄다(**query rewrite**).
-- **External Catalog**: Hive / Iceberg / Hudi / Delta Lake 테이블을 복사 없이 바로 쿼리. 데이터 레이크 위에 StarRocks를 얹는 패턴. 이 중 Iceberg는 따로 볼 가치가 있어서 아래 4-1-1에서 다룬다.
+- **Materialized View**: 자주 치는 집계 쿼리를 미리 계산해두고 주기적으로 갱신.   
+  쿼리가 원본 테이블을 쳐도 옵티마이저가 알아서 MV로 바꿔 탄다(**query rewrite**).
+- **External Catalog**: Hive / Iceberg / Hudi / Delta Lake 테이블을 복사 없이 바로 쿼리.   
+  데이터 레이크 위에 StarRocks를 얹는 패턴.   
+  이 중 Iceberg는 따로 볼 가치가 있어서 아래 4-1-1에서 다룬다.
 
 #### 4-1-1. Iceberg: S3 위의 파일 더미를 "테이블"로
 
-StarRocks에 모든 로그를 영원히 넣어둘 수는 없다. 비싸고, 노드 디스크는 유한하다. 그래서 실무에서는 **원본은 S3 같은 오브젝트 스토리지에 Parquet 파일로 싸게 쌓고, StarRocks는 최근 데이터만 들고 있거나 S3를 직접 읽는** 구성이 흔하다. 그런데 S3에 파일만 던져두면 DB가 당연히 해주던 것들이 사라진다.
+StarRocks에 모든 로그를 영원히 넣어둘 수는 없다.   
+비싸고, 노드 디스크는 유한하다.   
+그래서 실무에서는 **원본은 S3 같은 오브젝트 스토리지에 Parquet 파일로 싸게 쌓고, StarRocks는 최근 데이터만 들고 있거나 S3를 직접 읽는** 구성이 흔하다.   
+그런데 S3에 파일만 던져두면 DB가 당연히 해주던 것들이 사라진다.
 
 | DB에선 당연한 것 | S3에 Parquet만 있으면 |
-|---|---|
+|---|---|ㅂ
 | `INSERT` 중간에 죽어도 반쪽 데이터가 안 보임 (원자성) | 파일 절반만 올라간 상태를 읽는 쿼리가 생김 |
 | `ALTER TABLE ADD COLUMN` | 옛 파일엔 컬럼이 없어서 읽는 쪽이 각자 처리 |
 | "어제 이 시각의 데이터" | 없음. 덮어쓰면 끝 |
 | 파티션 기준 바꾸기 | 전체 파일 재배치 |
 | `WHERE dt = ?`만 읽기 | 디렉토리 이름 규칙에 의존, 쿼리가 규칙을 알아야 함 |
 
-**Apache Iceberg**는 이 빈칸을 채우는 **테이블 포맷**이다. DB도 엔진도 아니다 — Parquet 파일들 위에 얹는 **메타데이터 계층**이고, "어떤 파일들이 현재 이 테이블을 구성하는가"를 버전별로 기록한다.
+**Apache Iceberg**는 이 빈칸을 채우는 **테이블 포맷**이다.   
+DB도 엔진도 아니다 — Parquet 파일들 위에 얹는 **메타데이터 계층**이고, "어떤 파일들이 현재 이 테이블을 구성하는가"를 버전별로 기록한다.
 
 ```
 s3://lake/rag/search_log_raw/
@@ -278,9 +343,12 @@ s3://lake/rag/search_log_raw/
 | **파티션 진화** | 파티션 기준을 바꿔도 옛 데이터를 재배치하지 않음. 새 스냅샷부터 새 규칙 |
 | **manifest의 min/max 통계** | 인덱스 대신 "이 파일엔 `latency_ms` 최대가 300이니 `> 500` 조건엔 열 필요 없다"로 파일 단위 프루닝 |
 
-같은 계열로 **Hudi**(Uber, 스트리밍 upsert에 강함)와 **Delta Lake**(Databricks)가 있는데, 2024년 이후 Snowflake·Databricks·AWS·Google이 모두 Iceberg를 지원하면서 **사실상 표준**이 됐다. 새로 시작한다면 Iceberg다.
+같은 계열로 **Hudi**(Uber, 스트리밍 upsert에 강함)와 **Delta Lake**(Databricks)가 있는데, 2024년 이후 Snowflake·Databricks·AWS·Google이 모두 Iceberg를 지원하면서 **사실상 표준**이 됐다.   
+새로 시작한다면 Iceberg다.
 
-**StarRocks와의 관계.** StarRocks는 Iceberg 테이블을 **복사 없이** 읽고 쓴다. 카탈로그를 한 번 등록하면 내부 테이블과 같은 문법으로 조인까지 된다.
+**StarRocks와의 관계.**   
+StarRocks는 Iceberg 테이블을 **복사 없이** 읽고 쓴다.   
+카탈로그를 한 번 등록하면 내부 테이블과 같은 문법으로 조인까지 된다.
 
 ```sql
 -- Iceberg 카탈로그 등록 (REST 카탈로그 예시. Glue / Hive Metastore 도 가능)
@@ -307,7 +375,9 @@ JOIN (SELECT dt, COUNT(*) queries FROM lake.rag.search_log_raw
 SELECT COUNT(*) FROM lake.rag.search_log_raw FOR VERSION AS OF 8812345678901234567;
 ```
 
-**Airflow와의 관계.** 2편의 DAG에 Task 하나가 늘어난다: 검색 API가 쌓은 하루치 로그를 Parquet로 써서 Iceberg에 **커밋**하는 단계. 커밋이 원자적이라 재시도·Backfill과 궁합이 좋다 — 같은 날짜를 두 번 돌려도 "그 날짜 파티션을 덮어쓰는 스냅샷"이 하나 더 생길 뿐, 중복도 반쪽도 없다.
+**Airflow와의 관계.**   
+2편의 DAG에 Task 하나가 늘어난다: 검색 API가 쌓은 하루치 로그를 Parquet로 써서 Iceberg에 **커밋**하는 단계.   
+커밋이 원자적이라 재시도·Backfill과 궁합이 좋다 — 같은 날짜를 두 번 돌려도 "그 날짜 파티션을 덮어쓰는 스냅샷"이 하나 더 생길 뿐, 중복도 반쪽도 없다.
 
 ```python
 @task
@@ -327,7 +397,9 @@ def commit_to_iceberg(**ctx):
 | **핫** | StarRocks 내부 테이블 | 최근 30~90일 `search_log`, MV | ms 단위 대시보드 |
 | **콜드 / 원본** | S3 + Iceberg | 전체 이력 `search_log_raw` | 저렴, 무한, 다른 엔진(Spark·Trino·DuckDB)도 같은 테이블을 읽음 |
 
-이 구성이 6장 용어 사전의 **레이크하우스**다 — 레이크(S3 파일)의 비용으로 웨어하우스(테이블·트랜잭션·스키마)의 편의를 얻는다. 그리고 Iceberg가 표준이라 StarRocks를 나중에 다른 엔진으로 바꿔도 데이터는 그대로다. **데이터를 특정 DB에 가두지 않는 것**, 그게 테이블 포맷을 따로 두는 가장 큰 이유다.
+이 구성이 6장 용어 사전의 **레이크하우스**다 — 레이크(S3 파일)의 비용으로 웨어하우스(테이블·트랜잭션·스키마)의 편의를 얻는다.   
+그리고 Iceberg가 표준이라 StarRocks를 나중에 다른 엔진으로 바꿔도 데이터는 그대로다.   
+**데이터를 특정 DB에 가두지 않는 것**, 그게 테이블 포맷을 따로 두는 가장 큰 이유다.
 
 ### 4-2. 검색 로그 테이블
 
@@ -371,7 +443,8 @@ MySQL DDL과 다른 건 `PRIMARY KEY … PARTITION BY … DISTRIBUTED BY` 세 �
 
 ### 4-3. 적재: 앱에서 바로 vs 배치로
 
-**앱에서 한 건씩** — 검색 API가 응답 직후 남긴다. MySQL 드라이버 그대로.
+**앱에서 한 건씩** — 검색 API가 응답 직후 남긴다.   
+MySQL 드라이버 그대로.
 
 ```java
 // Java: MySQL JDBC 드라이버, 포트만 9030
@@ -401,10 +474,13 @@ sr.query(<<~SQL)
 SQL
 ```
 
-> 한 건씩 `INSERT`는 편하지만 OLAP DB가 잘하는 방식은 아니다. 초당 수백 건 이상이면 **앱은 로그 파일이나 Kafka에만 쓰고, 적재는 배치(Stream Load)나 스트리밍(Routine Load)으로** 넘기는 게 정석이다. 아래가 그 배치 버전이다.
+> 한 건씩 `INSERT`는 편하지만 OLAP DB가 잘하는 방식은 아니다.   
+> 초당 수백 건 이상이면 **앱은 로그 파일이나 Kafka에만 쓰고, 적재는 배치(Stream Load)나 스트리밍(Routine Load)으로** 넘기는 게 정석이다.   
+> 아래가 그 배치 버전이다.
 {: .prompt-warning }
 
-**배치로** — Airflow Task에서 하루치 CSV를 Stream Load로 밀어넣는다. HTTP `PUT` 한 번이다.
+**배치로** — Airflow Task에서 하루치 CSV를 Stream Load로 밀어넣는다.   
+HTTP `PUT` 한 번이다.
 
 ```bash
 curl --location-trusted -u root: \
@@ -416,11 +492,14 @@ curl --location-trusted -u root: \
   http://starrocks-fe:8030/api/rag/search_log/_stream_load
 ```
 
-`label`은 **멱등 키**다. 같은 label로 두 번 보내면 두 번째는 거부된다 — Airflow 재시도와 Backfill이 안전한 이유. Airflow에서는 `BashOperator`로 위 curl을 그대로 부르거나, `SimpleHttpOperator`를 쓴다.
+`label`은 **멱등 키**다.   
+같은 label로 두 번 보내면 두 번째는 거부된다 — Airflow 재시도와 Backfill이 안전한 이유.   
+Airflow에서는 `BashOperator`로 위 curl을 그대로 부르거나, `SimpleHttpOperator`를 쓴다.
 
 ### 4-4. 집계: 이 파이프라인의 목적
 
-이전 글 7장에서 "Recall@5를 재라"고 했다. 이제 그걸 매일 자동으로 볼 수 있다.
+이전 글 7장에서 "Recall@5를 재라"고 했다.   
+이제 그걸 매일 자동으로 볼 수 있다.
 
 ```sql
 -- 최근 7일 검색 품질: 하루 요청 수, Recall@5, 응답시간 p95
@@ -461,7 +540,8 @@ WHERE expected_slug IS NOT NULL
 GROUP BY dt;
 ```
 
-이제 `SELECT * FROM daily_search_quality ORDER BY dt DESC LIMIT 30`이 대시보드 쿼리다. Grafana나 Metabase를 MySQL 데이터소스로 붙이면 끝난다 — **MySQL 프로토콜이라 그냥 붙는다.**
+이제 `SELECT * FROM daily_search_quality ORDER BY dt DESC LIMIT 30`이 대시보드 쿼리다.   
+Grafana나 Metabase를 MySQL 데이터소스로 붙이면 끝난다 — **MySQL 프로토콜이라 그냥 붙는다.**
 
 ---
 
@@ -491,7 +571,8 @@ GROUP BY dt;
 | **오케스트레이션**: 매일 재색인, 실패 시 재시도 | Airflow | DAG + 스케줄 + 재시도 + UI |
 | **분석**: 한 달 로그를 `GROUP BY` | StarRocks | 열 저장 + MPP, MySQL 호환 |
 
-세 가지를 한 DB로 하려고 하면(예: Postgres에 로그도 쌓고 집계도) 어느 순간 서빙 쿼리가 집계 쿼리에 밀려 느려진다. **OLTP와 OLAP를 물리적으로 분리**하는 게 데이터 파이프라인의 첫 번째 원칙이고, 그 사이를 잇는 게 오케스트레이터다.
+세 가지를 한 DB로 하려고 하면(예: Postgres에 로그도 쌓고 집계도) 어느 순간 서빙 쿼리가 집계 쿼리에 밀려 느려진다.   
+**OLTP와 OLAP를 물리적으로 분리**하는 게 데이터 파이프라인의 첫 번째 원칙이고, 그 사이를 잇는 게 오케스트레이터다.
 
 ### 5-1. 무엇이 어디로 가나
 
@@ -504,18 +585,23 @@ GROUP BY dt;
 | 질문·상위 결과·유사도·응답시간·토큰 | **StarRocks** `search_log` | 검색 요청 1건마다 1행 | 검색 API (또는 배치 Stream Load) |
 | 위 로그의 전체 이력 (원본, 장기 보관) | **S3 + Iceberg** `search_log_raw` | 하루 1회 Parquet 커밋 | Airflow `commit_to_iceberg` Task |
 
-**청크는 StarRocks에 가지 않는다.** pgvector가 데이터 본체이고, StarRocks는 "그 데이터가 어떻게 만들어지고 어떻게 쓰이는지"에 대한 **장부**다. "DB에 적재될 때마다 StarRocks로 쏜다"가 아니라, "인덱싱은 하루 1행, 검색은 요청당 1행의 **로그**를 StarRocks에 남긴다"가 정확하다.
+**청크는 StarRocks에 가지 않는다.** pgvector가 데이터 본체이고, StarRocks는 "그 데이터가 어떻게 만들어지고 어떻게 쓰이는지"에 대한 **장부**다.   
+"DB에 적재될 때마다 StarRocks로 쏜다"가 아니라, "인덱싱은 하루 1행, 검색은 요청당 1행의 **로그**를 StarRocks에 남긴다"가 정확하다.
 
 ### 5-2. 토큰 비용은 어디서 드나
 
-그림에 안 그려진 게 하나 있다 — 돈. 외부 API 호출은 딱 두 곳이고, 성격이 다르다.
+그림에 안 그려진 게 하나 있다 — 돈.   
+외부 API 호출은 딱 두 곳이고, 성격이 다르다.
 
 | 어디 | 무엇을 호출 | 비용 규모 | 언제 |
 |---|---|---|---|
 | **인덱싱** `index` Task | 임베딩 API (청크마다 1회) | 청크 수 × 청크 토큰. `text-embedding-3-small` 기준 매우 저렴 | 글이 추가·수정될 때만. `changed_posts`가 바뀐 글만 골라서 재임베딩 비용을 줄임 |
 | **서빙** 검색 API | ① 질문 임베딩 1회 (수십 토큰)<br>② **LLM 호출 1회** (청크 5개 + 질문 + 답변) | ②가 **운영 비용의 대부분**. 요청당 수천 토큰 | 사용자 질문 1건마다 |
 
-인덱싱 비용은 "글당 한 번"이라 사실상 고정비고, 서빙 비용은 "질문당"이라 변동비다. 줄이려면 서빙 쪽을 봐야 한다 — 청크를 5개에서 3개로, 청크 크기를 800자에서 500자로, 답변 길이 제한 등. 그래서 `search_log`에 `prompt_tokens`, `completion_tokens`, `cost_usd`를 넣었다. 이제 비용도 품질과 같은 자리에서 본다.
+인덱싱 비용은 "글당 한 번"이라 사실상 고정비고, 서빙 비용은 "질문당"이라 변동비다.   
+줄이려면 서빙 쪽을 봐야 한다 — 청크를 5개에서 3개로, 청크 크기를 800자에서 500자로, 답변 길이 제한 등.   
+그래서 `search_log`에 `prompt_tokens`, `completion_tokens`, `cost_usd`를 넣었다.   
+이제 비용도 품질과 같은 자리에서 본다.
 
 ```sql
 -- 일별 비용과 요청당 평균 비용 — 청킹 설정 바꾼 날 전후로 비교
@@ -531,13 +617,15 @@ GROUP BY dt
 ORDER BY dt;
 ```
 
-Recall@5는 그대로인데 `avg_prompt_tokens`만 30% 줄었다면, 그 청킹 변경은 성공이다. 품질과 비용을 한 쿼리에서 같이 보는 것 — 이게 로그를 OLAP에 쌓는 이유다.
+Recall@5는 그대로인데 `avg_prompt_tokens`만 30% 줄었다면, 그 청킹 변경은 성공이다.   
+품질과 비용을 한 쿼리에서 같이 보는 것 — 이게 로그를 OLAP에 쌓는 이유다.
 
 ---
 
 ## 6. 알아두면 좋은 용어 사전
 
-파이프라인 문서나 채용 공고에서 자주 마주치는 단어들이다. 한 줄씩만.
+파이프라인 문서나 채용 공고에서 자주 마주치는 단어들이다.   
+한 줄씩만.
 
 ### 흐름·방식
 
@@ -617,7 +705,8 @@ Recall@5는 그대로인데 `avg_prompt_tokens`만 30% 줄었다면, 그 청킹 
 | Upsert | Primary Key 테이블 | `PRIMARY KEY (dt, query_id)` |
 | 캐시된 집계 | Materialized View | `daily_search_quality` |
 
-DAG는 자료구조, Airflow는 그걸 돌리는 지휘자, StarRocks는 결과를 빠르게 세는 장부다. 셋 다 새 언어를 요구하지 않는다 — cron·함수 호출·SQL이라는 이미 가진 감각을 이름만 바꿔 부르는 것에 가깝다.
+DAG는 자료구조, Airflow는 그걸 돌리는 지휘자, StarRocks는 결과를 빠르게 세는 장부다.   
+셋 다 새 언어를 요구하지 않는다 — cron·함수 호출·SQL이라는 이미 가진 감각을 이름만 바꿔 부르는 것에 가깝다.
 
 ---
 

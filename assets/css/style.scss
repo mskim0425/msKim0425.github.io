@@ -82,3 +82,74 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 .map-embed iframe {
   display: block;
 }
+
+/* Post tables: let long cells wrap instead of forcing horizontal scroll.
+   The theme sets white-space: nowrap on every cell (_sass/addon/module.scss %table-cell). */
+.post-content .table-wrapper > table {
+  td,
+  th {
+    white-space: normal;
+    vertical-align: top;
+  }
+}
+
+/* ---------- Readability palette: tables + gold emphasis ----------
+   Theme variables are set in _sass/colors/{dark,light}-typography.scss.
+   Re-declared here (same selectors, later in the cascade) so the theme files stay untouched. */
+@mixin palette-dark {
+  --heading-color: #b7a9ea;                 /* softer purple, higher contrast on #0f0f11 */
+  --tb-odd-bg: #1a1b1f;
+  --tb-even-bg: #202228;
+  --tb-border-color: #34363d;
+  --tb-head-bg: #262830;
+  --tb-head-color: #e3b341;                 /* gold */
+  --tb-head-border: rgba(227, 179, 65, 0.55);
+  --emphasis-color: #e3b341;                /* gold for **bold** in posts */
+}
+
+@mixin palette-light {
+  --tb-odd-bg: #fafafa;
+  --tb-even-bg: #ffffff;
+  --tb-border-color: #e6e6e6;
+  --tb-head-bg: #f4f0e4;
+  --tb-head-color: #7a5a00;                 /* dark gold, readable on white */
+  --tb-head-border: rgba(170, 125, 0, 0.5);
+  --emphasis-color: #8a6400;
+}
+
+html {
+  @media (prefers-color-scheme: light) {
+    &:not([data-mode]), &[data-mode=light] { @include palette-light; }
+    &[data-mode=dark] { @include palette-dark; }
+  }
+  @media (prefers-color-scheme: dark) {
+    &:not([data-mode]), &[data-mode=dark] { @include palette-dark; }
+    &[data-mode=light] { @include palette-light; }
+  }
+}
+
+.post-content {
+  strong, b {
+    color: var(--emphasis-color);
+    font-weight: 600;
+  }
+
+  .table-wrapper > table {
+    border: 1px solid var(--tb-border-color);
+    border-radius: 6px;
+
+    thead {
+      background-color: var(--tb-head-bg);
+      border-bottom: 2px solid var(--tb-head-border);
+
+      th {
+        color: var(--tb-head-color);
+        font-weight: 600;
+      }
+    }
+
+    td {
+      line-height: 1.6;
+    }
+  }
+}

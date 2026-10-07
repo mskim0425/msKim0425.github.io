@@ -124,6 +124,7 @@ paginate: 10
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
+  auto_id_prefix: 's-'   # 제목 id가 숫자로 시작하면("0-…") Bootstrap scrollspy가 TOC 추적을 못 함. 글자로 시작하게 접두사
   syntax_highlighter: rouge
   syntax_highlighter_opts:   # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
@@ -183,6 +184,9 @@ compress_html:
 
 exclude:
   - naver-drafts
+  - .code-review-graph   # MCP 코드 그래프 DB. 몇 초마다 바뀌어 jekyll serve 재빌드를 유발
+  - .jekyll-cache
+  - .claude
   - '*.gem'
   - '*.gemspec'
   - README.md
