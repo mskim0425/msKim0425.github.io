@@ -3,7 +3,7 @@ title: "LLM은 어떻게 그림을 그리나 — 디퓨전 · latent space · �
 date: 2026-10-07 10:00:00 +0900
 categories: [Dev, AI]
 tags: [diffusion, stable-diffusion, latent-space, vae, cross-attention, cfg, image-generation, video-generation, vision, multimodal]
-description: "텍스트는 '다음 토큰 하나 뽑기'를 수백 번, 그림은 '노이즈 한 장을 조금씩 지우기'를 수십 번. 채팅에서 '그려줘'가 처리되는 경로를 4편 그림 위에 놓고, 디퓨전 모델 안에서 벌어지는 일(노이즈 더하기로 학습 → 노이즈 빼기로 생성, latent space, cross-attention, CFG)을 내 블로그 사진으로 만든 그림과 도식으로 정리한다. 이미지 토큰 자기회귀, 영상(시간축), 그리고 반대 방향인 '그림 읽기'까지."
+description: "텍스트는 토큰 하나씩, 그림은 노이즈 한 장을 수십 번 다듬는다. 디퓨전·latent space·cross-attention·CFG·영상 생성을 내 사진으로 만든 그림과 도식으로 정리한다."
 mermaid: true
 ---
 

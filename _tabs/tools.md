@@ -1,4 +1,8 @@
 ---
+redirect_from:
+  - /posts/cron-expression-generator-free-ko/
+  - /posts/diff-checker-online-free-ko/
+  - /posts/unix-timestamp-converter-world-clock-free-ko/
 layout: page
 icon: fas fa-wrench
 order: 6

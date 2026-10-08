@@ -1,4 +1,7 @@
 ---
+redirect_from:
+  - /posts/ruby_assm_releation/
+  - /posts/ruby-assm/
 layout: post
 
 

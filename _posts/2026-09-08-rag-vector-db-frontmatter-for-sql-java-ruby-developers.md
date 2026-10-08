@@ -3,7 +3,7 @@ title: "RAG · 벡터DB · Frontmatter 총정리"
 date: 2026-09-08 10:00:00 +0900
 categories: [Dev, AI]
 tags: [rag, vector-db, pgvector, embedding, frontmatter, spring-ai, ruby, semantic-search]
-description: "RAG가 뭔지 SQL 한 줄로 이해하고, 벡터DB를 'B-Tree 대신 HNSW 인덱스가 붙은 컬럼'으로 받아들인 뒤, 내 Jekyll 블로그 글(Frontmatter 포함)을 pgvector + Java/Ruby로 검색 가능하게 만드는 실습까지 정리한다."
+description: "RAG는 SELECT 결과를 프롬프트에 붙이는 것. 벡터DB를 'HNSW 인덱스가 붙은 컬럼'으로 이해하고, 블로그 글을 pgvector + Java/Ruby로 검색하는 실습까지."
 ---
 
 ## 한 줄 요약

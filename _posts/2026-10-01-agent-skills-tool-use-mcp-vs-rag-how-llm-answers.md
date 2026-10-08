@@ -3,7 +3,7 @@ title: "Agent Skills · Tool Use · MCP 총정리 — 질문 하나에 LLM이 �
 date: 2026-10-01 10:00:00 +0900
 categories: [Dev, AI]
 tags: [agent-skills, claude, tool-use, mcp, rag, context-window, progressive-disclosure, agent-loop, ruby, java]
-description: "anthropics/skills 저장소를 읽다 생긴 질문. 스킬은 RAG 그림 어디에 들어가나. '내가 쓴 글 중에 한식, 중식이 각각 몇 개지?' 한 줄이 처리되는 과정을 턴 단위로 따라가며 RAG(코드가 push) · Tool Use(LLM이 호출문 쓰고 코드가 실행) · MCP(도구 공급 표준) · Skills(LLM이 스스로 pull하는 매뉴얼, 3단계 점진적 공개)가 각각 어디서 끼어드는지 도식으로 정리하고, 스킬을 읽는 최소 하네스를 Ruby/Java로 만든다."
+description: "RAG는 코드가 push, Skills는 LLM이 pull. '내 블로그에 한식·중식 몇 개?' 한 줄을 턴 단위로 따라가며 Tool Use·MCP·Skills가 어디서 끼는지 도식으로 정리한다."
 mermaid: true
 ---
 

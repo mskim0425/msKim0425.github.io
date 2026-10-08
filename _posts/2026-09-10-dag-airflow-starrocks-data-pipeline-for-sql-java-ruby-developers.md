@@ -3,7 +3,7 @@ title: "DAG · Airflow · StarRocks 총정리"
 date: 2026-09-10 10:00:00 +0900
 categories: [Dev, Data]
 tags: [airflow, dag, starrocks, iceberg, data-pipeline, olap, orchestration, rag]
-description: "DAG를 '순환 없는 작업 순서도'로, Airflow를 'cron + 의존성 + 재시도 + 대시보드'로, StarRocks를 '집계 전용 MySQL 호환 DB'로 이해한다. 이전 글의 RAG 인덱싱 파이프라인을 Airflow DAG로 옮기고 검색 로그를 StarRocks에 쌓아 Recall@5를 집계하는 실습, 그리고 데이터 파이프라인 용어 사전까지."
+description: "DAG는 순환 없는 작업 순서도, Airflow는 cron + 의존성 + 재시도, StarRocks는 집계 전용 MySQL 호환 DB. RAG 인덱싱을 Airflow로 옮기고 검색 로그를 집계하는 실습."
 ---
 
 ## 한 줄 요약

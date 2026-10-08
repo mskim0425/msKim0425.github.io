@@ -4,7 +4,7 @@ date: 2026-09-05 15:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [hotel-bingsu, bingsu, grand-intercontinental-parnas, mango-bingsu, dessert, coex, gangnam-food, seoul-food-guide]
 klook: [coex-aquarium, seoul-sky, esim, wowpass]
-description: "Tried all three Summer Premium Bingsu at the Grand InterContinental Seoul Parnas Lobby Lounge & Bar — jewel tomato in a mother-of-pearl box, Jeju apple mango, and signature red bean with mugwort ice cream — plus the limited moon jar cake. Prices, period, live jazz, parking, and an honest review of Seoul's best hotel bingsu."
+description: "All three Summer Premium Bingsu at Grand InterContinental Seoul Parnas: jewel tomato, Jeju apple mango, red bean with mugwort ice cream. Prices & honest review."
 image:
   path: /images/parnas-bingsu/tomato-bingsu.webp
   alt: Jewel tomato bingsu in a traditional mother-of-pearl box at Grand InterContinental Seoul Parnas Lobby Lounge

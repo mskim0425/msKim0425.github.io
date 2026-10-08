@@ -41,6 +41,11 @@
     {% endfor %}
   {% endif %}
 
+  {% if page.layout == 'tag' or page.layout == 'category' or paginator.page > 1 %}
+  <!-- thin archive pages: keep links crawlable, keep them out of the index -->
+  <meta name="robots" content="noindex, follow">
+  {% endif %}
+
   {{ seo_tags }}
 
   {% include schema-markup.html %}

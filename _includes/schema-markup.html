@@ -52,7 +52,25 @@
   {% endif %}
   "keywords": {{ page.tags | join: ', ' | jsonify }},
   "articleSection": {{ page.categories | join: ' > ' | jsonify }},
-  "inLanguage": "en"
+  "inLanguage": {% if page.lang %}{{ page.lang | jsonify }}{% elsif page.categories contains 'Korean Food' %}"en"{% else %}"ko"{% endif %}
+}
+</script>
+
+<!-- Breadcrumb Schema: Home > Category > Post (shows a breadcrumb trail in search results) -->
+{% assign crumb_cat = page.categories | first %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ site.url | jsonify }} },
+    {% if crumb_cat %}
+    { "@type": "ListItem", "position": 2, "name": {{ crumb_cat | jsonify }}, "item": {{ crumb_cat | slugify | prepend: '/categories/' | append: '/' | absolute_url | jsonify }} },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
+    {% else %}
+    { "@type": "ListItem", "position": 2, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
+    {% endif %}
+  ]
 }
 </script>
 

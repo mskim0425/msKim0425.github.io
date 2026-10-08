@@ -1,4 +1,7 @@
 ---
+redirect_from:
+  - /posts/intnerworks/
+  - /posts/인터넷-작동원리/
 layout: post
 title:  "인터넷 사용법?"
 date:   2022-10-19 09:41:57 +0900
