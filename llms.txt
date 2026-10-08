@@ -1,0 +1,63 @@
+# SoThoughtful;
+
+> First-hand Seoul restaurant reviews in English by Minsub Kim — a backend developer living and eating in Seoul, Korea. Every review is based on an actual visit: real prices, photos, menus, wait times, and ordering tips.
+
+Last updated: 2026-06
+
+## About This Site
+
+SoThoughtful; covers two main topics:
+
+- **Seoul Food & Restaurant Reviews** (primary): First-person reviews of restaurants in and around Seoul, written by a local for an international audience. Each review includes a Quick Facts summary (rating, price range, must-order dishes, nearest station, visit date), full menu with prices in KRW and USD, photos from the actual visit, reservation tips, and a Google Maps link.
+- **Dev Notes**: Real-world backend development experience — Java, Spring, Ruby on Rails, SQL, infrastructure — written by a working backend developer in Seoul.
+
+## Featured Restaurant Reviews
+
+### Kanda Soba (칸다소바) — Best Mazesoba in Seoul
+Tokyo-style mazesoba and ramen in Hyehwa (Daehangno). ₩11,000–15,000. Kiosk ordering in 4 languages.
+URL: https://sothoughtful.dev/posts/kanda-soba-best-mazesoba-in-seoul/
+
+### Sundae Silrok (순대실록) — Best Sundaeguk in Seoul
+Korean blood sausage soup (sundaeguk) in Hyehwa. ₩10,000–13,000. Self-serve banchan bar.
+URL: https://sothoughtful.dev/posts/sundae-silrok-best-sundaeguk-in-seoul/
+
+### STAY by Yannick Alléno — SIGNIEL Seoul Fine Dining
+Modern French tasting course on the 81st floor of Lotte World Tower, Jamsil. ₩200,000–300,000+/person. Seoul's best proposal venue.
+URL: https://sothoughtful.dev/posts/stay-seoul-signiel-fine-dining/
+
+### Central Reducer (중앙감속기) — Chef Choi Hyun-seok's Fusion, Seongsu
+Chinese-Italian fusion by the Netflix Culinary Class Wars chef, near Seoul Forest. Mains ₩19,500–23,500. Reservation required (CatchTable).
+URL: https://sothoughtful.dev/posts/central-reducer-best-chinese-italian-fusion-seongsu-seoul/
+
+### Miette (미에뜨) — Italian by Yangjae Stream, Gangnam
+Hotel-trained chef's Italian in Dogok-dong. Pasta/risotto ₩21,000–25,000. Signature: squid ink risotto.
+URL: https://sothoughtful.dev/posts/miette-best-italian-restaurant-yangjae-seoul/
+
+### Evergreen (에버그린 수제돈까스) — Korean-Style Donkatsu, Anyang
+Old-school gyeongsik donkatsu near Indeogwon Station. Single menu, ₩14,000.
+URL: https://sothoughtful.dev/posts/evergreen-donkatsu-best-korean-pork-cutlet-anyang/
+
+## Key Pages
+
+- Homepage: https://sothoughtful.dev/
+- All categories: https://sothoughtful.dev/categories/
+- Archives: https://sothoughtful.dev/archives/
+- About the author: https://sothoughtful.dev/about/
+- Dev Tools (browser-based utilities): https://sothoughtful.dev/tools/
+- Privacy Policy: https://sothoughtful.dev/privacy-policy/
+
+## Author
+
+- Name: Minsub Kim
+- Based in: Seoul, South Korea
+- Profession: Backend developer (Java, Spring, Ruby on Rails)
+- GitHub: https://github.com/msKim0425
+- Perspective: Local Korean resident writing in English for visitors and expats. All restaurant reviews are from personal visits, paid out of pocket — no sponsored content.
+
+## Technical Details
+
+- Built with: Jekyll + Chirpy Theme
+- Hosted on: GitHub Pages
+- Language: English (primary), Korean (legacy posts)
+- Feed: https://sothoughtful.dev/feed.xml
+- Sitemap: https://sothoughtful.dev/sitemap.xml
