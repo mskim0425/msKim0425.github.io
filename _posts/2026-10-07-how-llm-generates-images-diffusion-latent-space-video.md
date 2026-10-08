@@ -5,6 +5,9 @@ categories: [Dev, AI]
 tags: [diffusion, stable-diffusion, latent-space, vae, cross-attention, cfg, image-generation, video-generation, vision, multimodal]
 description: "텍스트는 토큰 하나씩, 그림은 노이즈 한 장을 수십 번 다듬는다. 디퓨전·latent space·cross-attention·CFG·영상 생성을 내 사진으로 만든 그림과 도식으로 정리한다."
 mermaid: true
+image:
+  path: /images/llm-image-gen/noise-forward-reverse.webp
+  alt: 빙수 사진에 노이즈를 단계적으로 더한 디퓨전 학습 과정 개념도
 ---
 
 ## 한 줄 요약

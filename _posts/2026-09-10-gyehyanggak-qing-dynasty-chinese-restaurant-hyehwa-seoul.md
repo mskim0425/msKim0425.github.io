@@ -4,7 +4,7 @@ date: 2026-09-10 21:00:00 +0900
 categories: [Korean Food, Seoul]
 tags: [gyehyanggak, chinese-restaurant-seoul, culinary-class-wars, hyehwa, pagoda-pork, eight-treasure-duck, date-restaurant-seoul, seoul-food-guide]
 klook: [palace-market-tour, nanta, esim, wowpass]
-description: "★4.4 — Gyehyanggak (계향각) in Hyehwa is Chef Shin Gye-sook's recreation of Qing-dynasty banquet cooking from the 1792 cookbook Suiyuan Shidan. Pagoda pork, 18-hour eight-treasure duck, laziji, seafood nurungji soup — dishes you won't find anywhere else in Korea. Menu, prices, reservation & review."
+description: "★4.4 — Gyehyanggak (계향각), Hyehwa: Qing-dynasty banquet dishes from the 1792 Suiyuan Shidan. Pagoda pork, eight-treasure duck. Menu, prices & review."
 image:
   path: /images/gyehyanggak/pagoda-pork.webp
   alt: Pagoda pork (botapyuk) with steamed buns at Gyehyanggak Hyehwa Seoul
